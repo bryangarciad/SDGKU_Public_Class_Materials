@@ -1,0 +1,107 @@
+# Xcode
+## Build generated
+build/
+DerivedData/
+*.build/
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+*.xcuserstate
+
+## Xcode Patch
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+
+# Swift Package Manager
+.build/
+Packages/
+Package.resolved
+*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+.swiftpm/
+
+# CocoaPods
+Pods/
+*.xcworkspace
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# Carthage
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+_*
+__Assignments/
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Thumbnails
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+*.mp4
+
+# Temporary files
+*.tmp
+*.temp
+
+# Crash logs
+*.crash
+*.ips
+
+# Playgrounds
+timeline.xctimeline
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# Large media files (uncomment if you don't want to track these)
+# *.mp4
+# *.mov
+# *.avi
+
+# Incomplete downloads
+*.crdownload
+
+# Provisioning profiles (optional - uncomment if needed)
+# *.mobileprovision
+# *.provisionprofile
+
+# Code Injection
+.inject.json
+

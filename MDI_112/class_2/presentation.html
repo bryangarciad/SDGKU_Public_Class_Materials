@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthKit for WatchOS - MDI 112</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        :root {
+            --accent-orange: #FF9500;
+            --accent-cyan: #32D7FF;
+            --accent-green: #30D158;
+            --accent-purple: #AF52DE;
+            --accent-pink: #FF2D55;
+            --accent-red: #FF453A;
+            --dark-bg: #0D0D12;
+            --card-bg: #1C1C24;
+            --text-gray: #8E8E93;
+        }
+        
+        .reveal {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+        }
+        section {
+            margin-top: -20px;
+        }
+        
+        .reveal .slides {
+            text-align: left;
+        }
+        
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.02em;
+        }
+        
+        .reveal h1 {
+            font-size: 2.8em;
+        }
+        
+        .reveal h2 {
+            font-size: 2em;
+            margin-bottom: 0.8em;
+        }
+        
+        .reveal h3 {
+            font-size: 1.4em;
+            color: var(--text-gray);
+        }
+        
+        .reveal p, .reveal li {
+            font-size: 0.85em;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .reveal ul li {
+            margin-bottom: 0.6em;
+            padding-left: 1.5em;
+            position: relative;
+        }
+        
+        .reveal ul li::before {
+            content: "•";
+            color: var(--accent-orange);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .reveal ol {
+            padding-left: 1.5em;
+        }
+
+        .reveal ol li {
+            margin-bottom: 0.5em;
+        }
+        
+        /* Title Slide */
+        .title-slide {
+            text-align: center !important;
+        }
+        
+        .title-slide h1 {
+            font-size: 3.2em;
+            margin-bottom: 0.3em;
+        }
+        
+        .title-slide .subtitle {
+            color: var(--text-gray);
+            font-size: 1.2em;
+        }
+        
+        .title-slide .emoji {
+            font-size: 4em;
+            margin-bottom: 0.3em;
+        }
+        
+        /* Section Slides */
+        .section-slide {
+            text-align: center !important;
+        }
+        
+        .section-slide .emoji {
+            font-size: 5em;
+            margin-bottom: 0.3em;
+        }
+        
+        .section-slide h2 {
+            color: var(--accent-cyan);
+            font-size: 2.4em;
+        }
+        
+        /* Accent Colors */
+        .accent-orange { color: var(--accent-orange) !important; }
+        .accent-cyan { color: var(--accent-cyan) !important; }
+        .accent-green { color: var(--accent-green) !important; }
+        .accent-purple { color: var(--accent-purple) !important; }
+        .accent-pink { color: var(--accent-pink) !important; }
+        .accent-red { color: var(--accent-red) !important; }
+        
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.2em 1.5em;
+            margin: 0.5em 0;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1em;
+            margin-top: 1em;
+        }
+        
+        .card-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8em;
+            margin-top: 1em;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1em;
+            text-align: center;
+        }
+        
+        .feature-card .icon {
+            font-size: 2.5em;
+            margin-bottom: 0.3em;
+        }
+        
+        .feature-card h4 {
+            margin: 0.3em 0;
+            font-size: 0.9em;
+        }
+        
+        .feature-card p {
+            font-size: 0.65em !important;
+            color: var(--text-gray);
+            margin: 0;
+        }
+        
+        /* Two Column Layout */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+        }
+        
+        .column h3 {
+            margin-bottom: 0.5em;
+            font-size: 1.1em;
+        }
+        
+        /* Principle Slide */
+        .principle-slide {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2em;
+            align-items: center;
+        }
+        
+        .principle-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-orange);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-right: 0.5em;
+        }
+        
+        .principle-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5em;
+        }
+        
+        .principle-title h2 {
+            margin: 0;
+            display: inline;
+        }
+        
+        .principle-description {
+            color: var(--text-gray);
+            font-size: 0.9em;
+            margin-bottom: 1em;
+        }
+        
+        .example-box {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1em 1.2em;
+            border-left: 4px solid var(--accent-cyan);
+        }
+        
+        .example-box .label {
+            color: var(--accent-cyan);
+            font-size: 0.7em;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5em;
+        }
+        
+        .principle-icon {
+            font-size: 6em;
+            text-align: center;
+        }
+        
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.3em 0.8em;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+        
+        .badge-orange { background: rgba(255, 149, 0, 0.2); color: var(--accent-orange); }
+        .badge-cyan { background: rgba(50, 215, 255, 0.2); color: var(--accent-cyan); }
+        .badge-green { background: rgba(48, 209, 88, 0.2); color: var(--accent-green); }
+        .badge-red { background: rgba(255, 69, 58, 0.2); color: var(--accent-red); }
+        
+        /* Timeline */
+        .timeline {
+            margin-top: 1em;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1em;
+        }
+        
+        .timeline-badge {
+            background: var(--accent-orange);
+            color: var(--dark-bg);
+            padding: 0.3em 0.8em;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8em;
+            margin-right: 1em;
+            white-space: nowrap;
+        }
+        
+        .timeline-content h4 {
+            margin: 0 0 0.2em 0;
+            font-size: 1em;
+        }
+        
+        .timeline-content p {
+            margin: 0;
+            font-size: 0.8em !important;
+            color: var(--text-gray);
+        }
+        
+        /* Progress indicator */
+        .reveal .progress {
+            background: rgba(255, 255, 255, 0.1);
+            height: 4px;
+        }
+        
+        .reveal .progress span {
+            background: var(--accent-cyan);
+        }
+        
+        /* Controls */
+        .reveal .controls {
+            color: var(--accent-cyan);
+        }
+        
+        /* Summary Grid */
+        .summary-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5em;
+        }
+        
+        .summary-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.85em;
+        }
+        
+        .summary-item .emoji {
+            margin-right: 0.5em;
+            font-size: 1.3em;
+        }
+
+        /* Code blocks */
+        .code-block {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 1em;
+            font-family: 'JetBrains Mono', 'SF Mono', monospace;
+            font-size: 0.55em;
+            overflow-x: auto;
+            border: 1px solid #2d2d44;
+        }
+
+        .code-block code {
+            color: #e0e0e0;
+        }
+
+        .code-block .keyword {
+            color: var(--accent-pink);
+        }
+
+        .code-block .type {
+            color: var(--accent-cyan);
+        }
+
+        .code-block .string {
+            color: var(--accent-green);
+        }
+
+        .code-block .comment {
+            color: var(--text-gray);
+        }
+
+        .code-block .func {
+            color: var(--accent-purple);
+        }
+
+        /* Warning/Info boxes */
+        .warning-box {
+            background: rgba(255, 149, 0, 0.15);
+            border-left: 4px solid var(--accent-orange);
+            border-radius: 8px;
+            padding: 1em;
+            margin: 1em 0;
+        }
+
+        .info-box {
+            background: rgba(50, 215, 255, 0.15);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 8px;
+            padding: 1em;
+            margin: 1em 0;
+        }
+
+        .warning-box .label, .info-box .label {
+            font-weight: 700;
+            font-size: 0.8em;
+            margin-bottom: 0.5em;
+        }
+
+        /* Data type grid */
+        .data-type-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6em;
+            margin-top: 0.8em;
+        }
+
+        .data-type-item {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 0.6em;
+            text-align: center;
+            font-size: 0.7em;
+        }
+
+        .data-type-item .icon {
+            font-size: 1.8em;
+            margin-bottom: 0.2em;
+        }
+
+        /* Step indicator */
+        .step-indicator {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: var(--accent-cyan);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-right: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Slide 1: Title -->
+            <section class="title-slide">
+                <div class="emoji">❤️‍🔥</div>
+                <h1>HealthKit for WatchOS</h1>
+                <p class="subtitle">MDI 112 - Class 2 | Building a Heart Rate Monitor App</p>
+            </section>
+            
+            <!-- Slide 2: Agenda -->
+            <section>
+                <h2 class="accent-cyan">Today's Agenda</h2>
+                <ul>
+                    <li>Introduction to HealthKit Framework</li>
+                    <li>Privacy, Permissions & User Consent</li>
+                    <li>Setting Up HealthKit in Xcode</li>
+                    <li>Reading Health Data (Heart Rate Focus)</li>
+                    <li>Real-Time Data Monitoring</li>
+                    <li>Displaying Data in SwiftUI</li>
+                    <li>Hands-on Project: Heart Rate Monitor</li>
+                </ul>
+            </section>
+
+            <!-- Slide 3: Class Timeline -->
+            <section>
+                <h2 class="accent-orange">3-Hour Class Plan</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-badge">Hour 1</span>
+                        <div class="timeline-content">
+                            <h4>HealthKit Fundamentals</h4>
+                            <p>Introduction, privacy, setup, and authorization flow</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-cyan);">Hour 2</span>
+                        <div class="timeline-content">
+                            <h4>Working with Health Data</h4>
+                            <p>Queries, real-time monitoring, heart rate specifics</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-green);">Hour 3</span>
+                        <div class="timeline-content">
+                            <h4>Hands-On Project</h4>
+                            <p>Build a Heart Rate Monitor watchOS app together</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Slide 4: Section - What is HealthKit -->
+            <section class="section-slide">
+                <div class="emoji">🏥</div>
+                <h2>What is HealthKit?</h2>
+            </section>
+            
+            <!-- Slide 5: HealthKit Introduction -->
+            <section>
+                <h2>HealthKit Framework Overview</h2>
+                <div class="two-columns">
+                    <div class="column">
+                        <h3 class="accent-orange">What It Does</h3>
+                        <ul>
+                            <li>Centralized health data repository</li>
+                            <li>Secure storage on device</li>
+                            <li>Shared access across apps</li>
+                            <li>Automatic data aggregation</li>
+                            <li>Background delivery support</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3 class="accent-cyan">Available On</h3>
+                        <ul>
+                            <li>iPhone (iOS 8+)</li>
+                            <li>Apple Watch (watchOS 2+)</li>
+                            <li>iPad (iOS 17+, limited)</li>
+                            <li><strong>Not available</strong> on macOS, tvOS</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: HealthKit Architecture -->
+            <section>
+                <h2 class="accent-purple">HealthKit Architecture</h2>
+                <div class="card">
+                    <p style="text-align: center; margin-bottom: 1em;">
+                        <span style="font-size: 2em;">📱</span> → 
+                        <span style="font-size: 2em;">🏥</span> → 
+                        <span style="font-size: 2em;">💾</span>
+                    </p>
+                    <div class="two-columns">
+                        <div>
+                            <p><strong>HKHealthStore</strong></p>
+                            <p style="color: var(--text-gray); font-size: 0.75em !important;">Primary interface to HealthKit. One instance per app. Handles authorization, queries, and saves.</p>
+                        </div>
+                        <div>
+                            <p><strong>Health Database</strong></p>
+                            <p style="color: var(--text-gray); font-size: 0.75em !important;">Encrypted, on-device storage. Protected by user's passcode. Backed up to iCloud (encrypted).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 7: Data Types Overview -->
+            <section>
+                <h2>Health Data Types</h2>
+                <div class="data-type-grid">
+                    <div class="data-type-item">
+                        <div class="icon">❤️</div>
+                        <div class="accent-red">Heart Rate</div>
+                    </div>
+                    <div class="data-type-item">
+                        <div class="icon">👣</div>
+                        <div class="accent-green">Steps</div>
+                    </div>
+                    <div class="data-type-item">
+                        <div class="icon">🔥</div>
+                        <div class="accent-orange">Calories</div>
+                    </div>
+                    <div class="data-type-item">
+                        <div class="icon">😴</div>
+                        <div class="accent-purple">Sleep</div>
+                    </div>
+                    <div class="data-type-item">
+                        <div class="icon">🫁</div>
+                        <div class="accent-cyan">Respiratory</div>
+                    </div>
+                    <div class="data-type-item">
+                        <div class="icon">🩸</div>
+                        <div class="accent-red">Blood Oxygen</div>
+                    </div>
+                    <div class="data-type-item">
+                        <div class="icon">🏃</div>
+                        <div class="accent-green">Workouts</div>
+                    </div>
+                    <div class="data-type-item">
+                        <div class="icon">⚖️</div>
+                        <div class="accent-orange">Weight</div>
+                    </div>
+                </div>
+                <div class="info-box" style="margin-top: 1em;">
+                    <p style="font-size: 0.75em !important; margin: 0;">HealthKit supports <strong>100+ data types</strong> including quantity, category, workout, and characteristic types.</p>
+                </div>
+            </section>
+
+            <!-- Slide 8: HKObjectType Categories -->
+            <section>
+                <h2 class="accent-cyan">Understanding HKObjectType</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4 class="accent-orange">HKQuantityType</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">Numeric values with units</p>
+                        <p style="font-size: 0.65em !important;">Heart rate, steps, distance, calories, blood pressure</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-cyan">HKCategoryType</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">Enum-based categories</p>
+                        <p style="font-size: 0.65em !important;">Sleep analysis, menstrual flow, mindful minutes</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-green">HKWorkoutType</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">Exercise sessions</p>
+                        <p style="font-size: 0.65em !important;">Running, swimming, cycling, strength training</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-purple">HKCharacteristicType</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">Static user info</p>
+                        <p style="font-size: 0.65em !important;">Date of birth, biological sex, blood type</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 9: Section - Privacy -->
+            <section class="section-slide">
+                <div class="emoji">🔐</div>
+                <h2>Privacy & User Consent</h2>
+            </section>
+
+            <!-- Slide 10: Privacy First -->
+            <section>
+                <h2 class="accent-red">Privacy is Non-Negotiable</h2>
+                <ul>
+                    <li>Health data is <strong>extremely sensitive</strong> personal information</li>
+                    <li>Users have <strong>complete control</strong> over what apps can access</li>
+                    <li>Apps <strong>cannot</strong> determine if permission was denied or never asked</li>
+                    <li>Data is <strong>encrypted</strong> and protected by device passcode</li>
+                    <li>Apple <strong>reviews</strong> HealthKit usage during App Store review</li>
+                </ul>
+                <div class="warning-box">
+                    <div class="label accent-orange">⚠️ IMPORTANT</div>
+                    <p style="font-size: 0.75em !important; margin: 0;">Your app must have a clear, legitimate health-related purpose to use HealthKit. Apple will reject apps that request health data without justification.</p>
+                </div>
+            </section>
+
+            <!-- Slide 11: Authorization Model -->
+            <section>
+                <h2>Authorization Model</h2>
+                <div class="two-columns">
+                    <div class="column">
+                        <h3 class="accent-green">Read Permission</h3>
+                        <ul>
+                            <li>Per-data-type granularity</li>
+                            <li>User can allow or deny each type</li>
+                            <li>You can't tell if denied vs never asked</li>
+                            <li>Empty results = no access or no data</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3 class="accent-orange">Write Permission</h3>
+                        <ul>
+                            <li>Also per-data-type</li>
+                            <li>You CAN check write authorization status</li>
+                            <li>Users can revoke anytime in Settings</li>
+                            <li>Separate from read permission</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 12: Required Info.plist Keys -->
+            <section>
+                <h2 class="accent-cyan">Required Info.plist Keys</h2>
+                <div class="code-block">
+                    <code>
+<span class="comment">&lt;!-- For reading health data --&gt;</span>
+<span class="keyword">&lt;key&gt;</span>NSHealthShareUsageDescription<span class="keyword">&lt;/key&gt;</span>
+<span class="keyword">&lt;string&gt;</span><span class="string">We need access to your heart rate data to display real-time health metrics.</span><span class="keyword">&lt;/string&gt;</span>
+
+<span class="comment">&lt;!-- For writing health data --&gt;</span>
+<span class="keyword">&lt;key&gt;</span>NSHealthUpdateUsageDescription<span class="keyword">&lt;/key&gt;</span>
+<span class="keyword">&lt;string&gt;</span><span class="string">We need permission to save your workout data to Apple Health.</span><span class="keyword">&lt;/string&gt;</span>
+                    </code>
+                </div>
+                <div class="info-box">
+                    <p style="font-size: 0.75em !important; margin: 0;"><strong>Pro tip:</strong> Write clear, specific descriptions. Users are more likely to grant permission if they understand why you need it.</p>
+                </div>
+            </section>
+
+            <!-- Slide 13: Section - Setup -->
+            <section class="section-slide">
+                <div class="emoji">⚙️</div>
+                <h2>Setting Up HealthKit</h2>
+            </section>
+
+            <!-- Slide 14: Xcode Setup Steps -->
+            <section style="margin-top: -350px; scroll-behavior: initial;">
+                <h2>Xcode Project Setup</h2>
+                <div class="card" style="margin-bottom: 0.8em;">
+                    <p><span class="step-indicator">1</span> <strong>Enable HealthKit Capability</strong></p>
+                    <p style="font-size: 0.7em !important; color: var(--text-gray); margin-left: 2.5em;">Project → Target → Signing & Capabilities → + Capability → HealthKit</p>
+                </div>
+                <div class="card" style="margin-bottom: 0.8em;">
+                    <p><span class="step-indicator">2</span> <strong>Add Info.plist Descriptions</strong></p>
+                    <p style="font-size: 0.7em !important; color: var(--text-gray); margin-left: 2.5em;">NSHealthShareUsageDescription and/or NSHealthUpdateUsageDescription</p>
+                </div>
+                <div class="card" style="margin-bottom: 0.8em;">
+                    <p><span class="step-indicator">3</span> <strong>Import Framework</strong></p>
+                    <p style="font-size: 0.7em !important; color: var(--text-gray); margin-left: 2.5em;">import HealthKit in your Swift files</p>
+                </div>
+                <div class="card">
+                    <p><span class="step-indicator">4</span> <strong>Check Availability</strong></p>
+                    <p style="font-size: 0.7em !important; color: var(--text-gray); margin-left: 2.5em;">HKHealthStore.isHealthDataAvailable() before using</p>
+                </div>
+            </section>
+
+            <!-- Slide 15: Check Availability Code -->
+            <section>
+                <h2 class="accent-green">Checking HealthKit Availability</h2>
+                <div class="code-block">
+                    <code style="width: 600px;">
+<span class="keyword">import</span> <span class="type">HealthKit</span>
+
+<span class="keyword">class</span> <span class="type">HealthKitManager</span> {
+    <span class="keyword">let</span> healthStore = <span class="type">HKHealthStore</span>()
+    
+    <span class="keyword">func</span> <span class="func">checkAvailability</span>() -> <span class="type">Bool</span> {
+        <span class="comment">// Check if HealthKit is available on this device</span>
+        <span class="keyword">guard</span> <span class="type">HKHealthStore</span>.<span class="func">isHealthDataAvailable</span>() <span class="keyword">else</span> {
+            <span class="func">print</span>(<span class="string">"HealthKit is not available on this device"</span>)
+            <span class="keyword">return false</span>
+        }
+        <span class="keyword">return true</span>
+    }
+}
+                    </code>
+                </div>
+                <p style="font-size: 0.75em; color: var(--text-gray); margin-top: 1em;">
+                    ℹ️ Always check availability before attempting any HealthKit operations.
+                </p>
+            </section>
+
+            <!-- Slide 16: Request Authorization Code -->
+            <section>
+                <h2 class="accent-purple">Requesting Authorization</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">func</span> <span class="func">requestAuthorization</span>() <span class="keyword">async throws</span> {
+    <span class="comment">// Define the types we want to read</span>
+    <span class="keyword">let</span> heartRateType = <span class="type">HKQuantityType</span>.<span class="func">quantityType</span>(
+        forIdentifier: .<span class="type">heartRate</span>
+    )!
+    
+    <span class="keyword">let</span> typesToRead: <span class="type">Set</span>&lt;<span class="type">HKObjectType</span>&gt; = [heartRateType]
+    <span class="keyword">let</span> typesToWrite: <span class="type">Set</span>&lt;<span class="type">HKSampleType</span>&gt; = [] <span class="comment">// Empty if only reading</span>
+    
+    <span class="comment">// Request authorization - shows system prompt to user</span>
+    <span class="keyword">try await</span> healthStore.<span class="func">requestAuthorization</span>(
+        toShare: typesToWrite,
+        read: typesToRead
+    )
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Slide 17: Authorization Flow -->
+            <section>
+                <h2>Authorization Flow</h2>
+                <div style="text-align: center; margin: 1em 0;">
+                    <span style="font-size: 1.5em;">📱 App Requests</span>
+                    <span style="font-size: 1.5em; margin: 0 0.5em;">→</span>
+                    <span style="font-size: 1.5em;">⚙️ System Prompt</span>
+                    <span style="font-size: 1.5em; margin: 0 0.5em;">→</span>
+                    <span style="font-size: 1.5em;">✅ User Decides</span>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4 class="accent-green">User Allows</h4>
+                        <ul style="font-size: 0.7em !important;">
+                            <li>Authorization completes successfully</li>
+                            <li>Queries return matching data</li>
+                            <li>Can start real-time monitoring</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-red">User Denies</h4>
+                        <ul style="font-size: 0.7em !important;">
+                            <li>Authorization still "succeeds"</li>
+                            <li>Queries return empty results</li>
+                            <li>App cannot distinguish denied vs no data</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 18: Section - Reading Data -->
+            <section class="section-slide">
+                <div class="emoji">📊</div>
+                <h2>Reading Health Data</h2>
+            </section>
+
+            <!-- Slide 19: Query Types -->
+            <section>
+                <h2 class="accent-orange">HealthKit Query Types</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4 class="accent-cyan">HKSampleQuery</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">One-time fetch of historical samples. Good for displaying past data.</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-green">HKStatisticsQuery</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">Aggregated statistics (sum, avg, min, max). Efficient for summaries.</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-purple">HKAnchoredObjectQuery</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">Incremental updates. Tracks changes since last query.</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-red">HKObserverQuery</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">Background notifications when data changes. Low power.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 20: Sample Query Code -->
+            <section>
+                <h2 class="accent-cyan">Basic Sample Query</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">func</span> <span class="func">fetchLatestHeartRate</span>() <span class="keyword">async throws</span> -> <span class="type">Double</span>? {
+    <span class="keyword">let</span> heartRateType = <span class="type">HKQuantityType</span>(.<span class="type">heartRate</span>)
+    
+    <span class="comment">// Sort by date, newest first</span>
+    <span class="keyword">let</span> sortDescriptor = <span class="type">NSSortDescriptor</span>(
+        key: <span class="type">HKSampleSortIdentifierStartDate</span>,
+        ascending: <span class="keyword">false</span>
+    )
+    
+    <span class="comment">// Create query for most recent sample</span>
+    <span class="keyword">let</span> query = <span class="type">HKSampleQuery</span>(
+        sampleType: heartRateType,
+        predicate: <span class="keyword">nil</span>,
+        limit: <span class="type">1</span>,
+        sortDescriptors: [sortDescriptor]
+    ) { query, samples, error <span class="keyword">in</span>
+        <span class="keyword">guard let</span> sample = samples?.<span class="func">first</span> <span class="keyword">as?</span> <span class="type">HKQuantitySample</span> <span class="keyword">else</span> { <span class="keyword">return</span> }
+        <span class="keyword">let</span> bpm = sample.quantity.<span class="func">doubleValue</span>(for: <span class="type">HKUnit</span>(from: <span class="string">"count/min"</span>))
+    }
+    
+    healthStore.<span class="func">execute</span>(query)
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Slide 21: Understanding HKUnit -->
+            <section>
+                <h2 class="accent-green">Understanding HKUnit</h2>
+                <p>Health data comes with units. You must specify the unit when reading values.</p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>Heart Rate</h4>
+                        <p style="font-size: 0.75em; font-family: monospace;" class="accent-cyan">HKUnit(from: "count/min")</p>
+                        <p style="font-size: 0.65em; color: var(--text-gray);">or HKUnit.count().unitDivided(by: .minute())</p>
+                    </div>
+                    <div class="card">
+                        <h4>Distance</h4>
+                        <p style="font-size: 0.75em; font-family: monospace;" class="accent-cyan">HKUnit.meter()</p>
+                        <p style="font-size: 0.65em; color: var(--text-gray);">or .mile(), .kilometer()</p>
+                    </div>
+                    <div class="card">
+                        <h4>Energy</h4>
+                        <p style="font-size: 0.75em; font-family: monospace;" class="accent-cyan">HKUnit.kilocalorie()</p>
+                        <p style="font-size: 0.65em; color: var(--text-gray);">or .joule(), .smallCalorie()</p>
+                    </div>
+                    <div class="card">
+                        <h4>Mass</h4>
+                        <p style="font-size: 0.75em; font-family: monospace;" class="accent-cyan">HKUnit.gram()</p>
+                        <p style="font-size: 0.65em; color: var(--text-gray);">or .pound(), .ounce()</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 22: Section - Real-Time Monitoring -->
+            <section class="section-slide">
+                <div class="emoji">⏱️</div>
+                <h2>Real-Time Data Monitoring</h2>
+            </section>
+
+            <!-- Slide 23: Anchored Object Query -->
+            <section>
+                <h2 class="accent-red">HKAnchoredObjectQuery for Real-Time</h2>
+                <ul>
+                    <li>Perfect for <strong>live updates</strong> as new data arrives</li>
+                    <li>Returns initial results + ongoing updates via handler</li>
+                    <li>Uses an <strong>anchor</strong> to track position in data stream</li>
+                    <li>Ideal for heart rate monitoring during workouts</li>
+                </ul>
+                <div class="info-box">
+                    <p style="font-size: 0.75em !important; margin: 0;">
+                        💡 The anchor remembers where you left off, so you only receive <strong>new</strong> samples, not duplicates.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide 24: Anchored Query Code -->
+            <section>
+                <h2 class="accent-purple">Real-Time Heart Rate Query</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">func</span> <span class="func">startHeartRateMonitoring</span>() {
+    <span class="keyword">let</span> heartRateType = <span class="type">HKQuantityType</span>(.<span class="type">heartRate</span>)
+    
+    <span class="keyword">let</span> query = <span class="type">HKAnchoredObjectQuery</span>(
+        type: heartRateType,
+        predicate: <span class="keyword">nil</span>,
+        anchor: <span class="keyword">nil</span>,
+        limit: <span class="type">HKObjectQueryNoLimit</span>
+    ) { query, samples, deleted, anchor, error <span class="keyword">in</span>
+        <span class="comment">// Initial results</span>
+        <span class="keyword">self</span>.<span class="func">processHeartRateSamples</span>(samples)
+    }
+    
+    <span class="comment">// Handler for ongoing updates</span>
+    query.<span class="type">updateHandler</span> = { query, samples, deleted, anchor, error <span class="keyword">in</span>
+        <span class="comment">// New samples arrived!</span>
+        <span class="keyword">self</span>.<span class="func">processHeartRateSamples</span>(samples)
+    }
+    
+    healthStore.<span class="func">execute</span>(query)
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Slide 25: Process Samples -->
+            <section>
+                <h2 class="accent-cyan">Processing Heart Rate Samples</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">func</span> <span class="func">processHeartRateSamples</span>(_ samples: [<span class="type">HKSample</span>]?) {
+    <span class="keyword">guard let</span> samples = samples <span class="keyword">as?</span> [<span class="type">HKQuantitySample</span>] <span class="keyword">else</span> { <span class="keyword">return</span> }
+    
+    <span class="keyword">let</span> heartRateUnit = <span class="type">HKUnit</span>(from: <span class="string">"count/min"</span>)
+    
+    <span class="keyword">for</span> sample <span class="keyword">in</span> samples {
+        <span class="keyword">let</span> heartRate = sample.quantity.<span class="func">doubleValue</span>(for: heartRateUnit)
+        <span class="keyword">let</span> timestamp = sample.startDate
+        
+        <span class="comment">// Update UI on main thread</span>
+        <span class="type">DispatchQueue</span>.main.<span class="func">async</span> {
+            <span class="keyword">self</span>.currentHeartRate = heartRate
+            <span class="keyword">self</span>.lastUpdated = timestamp
+        }
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Slide 26: Section - SwiftUI Integration -->
+            <section class="section-slide">
+                <div class="emoji">🎨</div>
+                <h2>SwiftUI Integration</h2>
+            </section>
+
+            <!-- Slide 27: ObservableObject Pattern -->
+            <section>
+                <h2 class="accent-green">HealthKit + ObservableObject</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">import</span> <span class="type">HealthKit</span>
+<span class="keyword">import</span> <span class="type">SwiftUI</span>
+
+<span class="keyword">class</span> <span class="type">HeartRateViewModel</span>: <span class="type">ObservableObject</span> {
+    <span class="keyword">@Published var</span> currentHeartRate: <span class="type">Double</span> = <span class="type">0</span>
+    <span class="keyword">@Published var</span> isAuthorized: <span class="type">Bool</span> = <span class="keyword">false</span>
+    <span class="keyword">@Published var</span> isMonitoring: <span class="type">Bool</span> = <span class="keyword">false</span>
+    
+    <span class="keyword">private let</span> healthStore = <span class="type">HKHealthStore</span>()
+    <span class="keyword">private var</span> heartRateQuery: <span class="type">HKAnchoredObjectQuery</span>?
+    
+    <span class="keyword">func</span> <span class="func">startMonitoring</span>() {
+        <span class="comment">// Setup and execute query...</span>
+        isMonitoring = <span class="keyword">true</span>
+    }
+    
+    <span class="keyword">func</span> <span class="func">stopMonitoring</span>() {
+        <span class="keyword">if let</span> query = heartRateQuery {
+            healthStore.<span class="func">stop</span>(query)
+        }
+        isMonitoring = <span class="keyword">false</span>
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Slide 28: SwiftUI View -->
+            <section>
+                <h2 class="accent-orange">Heart Rate Display View</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">struct</span> <span class="type">HeartRateView</span>: <span class="type">View</span> {
+    <span class="keyword">@StateObject private var</span> viewModel = <span class="type">HeartRateViewModel</span>()
+    
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+        <span class="type">VStack</span>(spacing: <span class="type">20</span>) {
+            <span class="type">Image</span>(systemName: <span class="string">"heart.fill"</span>)
+                .<span class="func">font</span>(.system(size: <span class="type">60</span>))
+                .<span class="func">foregroundColor</span>(.red)
+                .<span class="func">symbolEffect</span>(.<span class="type">pulse</span>)
+            
+            <span class="type">Text</span>(<span class="string">"\(Int(viewModel.currentHeartRate))"</span>)
+                .<span class="func">font</span>(.system(size: <span class="type">72</span>, weight: .bold))
+            
+            <span class="type">Text</span>(<span class="string">"BPM"</span>)
+                .<span class="func">font</span>(.headline)
+                .<span class="func">foregroundColor</span>(.secondary)
+        }
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Slide 29: Best Practices -->
+            <section>
+                <h2>SwiftUI Best Practices</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4 class="accent-cyan">🧵 Main Thread</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">Always update @Published properties on the main thread using DispatchQueue.main</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-green">🔄 Lifecycle</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">Start monitoring in .onAppear, stop in .onDisappear to save battery</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-orange">⚡ Performance</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">Throttle UI updates if data arrives too frequently</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-purple">🎯 Error States</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">Show meaningful UI when authorization denied or no data available</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 30: Section - watchOS Specifics -->
+            <section class="section-slide">
+                <div class="emoji">⌚</div>
+                <h2>watchOS Specific Considerations</h2>
+            </section>
+
+            <!-- Slide 31: Watch vs iPhone -->
+            <section>
+                <h2>watchOS vs iOS HealthKit</h2>
+                <div class="two-columns">
+                    <div class="column">
+                        <h3 class="accent-cyan">Apple Watch</h3>
+                        <ul>
+                            <li>Direct sensor access</li>
+                            <li>Real-time heart rate from wrist</li>
+                            <li>Limited historical data storage</li>
+                            <li>Battery-conscious queries</li>
+                            <li>Background app refresh limited</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3 class="accent-orange">iPhone</h3>
+                        <ul>
+                            <li>Aggregates data from Watch</li>
+                            <li>Full historical access</li>
+                            <li>More storage capacity</li>
+                            <li>Background delivery available</li>
+                            <li>Can sync with other apps</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 32: Workout Sessions -->
+            <section>
+                <h2 class="accent-red">Workout Sessions for Continuous Monitoring</h2>
+                <ul>
+                    <li>For <strong>continuous</strong> heart rate monitoring, start a workout session</li>
+                    <li>Keeps app running in foreground with full sensor access</li>
+                    <li>Heart rate updates every ~5 seconds during workout</li>
+                    <li>Without workout: updates only when user raises wrist</li>
+                </ul>
+                <div class="warning-box">
+                    <div class="label accent-orange">⚠️ Battery Impact</div>
+                    <p style="font-size: 0.75em !important; margin: 0;">Continuous monitoring drains battery quickly. Only use workout sessions when truly needed for the user experience.</p>
+                </div>
+            </section>
+
+            <!-- Slide 33: Heart Rate Contexts -->
+            <section>
+                <h2 class="accent-purple">Heart Rate Metadata Context</h2>
+                <p>Heart rate samples include context about when/how they were recorded:</p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>HKHeartRateMotionContext</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">.notSet, .sedentary, .active</p>
+                    </div>
+                    <div class="card">
+                        <h4>HKMetadataKeyHeartRateSensorLocation</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">.wrist, .chest, .finger, etc.</p>
+                    </div>
+                </div>
+                <div class="code-block" style="margin-top: 1em;">
+                    <code>
+<span class="keyword">let</span> context = sample.metadata?[<span class="type">HKMetadataKeyHeartRateMotionContext</span>]
+                    </code>
+                </div>
+            </section>
+
+            <!-- Slide 34: Section - Project -->
+            <section class="section-slide">
+                <div class="emoji">🏗️</div>
+                <h2>Project: HeartBeat Monitor</h2>
+            </section>
+
+            <!-- Slide 35: Project Overview -->
+            <section>
+                <h2 class="accent-orange">HeartBeat Monitor - What We're Building</h2>
+                <ul>
+                    <li>A watchOS app that displays <strong>real-time heart rate</strong></li>
+                    <li><strong>Animated heart icon</strong> that pulses with your heartbeat</li>
+                    <li><strong>Heart rate zones</strong> with color indicators (rest, fat burn, cardio, peak)</li>
+                    <li><strong>Session history</strong> showing min/max/average BPM</li>
+                    <li><strong>Haptic feedback</strong> when entering new heart rate zone</li>
+                </ul>
+            </section>
+
+            <!-- Slide 36: Features Grid -->
+            <section style="margin-top: -250px;">
+                <h2>App Features</h2>
+                <div class="card-grid-3">
+                    <div class="feature-card">
+                        <div class="icon">❤️</div>
+                        <h4 class="accent-red">Live Heart Rate</h4>
+                        <p>Real-time BPM display from Apple Watch sensors</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🎨</div>
+                        <h4 class="accent-cyan">Zone Colors</h4>
+                        <p>Visual indication of current heart rate zone</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">💓</div>
+                        <h4 class="accent-pink">Pulse Animation</h4>
+                        <p>Heart icon beats in sync with your pulse</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📊</div>
+                        <h4 class="accent-green">Statistics</h4>
+                        <p>Min, max, and average heart rate tracking</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📳</div>
+                        <h4 class="accent-orange">Haptic Alerts</h4>
+                        <p>Feel when you change heart rate zones</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔐</div>
+                        <h4 class="accent-purple">Privacy First</h4>
+                        <p>Proper authorization handling</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 37: Heart Rate Zones -->
+            <section>
+                <h2 class="accent-red">Heart Rate Zones</h2>
+                <div class="card" style="background: linear-gradient(90deg, #30D158 0%, #FFD60A 33%, #FF9500 66%, #FF453A 100%); padding: 0.5em; margin-bottom: 1em;">
+                    <p style="text-align: center; color: black; font-weight: bold; margin: 0;">Rest → Fat Burn → Cardio → Peak</p>
+                </div>
+                <div class="card-grid">
+                    <div class="card" style="border-left: 4px solid #30D158;">
+                        <h4 class="accent-green">Rest Zone</h4>
+                        <p style="font-size: 0.75em !important;">50-60% max HR</p>
+                        <p style="font-size: 0.65em !important; color: var(--text-gray);">Recovery, very light activity</p>
+                    </div>
+                    <div class="card" style="border-left: 4px solid #FFD60A;">
+                        <h4 style="color: #FFD60A;">Fat Burn Zone</h4>
+                        <p style="font-size: 0.75em !important;">60-70% max HR</p>
+                        <p style="font-size: 0.65em !important; color: var(--text-gray);">Light exercise, fat burning</p>
+                    </div>
+                    <div class="card" style="border-left: 4px solid #FF9500;">
+                        <h4 class="accent-orange">Cardio Zone</h4>
+                        <p style="font-size: 0.75em !important;">70-85% max HR</p>
+                        <p style="font-size: 0.65em !important; color: var(--text-gray);">Moderate to intense exercise</p>
+                    </div>
+                    <div class="card" style="border-left: 4px solid #FF453A;">
+                        <h4 class="accent-red">Peak Zone</h4>
+                        <p style="font-size: 0.75em !important;">85-100% max HR</p>
+                        <p style="font-size: 0.65em !important; color: var(--text-gray);">Maximum effort, HIIT</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 38: Architecture -->
+            <section>
+                <h2>App Architecture: MVVM</h2>
+                <div class="two-columns">
+                    <div class="column">
+                        <h3 class="accent-green">Files Structure</h3>
+                        <ul>
+                            <li><strong>Models/</strong> - HeartRateSample, HeartRateZone</li>
+                            <li><strong>Views/</strong> - ContentView, HeartRateView</li>
+                            <li><strong>ViewModels/</strong> - HeartRateViewModel</li>
+                            <li><strong>Services/</strong> - HealthKitManager</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3 class="accent-purple">Key Components</h3>
+                        <ul>
+                            <li>HealthKitManager - All HK operations</li>
+                            <li>HeartRateViewModel - Business logic</li>
+                            <li>Zone calculation logic</li>
+                            <li>Haptic feedback service</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 39: Development Steps -->
+            <section>
+                <h2 class="accent-cyan">Project Development Steps</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-badge">Step 1</span>
+                        <div class="timeline-content">
+                            <h4>Project Setup</h4>
+                            <p>Create watchOS project, enable HealthKit, configure Info.plist</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-cyan);">Step 2</span>
+                        <div class="timeline-content">
+                            <h4>HealthKit Manager</h4>
+                            <p>Authorization, queries, real-time monitoring setup</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-green);">Step 3</span>
+                        <div class="timeline-content">
+                            <h4>ViewModel & Logic</h4>
+                            <p>Heart rate processing, zone calculation, statistics</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-purple);">Step 4</span>
+                        <div class="timeline-content">
+                            <h4>SwiftUI Views</h4>
+                            <p>Build the UI with animations and zone colors</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-red);">Step 5</span>
+                        <div class="timeline-content">
+                            <h4>Testing & Polish</h4>
+                            <p>Test on device, add haptics, handle edge cases</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 40: Testing Note -->
+            <section>
+                <h2 class="accent-orange">Important: Testing HealthKit</h2>
+                <div class="warning-box">
+                    <div class="label accent-orange">⚠️ SIMULATOR LIMITATIONS</div>
+                    <p style="font-size: 0.8em !important; margin: 0;">The watchOS Simulator <strong>does not</strong> provide real HealthKit data. You must test on a <strong>physical Apple Watch</strong> to see actual heart rate readings.</p>
+                </div>
+                <div class="card-grid" style="margin-top: 1em;">
+                    <div class="card">
+                        <h4 class="accent-cyan">For Development</h4>
+                        <ul style="font-size: 0.7em !important;">
+                            <li>Use mock data in simulator</li>
+                            <li>Test authorization flow</li>
+                            <li>Verify UI layouts</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-green">For Real Testing</h4>
+                        <ul style="font-size: 0.7em !important;">
+                            <li>Deploy to physical Watch</li>
+                            <li>Verify sensor readings</li>
+                            <li>Test during actual activity</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 41: Let's Build -->
+            <section class="section-slide">
+                <div class="emoji">🚀</div>
+                <h2>Let's Build Together!</h2>
+                <p style="color: var(--text-gray); text-align: center;">Open Xcode and create a new watchOS project</p>
+            </section>
+
+            <!-- Slide 42: Key Takeaways -->
+            <section>
+                <h2 class="accent-green">Key Takeaways</h2>
+                <div class="summary-list">
+                    <div class="summary-item"><span class="emoji">🏥</span> HealthKit is Apple's health data framework</div>
+                    <div class="summary-item"><span class="emoji">🔐</span> Privacy is paramount - always explain why</div>
+                    <div class="summary-item"><span class="emoji">📊</span> Multiple query types for different needs</div>
+                    <div class="summary-item"><span class="emoji">⏱️</span> HKAnchoredObjectQuery for real-time</div>
+                    <div class="summary-item"><span class="emoji">⌚</span> watchOS has direct sensor access</div>
+                    <div class="summary-item"><span class="emoji">🧪</span> Must test on real device for sensor data</div>
+                </div>
+            </section>
+            
+            <!-- Slide 43: References -->
+            <section>
+                <h2>References & Resources</h2>
+                <ul>
+                    <li><a href="https://developer.apple.com/documentation/healthkit" target="_blank" style="color: var(--accent-cyan);">Apple HealthKit Documentation</a></li>
+                    <li><a href="https://developer.apple.com/design/human-interface-guidelines/healthkit" target="_blank" style="color: var(--accent-cyan);">HealthKit Human Interface Guidelines</a></li>
+                    <li><a href="https://medium.com/display-and-use-heart-rate-with-healthkit-on/display-and-use-heart-rate-with-healthkit-on-swiftui-for-watchos-2b26e29dc566" target="_blank" style="color: var(--accent-cyan);">Heart Rate with HealthKit Tutorial (Medium)</a></li>
+                    <li><a href="https://developer.apple.com/videos/play/wwdc2022/10005/" target="_blank" style="color: var(--accent-cyan);">WWDC: What's new in HealthKit</a></li>
+                </ul>
+            </section>
+
+            <!-- Slide 44: Questions -->
+            <section class="section-slide">
+                <div class="emoji">❓</div>
+                <h2>Questions?</h2>
+                <p style="color: var(--text-gray); text-align: center;">Let's discuss before we start coding</p>
+            </section>
+            
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            progress: true,
+            center: false,
+            transition: 'slide',
+            backgroundTransition: 'fade'
+        });
+    </script>
+</body>
+</html>
+
