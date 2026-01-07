@@ -1,0 +1,671 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C1C0E6102EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C1C0E60F2EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C1C0E6112EDFD07F0074FE39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1C0E6032EDFD07E0074FE39 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1C0E60E2EDFD07F0074FE39;
+			remoteInfo = "RickAndMortyConsumerApp Watch App";
+		};
+		C1C0E6222EDFD0820074FE39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1C0E6032EDFD07E0074FE39 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1C0E60E2EDFD07F0074FE39;
+			remoteInfo = "RickAndMortyConsumerApp Watch App";
+		};
+		C1C0E62C2EDFD0820074FE39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1C0E6032EDFD07E0074FE39 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1C0E60E2EDFD07F0074FE39;
+			remoteInfo = "RickAndMortyConsumerApp Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C1C0E6382EDFD0820074FE39 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				C1C0E6102EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C1C0E6092EDFD07F0074FE39 /* RickAndMortyConsumerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyConsumerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1C0E60F2EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RickAndMortyConsumerApp Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1C0E6212EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RickAndMortyConsumerApp Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1C0E62B2EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RickAndMortyConsumerApp Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C1C0E6132EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "RickAndMortyConsumerApp Watch App";
+			sourceTree = "<group>";
+		};
+		C1C0E6242EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "RickAndMortyConsumerApp Watch AppTests";
+			sourceTree = "<group>";
+		};
+		C1C0E62E2EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "RickAndMortyConsumerApp Watch AppUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C1C0E60C2EDFD07F0074FE39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1C0E61E2EDFD0820074FE39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1C0E6282EDFD0820074FE39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C1C0E6022EDFD07E0074FE39 = {
+			isa = PBXGroup;
+			children = (
+				C1C0E6132EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App */,
+				C1C0E6242EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppTests */,
+				C1C0E62E2EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppUITests */,
+				C1C0E60A2EDFD07F0074FE39 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C1C0E60A2EDFD07F0074FE39 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C1C0E6092EDFD07F0074FE39 /* RickAndMortyConsumerApp.app */,
+				C1C0E60F2EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App.app */,
+				C1C0E6212EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppTests.xctest */,
+				C1C0E62B2EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C1C0E6082EDFD07F0074FE39 /* RickAndMortyConsumerApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1C0E6392EDFD0820074FE39 /* Build configuration list for PBXNativeTarget "RickAndMortyConsumerApp" */;
+			buildPhases = (
+				C1C0E6072EDFD07F0074FE39 /* Resources */,
+				C1C0E6382EDFD0820074FE39 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1C0E6122EDFD07F0074FE39 /* PBXTargetDependency */,
+			);
+			name = RickAndMortyConsumerApp;
+			packageProductDependencies = (
+			);
+			productName = RickAndMortyConsumerApp;
+			productReference = C1C0E6092EDFD07F0074FE39 /* RickAndMortyConsumerApp.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		C1C0E60E2EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1C0E6352EDFD0820074FE39 /* Build configuration list for PBXNativeTarget "RickAndMortyConsumerApp Watch App" */;
+			buildPhases = (
+				C1C0E60B2EDFD07F0074FE39 /* Sources */,
+				C1C0E60C2EDFD07F0074FE39 /* Frameworks */,
+				C1C0E60D2EDFD07F0074FE39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C1C0E6132EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App */,
+			);
+			name = "RickAndMortyConsumerApp Watch App";
+			packageProductDependencies = (
+			);
+			productName = "RickAndMortyConsumerApp Watch App";
+			productReference = C1C0E60F2EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C1C0E6202EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1C0E63C2EDFD0820074FE39 /* Build configuration list for PBXNativeTarget "RickAndMortyConsumerApp Watch AppTests" */;
+			buildPhases = (
+				C1C0E61D2EDFD0820074FE39 /* Sources */,
+				C1C0E61E2EDFD0820074FE39 /* Frameworks */,
+				C1C0E61F2EDFD0820074FE39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1C0E6232EDFD0820074FE39 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C1C0E6242EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppTests */,
+			);
+			name = "RickAndMortyConsumerApp Watch AppTests";
+			packageProductDependencies = (
+			);
+			productName = "RickAndMortyConsumerApp Watch AppTests";
+			productReference = C1C0E6212EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C1C0E62A2EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1C0E63F2EDFD0820074FE39 /* Build configuration list for PBXNativeTarget "RickAndMortyConsumerApp Watch AppUITests" */;
+			buildPhases = (
+				C1C0E6272EDFD0820074FE39 /* Sources */,
+				C1C0E6282EDFD0820074FE39 /* Frameworks */,
+				C1C0E6292EDFD0820074FE39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1C0E62D2EDFD0820074FE39 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C1C0E62E2EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppUITests */,
+			);
+			name = "RickAndMortyConsumerApp Watch AppUITests";
+			packageProductDependencies = (
+			);
+			productName = "RickAndMortyConsumerApp Watch AppUITests";
+			productReference = C1C0E62B2EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C1C0E6032EDFD07E0074FE39 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					C1C0E6082EDFD07F0074FE39 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					C1C0E60E2EDFD07F0074FE39 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					C1C0E6202EDFD0820074FE39 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = C1C0E60E2EDFD07F0074FE39;
+					};
+					C1C0E62A2EDFD0820074FE39 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = C1C0E60E2EDFD07F0074FE39;
+					};
+				};
+			};
+			buildConfigurationList = C1C0E6062EDFD07E0074FE39 /* Build configuration list for PBXProject "RickAndMortyConsumerApp" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C1C0E6022EDFD07E0074FE39;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C1C0E60A2EDFD07F0074FE39 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C1C0E6082EDFD07F0074FE39 /* RickAndMortyConsumerApp */,
+				C1C0E60E2EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App */,
+				C1C0E6202EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppTests */,
+				C1C0E62A2EDFD0820074FE39 /* RickAndMortyConsumerApp Watch AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C1C0E6072EDFD07F0074FE39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1C0E60D2EDFD07F0074FE39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1C0E61F2EDFD0820074FE39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1C0E6292EDFD0820074FE39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C1C0E60B2EDFD07F0074FE39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1C0E61D2EDFD0820074FE39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1C0E6272EDFD0820074FE39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C1C0E6122EDFD07F0074FE39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1C0E60E2EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App */;
+			targetProxy = C1C0E6112EDFD07F0074FE39 /* PBXContainerItemProxy */;
+		};
+		C1C0E6232EDFD0820074FE39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1C0E60E2EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App */;
+			targetProxy = C1C0E6222EDFD0820074FE39 /* PBXContainerItemProxy */;
+		};
+		C1C0E62D2EDFD0820074FE39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1C0E60E2EDFD07F0074FE39 /* RickAndMortyConsumerApp Watch App */;
+			targetProxy = C1C0E62C2EDFD0820074FE39 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C1C0E6332EDFD0820074FE39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C1C0E6342EDFD0820074FE39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		C1C0E6362EDFD0820074FE39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RickAndMortyConsumerApp Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = RickAndMortyConsumerApp;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.RickAndMortyConsumerApp.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		C1C0E6372EDFD0820074FE39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RickAndMortyConsumerApp Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = RickAndMortyConsumerApp;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.RickAndMortyConsumerApp.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		C1C0E63A2EDFD0820074FE39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				INFOPLIST_KEY_CFBundleDisplayName = RickAndMortyConsumerApp;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.RickAndMortyConsumerApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C1C0E63B2EDFD0820074FE39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				INFOPLIST_KEY_CFBundleDisplayName = RickAndMortyConsumerApp;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.RickAndMortyConsumerApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C1C0E63D2EDFD0820074FE39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ramsesGarcia.RickAndMortyConsumerApp-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RickAndMortyConsumerApp Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RickAndMortyConsumerApp Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		C1C0E63E2EDFD0820074FE39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ramsesGarcia.RickAndMortyConsumerApp-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RickAndMortyConsumerApp Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RickAndMortyConsumerApp Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		C1C0E6402EDFD0820074FE39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ramsesGarcia.RickAndMortyConsumerApp-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "RickAndMortyConsumerApp Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		C1C0E6412EDFD0820074FE39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ramsesGarcia.RickAndMortyConsumerApp-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "RickAndMortyConsumerApp Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C1C0E6062EDFD07E0074FE39 /* Build configuration list for PBXProject "RickAndMortyConsumerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1C0E6332EDFD0820074FE39 /* Debug */,
+				C1C0E6342EDFD0820074FE39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1C0E6352EDFD0820074FE39 /* Build configuration list for PBXNativeTarget "RickAndMortyConsumerApp Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1C0E6362EDFD0820074FE39 /* Debug */,
+				C1C0E6372EDFD0820074FE39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1C0E6392EDFD0820074FE39 /* Build configuration list for PBXNativeTarget "RickAndMortyConsumerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1C0E63A2EDFD0820074FE39 /* Debug */,
+				C1C0E63B2EDFD0820074FE39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1C0E63C2EDFD0820074FE39 /* Build configuration list for PBXNativeTarget "RickAndMortyConsumerApp Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1C0E63D2EDFD0820074FE39 /* Debug */,
+				C1C0E63E2EDFD0820074FE39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1C0E63F2EDFD0820074FE39 /* Build configuration list for PBXNativeTarget "RickAndMortyConsumerApp Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1C0E6402EDFD0820074FE39 /* Debug */,
+				C1C0E6412EDFD0820074FE39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C1C0E6032EDFD07E0074FE39 /* Project object */;
+}

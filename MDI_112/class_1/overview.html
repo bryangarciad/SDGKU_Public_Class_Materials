@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 1 Overview - WatchOS Design Principles | MDI 112</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --accent-orange: #FF9500;
+            --accent-cyan: #32D7FF;
+            --accent-green: #30D158;
+            --accent-purple: #AF52DE;
+            --accent-pink: #FF2D55;
+            --accent-red: #FF453A;
+            --dark-bg: #0D0D12;
+            --card-bg: #1C1C24;
+            --card-bg-light: #252530;
+            --text-primary: #FFFFFF;
+            --text-secondary: #8E8E93;
+            --border-color: #3A3A4A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+        }
+        
+        .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .header .course-badge {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: var(--dark-bg);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+        
+        /* Section Titles */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        .section-title .icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-highlight {
+            border-left: 4px solid var(--accent-cyan);
+        }
+        
+        /* Assignment Table */
+        .assignment-grid {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .assignment-item {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: 1rem;
+            align-items: center;
+            background: var(--card-bg-light);
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .assignment-item .title {
+            font-weight: 600;
+        }
+        
+        .assignment-item .badge {
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .badge-assignment {
+            background: rgba(175, 82, 222, 0.2);
+            color: var(--accent-purple);
+        }
+        
+        .badge-attendance {
+            background: rgba(48, 209, 88, 0.2);
+            color: var(--accent-green);
+        }
+        
+        .badge-due {
+            background: rgba(255, 149, 0, 0.2);
+            color: var(--accent-orange);
+        }
+        
+        .grade-percent {
+            font-weight: 700;
+            color: var(--accent-cyan);
+            font-size: 1.1rem;
+        }
+        
+        /* Learning Outcomes */
+        .outcome-list {
+            list-style: none;
+        }
+        
+        .outcome-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .outcome-item:last-child {
+            border-bottom: none;
+        }
+        
+        .outcome-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: var(--accent-green);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .outcome-text {
+            flex: 1;
+        }
+        
+        .outcome-text strong {
+            color: var(--accent-green);
+        }
+        
+        /* Introduction */
+        .intro-content {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        
+        .intro-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .intro-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Topics Grid */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .topic-card {
+            background: var(--card-bg-light);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-cyan);
+        }
+        
+        .topic-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .topic-card h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .topic-card p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Class Info Bar */
+        .info-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .info-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        
+        .info-item .label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+        
+        .info-item .value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .info-item .value.cyan { color: var(--accent-cyan); }
+        .info-item .value.orange { color: var(--accent-orange); }
+        .info-item .value.green { color: var(--accent-green); }
+        .info-item .value.purple { color: var(--accent-purple); }
+        
+        /* Project Preview */
+        .project-preview {
+            background: linear-gradient(135deg, rgba(50, 215, 255, 0.1), rgba(175, 82, 222, 0.1));
+            border: 1px solid var(--accent-cyan);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .project-preview h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+        
+        .project-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .project-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+        
+        .project-feature .check {
+            color: var(--accent-green);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        .footer a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .assignment-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .info-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-icon">⌚</div>
+            <h1>WatchOS Design Principles</h1>
+            <p class="subtitle">Creating User-Friendly Interfaces for Wearable Devices</p>
+            <span class="course-badge">MDI 112 • Class 1</span>
+        </header>
+        
+        <!-- Quick Info Bar -->
+        <div class="info-bar">
+            <div class="info-item">
+                <div class="label">Duration</div>
+                <div class="value cyan">3 Hours</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Format</div>
+                <div class="value orange">Zoom + Hands-on</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Project</div>
+                <div class="value green">HealthPulse App</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Focus</div>
+                <div class="value purple">UX Design</div>
+            </div>
+        </div>
+        
+        <!-- Assignments & Activities -->
+        <section>
+            <h2 class="section-title">
+                <span class="icon">📋</span>
+                Assignments & Activities
+            </h2>
+            <div class="assignment-grid">
+                <div class="assignment-item">
+                    <div class="title">Connect to Zoom Session</div>
+                    <span class="badge badge-attendance">Attendance</span>
+                    <span class="badge badge-due">Class 1</span>
+                    <span class="grade-percent">10%</span>
+                </div>
+                <div class="assignment-item">
+                    <div class="title">Work on Assignment 1</div>
+                    <span class="badge badge-assignment">Assignment</span>
+                    <span class="badge badge-due">Due: Class 3</span>
+                    <span class="grade-percent">6.66%</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Learning Outcomes -->
+        <section style="margin-top: 2.5rem;">
+            <h2 class="section-title">
+                <span class="icon">🎯</span>
+                Learning Outcomes
+            </h2>
+            <div class="card card-highlight">
+                <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">
+                    By the end of this class, students will be able to:
+                </p>
+                <ul class="outcome-list">
+                    <li class="outcome-item">
+                        <span class="outcome-number">1</span>
+                        <div class="outcome-text">
+                            <strong>Design for Glanceability</strong> — Create interfaces that communicate essential information within 2-5 seconds of user attention
+                        </div>
+                    </li>
+                    <li class="outcome-item">
+                        <span class="outcome-number">2</span>
+                        <div class="outcome-text">
+                            <strong>Apply Wearable UX Principles</strong> — Implement the 7 key design principles specific to small-screen wearable devices
+                        </div>
+                    </li>
+                    <li class="outcome-item">
+                        <span class="outcome-number">3</span>
+                        <div class="outcome-text">
+                            <strong>Build Responsive WatchOS Layouts</strong> — Use SwiftUI to create adaptive interfaces optimized for Apple Watch screen sizes
+                        </div>
+                    </li>
+                    <li class="outcome-item">
+                        <span class="outcome-number">4</span>
+                        <div class="outcome-text">
+                            <strong>Implement Quick Interactions</strong> — Design touch-friendly controls and haptic feedback patterns for on-the-go usage
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Introduction -->
+        <section style="margin-top: 2.5rem;">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                Introduction
+            </h2>
+            <div class="card">
+                <div class="intro-content">
+                    <p>
+                        Welcome to <strong style="color: var(--accent-cyan);">WatchOS Design Principles</strong>! In this class, we dive into the unique challenges of designing interfaces for wearable devices. Unlike smartphones and tablets, wearables like the Apple Watch have extremely limited screen real estate — typically just 38-45mm — requiring a fundamentally different approach to user interface design.
+                    </p>
+                    <p>
+                        Users interact with their watch for just <strong style="color: var(--accent-orange);">2-5 seconds at a time</strong>, often while doing something else like walking, exercising, or in meetings. This means every pixel must earn its place, every interaction must be completable in seconds, and information must be immediately comprehensible at a glance.
+                    </p>
+                    <p>
+                        We'll explore the <strong style="color: var(--accent-green);">7 Key Design Principles</strong> for wearables: Glanceability, Simplicity, Minimalism, Quick Interactions, Haptic Feedback, Offline-First Design, and Personalization. You'll apply these principles by building a real WatchOS app from scratch.
+                    </p>
+                </div>
+                
+                <!-- Topics We'll Cover -->
+                <div class="topics-grid">
+                    <div class="topic-card">
+                        <div class="icon">👁️</div>
+                        <h4>Glanceability</h4>
+                        <p>Information at a quick look</p>
+                    </div>
+                    <div class="topic-card">
+                        <div class="icon">✨</div>
+                        <h4>Simplicity</h4>
+                        <p>Essential features only</p>
+                    </div>
+                    <div class="topic-card">
+                        <div class="icon">🎯</div>
+                        <h4>Minimalism</h4>
+                        <p>Clean, high-contrast UI</p>
+                    </div>
+                    <div class="topic-card">
+                        <div class="icon">⚡</div>
+                        <h4>Quick Actions</h4>
+                        <p>One-tap interactions</p>
+                    </div>
+                    <div class="topic-card">
+                        <div class="icon">📳</div>
+                        <h4>Haptic Feedback</h4>
+                        <p>Physical confirmation</p>
+                    </div>
+                    <div class="topic-card">
+                        <div class="icon">📴</div>
+                        <h4>Offline-First</h4>
+                        <p>Works without connection</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Project Preview -->
+        <section style="margin-top: 2.5rem;">
+            <h2 class="section-title">
+                <span class="icon">🏗️</span>
+                Hands-On Project
+            </h2>
+            <div class="project-preview">
+                <h3>
+                    <span>🩺</span>
+                    HealthPulse — Health Tracker App
+                </h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">
+                    Build a complete WatchOS app applying all 7 design principles:
+                </p>
+                <div class="project-features">
+                    <div class="project-feature">
+                        <span class="check">✓</span>
+                        Visual progress rings
+                    </div>
+                    <div class="project-feature">
+                        <span class="check">✓</span>
+                        Quick-add buttons
+                    </div>
+                    <div class="project-feature">
+                        <span class="check">✓</span>
+                        Calories & water tracking
+                    </div>
+                    <div class="project-feature">
+                        <span class="check">✓</span>
+                        Haptic feedback
+                    </div>
+                    <div class="project-feature">
+                        <span class="check">✓</span>
+                        Motivational quotes API
+                    </div>
+                    <div class="project-feature">
+                        <span class="check">✓</span>
+                        Persistent storage
+                    </div>
+                    <div class="project-feature">
+                        <span class="check">✓</span>
+                        MVVM architecture
+                    </div>
+                    <div class="project-feature">
+                        <span class="check">✓</span>
+                        Customizable goals
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>MDI 112 — Wearable Application Development</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="presentation.html">View Class Presentation →</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
+

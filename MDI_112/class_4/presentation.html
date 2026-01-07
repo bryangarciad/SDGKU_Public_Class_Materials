@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battery Optimization for Wearables - MDI 112</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        :root {
+            --accent-orange: #FF9500;
+            --accent-cyan: #32D7FF;
+            --accent-green: #30D158;
+            --accent-purple: #AF52DE;
+            --accent-pink: #FF2D55;
+            --accent-red: #FF453A;
+            --accent-blue: #0A84FF;
+            --accent-yellow: #FFD60A;
+            --dark-bg: #0D0D12;
+            --card-bg: #1C1C24;
+            --text-gray: #8E8E93;
+        }
+        
+        .reveal {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+        }
+        section {
+            margin-top: -20px;
+        }
+        
+        .reveal .slides {
+            text-align: left;
+        }
+        
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.02em;
+        }
+        
+        .reveal h1 {
+            font-size: 2.8em;
+        }
+        
+        .reveal h2 {
+            font-size: 2em;
+            margin-bottom: 0.8em;
+        }
+        
+        .reveal h3 {
+            font-size: 1.4em;
+            color: var(--text-gray);
+        }
+        
+        .reveal p, .reveal li {
+            font-size: 0.85em;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .reveal ul li {
+            margin-bottom: 0.6em;
+            padding-left: 1.5em;
+            position: relative;
+        }
+        
+        .reveal ul li::before {
+            content: "•";
+            color: var(--accent-orange);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .reveal ol {
+            padding-left: 1.5em;
+        }
+
+        .reveal ol li {
+            margin-bottom: 0.5em;
+        }
+        
+        /* Title Slide */
+        .title-slide {
+            text-align: center !important;
+        }
+        
+        .title-slide h1 {
+            font-size: 3.2em;
+            margin-bottom: 0.3em;
+        }
+        
+        .title-slide .subtitle {
+            color: var(--text-gray);
+            font-size: 1.2em;
+        }
+        
+        .title-slide .emoji {
+            font-size: 4em;
+            margin-bottom: 0.3em;
+        }
+        
+        /* Section Slides */
+        .section-slide {
+            text-align: center !important;
+        }
+        
+        .section-slide .emoji {
+            font-size: 5em;
+            margin-bottom: 0.3em;
+        }
+        
+        .section-slide h2 {
+            color: var(--accent-cyan);
+            font-size: 2.4em;
+        }
+        
+        /* Accent Colors */
+        .accent-orange { color: var(--accent-orange) !important; }
+        .accent-cyan { color: var(--accent-cyan) !important; }
+        .accent-green { color: var(--accent-green) !important; }
+        .accent-purple { color: var(--accent-purple) !important; }
+        .accent-pink { color: var(--accent-pink) !important; }
+        .accent-red { color: var(--accent-red) !important; }
+        .accent-blue { color: var(--accent-blue) !important; }
+        .accent-yellow { color: var(--accent-yellow) !important; }
+        
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.2em 1.5em;
+            margin: 0.5em 0;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1em;
+            margin-top: 1em;
+        }
+        
+        .card-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8em;
+            margin-top: 1em;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1em;
+            text-align: center;
+        }
+        
+        .feature-card .icon {
+            font-size: 2.5em;
+            margin-bottom: 0.3em;
+        }
+        
+        .feature-card h4 {
+            margin: 0.3em 0;
+            font-size: 0.9em;
+        }
+        
+        .feature-card p {
+            font-size: 0.65em !important;
+            color: var(--text-gray);
+            margin: 0;
+        }
+        
+        /* Two Column Layout */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+        }
+        
+        .column h3 {
+            margin-bottom: 0.5em;
+            font-size: 1.1em;
+        }
+        
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.3em 0.8em;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+        
+        .badge-orange { background: rgba(255, 149, 0, 0.2); color: var(--accent-orange); }
+        .badge-cyan { background: rgba(50, 215, 255, 0.2); color: var(--accent-cyan); }
+        .badge-green { background: rgba(48, 209, 88, 0.2); color: var(--accent-green); }
+        .badge-red { background: rgba(255, 69, 58, 0.2); color: var(--accent-red); }
+        .badge-yellow { background: rgba(255, 214, 10, 0.2); color: var(--accent-yellow); }
+        
+        /* Timeline */
+        .timeline {
+            margin-top: 1em;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1em;
+        }
+        
+        .timeline-badge {
+            background: var(--accent-orange);
+            color: var(--dark-bg);
+            padding: 0.3em 0.8em;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8em;
+            margin-right: 1em;
+            white-space: nowrap;
+        }
+        
+        .timeline-content h4 {
+            margin: 0 0 0.2em 0;
+            font-size: 1em;
+        }
+        
+        .timeline-content p {
+            margin: 0;
+            font-size: 0.8em !important;
+            color: var(--text-gray);
+        }
+        
+        /* Progress indicator */
+        .reveal .progress {
+            background: rgba(255, 255, 255, 0.1);
+            height: 4px;
+        }
+        
+        .reveal .progress span {
+            background: var(--accent-cyan);
+        }
+        
+        /* Controls */
+        .reveal .controls {
+            color: var(--accent-cyan);
+        }
+        
+        /* Summary Grid */
+        .summary-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5em;
+        }
+        
+        .summary-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.85em;
+        }
+        
+        .summary-item .emoji {
+            margin-right: 0.5em;
+            font-size: 1.3em;
+        }
+
+        /* Code blocks */
+        .code-block {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 1em;
+            font-family: 'JetBrains Mono', 'SF Mono', monospace;
+            font-size: 0.55em;
+            overflow-x: auto;
+            border: 1px solid #2d2d44;
+        }
+
+        .code-block code {
+            color: #e0e0e0;
+        }
+
+        .code-block .keyword {
+            color: var(--accent-pink);
+        }
+
+        .code-block .type {
+            color: var(--accent-cyan);
+        }
+
+        .code-block .string {
+            color: var(--accent-green);
+        }
+
+        .code-block .comment {
+            color: var(--text-gray);
+        }
+
+        .code-block .func {
+            color: var(--accent-purple);
+        }
+
+        .code-block .number {
+            color: var(--accent-yellow);
+        }
+
+        /* Warning/Info boxes */
+        .warning-box {
+            background: rgba(255, 149, 0, 0.15);
+            border-left: 4px solid var(--accent-orange);
+            border-radius: 8px;
+            padding: 1em;
+            margin: 1em 0;
+        }
+
+        .info-box {
+            background: rgba(50, 215, 255, 0.15);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 8px;
+            padding: 1em;
+            margin: 1em 0;
+        }
+
+        .success-box {
+            background: rgba(48, 209, 88, 0.15);
+            border-left: 4px solid var(--accent-green);
+            border-radius: 8px;
+            padding: 1em;
+            margin: 1em 0;
+        }
+
+        .danger-box {
+            background: rgba(255, 69, 58, 0.15);
+            border-left: 4px solid var(--accent-red);
+            border-radius: 8px;
+            padding: 1em;
+            margin: 1em 0;
+        }
+
+        .warning-box .label, .info-box .label, .success-box .label, .danger-box .label {
+            font-weight: 700;
+            font-size: 0.8em;
+            margin-bottom: 0.5em;
+        }
+
+        /* Comparison table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+            font-size: 0.7em;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 0.8em;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        .comparison-table th {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .comparison-table .good {
+            color: var(--accent-green);
+        }
+
+        .comparison-table .bad {
+            color: var(--accent-red);
+        }
+
+        /* Battery indicator */
+        .battery-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+
+        .battery-bar {
+            width: 100px;
+            height: 20px;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .battery-fill {
+            height: 100%;
+            transition: width 0.3s;
+        }
+
+        /* Power mode cards */
+        .power-mode-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1em;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .power-mode-card.eco {
+            border-color: var(--accent-green);
+        }
+
+        .power-mode-card.balanced {
+            border-color: var(--accent-yellow);
+        }
+
+        .power-mode-card.performance {
+            border-color: var(--accent-red);
+        }
+
+        /* Principle slide */
+        .principle-slide {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2em;
+            align-items: center;
+        }
+
+        .principle-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-green);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-right: 0.5em;
+        }
+
+        .principle-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5em;
+        }
+
+        .principle-title h2 {
+            margin: 0;
+            display: inline;
+        }
+
+        .principle-description {
+            color: var(--text-gray);
+            font-size: 0.9em;
+            margin-bottom: 1em;
+        }
+
+        .principle-icon {
+            font-size: 6em;
+            text-align: center;
+        }
+
+        .example-box {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1em 1.2em;
+            border-left: 4px solid var(--accent-cyan);
+        }
+
+        .example-box .label {
+            color: var(--accent-cyan);
+            font-size: 0.7em;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Slide 1: Title -->
+            <section class="title-slide">
+                <div class="emoji">🔋</div>
+                <h1>Battery Optimization</h1>
+                <p class="subtitle">MDI 112 - Class 4 | Power-Efficient Wearable Development</p>
+            </section>
+            
+            <!-- Slide 2: Agenda -->
+            <section>
+                <h2 class="accent-cyan">Today's Agenda</h2>
+                <ul>
+                    <li>Why Battery Life Matters for Wearables</li>
+                    <li>Understanding Power Consumption</li>
+                    <li>7 Key Optimization Strategies</li>
+                    <li>Applying What We Learned (HealthKit, Core Motion)</li>
+                    <li>Hands-on Project: Power Modes Demo</li>
+                </ul>
+            </section>
+
+            <!-- Slide 3: Class Timeline -->
+            <section>
+                <h2 class="accent-orange">3-Hour Class Plan</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-badge">Hour 1</span>
+                        <div class="timeline-content">
+                            <h4>Understanding Power Consumption</h4>
+                            <p>What drains battery, how to measure, key concepts</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-cyan);">Hour 2</span>
+                        <div class="timeline-content">
+                            <h4>7 Optimization Strategies</h4>
+                            <p>Practical techniques with code examples</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-green);">Hour 3</span>
+                        <div class="timeline-content">
+                            <h4>Hands-On Project</h4>
+                            <p>Build a Power Modes Demo app together</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Slide 4: Section - Why It Matters -->
+            <section class="section-slide">
+                <div class="emoji">⌚</div>
+                <h2>Why Battery Life Matters</h2>
+            </section>
+            
+            <!-- Slide 5: Apple Watch Battery Reality -->
+            <section>
+                <h2>Apple Watch Battery Reality</h2>
+                <div class="two-columns">
+                    <div class="column">
+                        <h3 class="accent-orange">The Challenge</h3>
+                        <ul>
+                            <li>~300mAh battery (tiny!)</li>
+                            <li>18-hour advertised life</li>
+                            <li>Always-on display option</li>
+                            <li>Multiple sensors running</li>
+                            <li>Users expect all-day use</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3 class="accent-cyan">Comparison</h3>
+                        <ul>
+                            <li>iPhone: ~3,000mAh (10x more!)</li>
+                            <li>AirPods case: ~500mAh</li>
+                            <li>MacBook: ~50,000mAh</li>
+                            <li><strong>Every mAh counts</strong> on Watch</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: User Expectations -->
+            <section>
+                <h2 class="accent-red">Poor Battery = Bad Reviews</h2>
+                <div class="card" style="margin-bottom: 1em;">
+                    <p style="font-style: italic; font-size: 0.8em;">"This app drains my battery in 2 hours. Uninstalled."</p>
+                    <p style="font-size: 0.7em; color: var(--accent-red);">⭐ - 1 star review</p>
+                </div>
+                <ul>
+                    <li>Users <strong>blame your app</strong> for battery drain</li>
+                    <li>App Store reviews mention battery frequently</li>
+                    <li>Users will uninstall battery-hungry apps</li>
+                    <li>Apple may <strong>reject apps</strong> with excessive battery use</li>
+                </ul>
+            </section>
+
+            <!-- Slide 7: Section - What Drains Battery -->
+            <section class="section-slide">
+                <div class="emoji">🔌</div>
+                <h2>What Drains Battery?</h2>
+            </section>
+
+            <!-- Slide 8: Power Consumers -->
+            <section>
+                <h2 class="accent-orange">Main Power Consumers</h2>
+                <div class="card-grid-3">
+                    <div class="feature-card">
+                        <div class="icon">📡</div>
+                        <h4 class="accent-red">Network</h4>
+                        <p>WiFi, Bluetooth, Cellular - huge drain!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📱</div>
+                        <h4 class="accent-orange">Display</h4>
+                        <p>Screen brightness, refresh rate, always-on</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📍</div>
+                        <h4 class="accent-yellow">Location</h4>
+                        <p>GPS is extremely power hungry</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🎛️</div>
+                        <h4 class="accent-cyan">Sensors</h4>
+                        <p>Accelerometer, gyro, heart rate</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">⚙️</div>
+                        <h4 class="accent-purple">CPU</h4>
+                        <p>Processing, animations, computations</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔊</div>
+                        <h4 class="accent-pink">Haptics</h4>
+                        <p>Vibration motor uses power too</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 9: Relative Power Cost -->
+            <section>
+                <h2 class="accent-cyan">Relative Power Cost</h2>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Activity</th>
+                        <th>Power Level</th>
+                        <th>Battery Impact</th>
+                    </tr>
+                    <tr>
+                        <td>Idle / Sleep</td>
+                        <td><span class="good">●○○○○</span></td>
+                        <td class="good">Minimal</td>
+                    </tr>
+                    <tr>
+                        <td>Accelerometer (low freq)</td>
+                        <td><span class="good">●●○○○</span></td>
+                        <td class="good">Low</td>
+                    </tr>
+                    <tr>
+                        <td>Heart Rate Sensor</td>
+                        <td><span style="color: var(--accent-yellow);">●●●○○</span></td>
+                        <td style="color: var(--accent-yellow);">Moderate</td>
+                    </tr>
+                    <tr>
+                        <td>Display Active</td>
+                        <td><span style="color: var(--accent-orange);">●●●●○</span></td>
+                        <td style="color: var(--accent-orange);">High</td>
+                    </tr>
+                    <tr>
+                        <td>GPS Location</td>
+                        <td><span class="bad">●●●●●</span></td>
+                        <td class="bad">Very High</td>
+                    </tr>
+                    <tr>
+                        <td>Network Request</td>
+                        <td><span class="bad">●●●●●</span></td>
+                        <td class="bad">Very High</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Slide 10: The Formula -->
+            <section>
+                <h2 class="accent-green">The Battery Equation</h2>
+                <div class="card" style="text-align: center; padding: 1.5em;">
+                    <p style="font-size: 1.2em; margin-bottom: 0.5em;">
+                        <span class="accent-cyan">Battery Life</span> = 
+                        <span class="accent-green">Capacity</span> ÷ 
+                        <span class="accent-orange">Power Draw</span>
+                    </p>
+                    <p style="font-size: 0.75em; color: var(--text-gray);">
+                        We can't change capacity, so we must <strong>minimize power draw</strong>
+                    </p>
+                </div>
+                <div class="info-box">
+                    <p style="font-size: 0.75em !important; margin: 0;">
+                        💡 <strong>Key Insight:</strong> Power = Frequency × Duration × Intensity<br>
+                        Reduce any of these three to save battery!
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide 11: Section - 7 Strategies -->
+            <section class="section-slide">
+                <div class="emoji">⚡</div>
+                <h2>7 Optimization Strategies</h2>
+            </section>
+
+            <!-- Slide 12: Strategy 1 - Stop When Not Needed -->
+            <section>
+                <div class="principle-slide">
+                    <div>
+                        <div class="principle-title">
+                            <span class="principle-number">1</span>
+                            <h2>Stop When Not Needed</h2>
+                        </div>
+                        <p class="principle-description">
+                            The most impactful optimization: completely stop sensors and updates 
+                            when the user isn't looking or doesn't need them.
+                        </p>
+                        <div class="example-box">
+                            <div class="label">WHEN TO STOP</div>
+                            <p style="font-size: 0.75em;">• onDisappear - view no longer visible<br>
+                            • App goes to background<br>
+                            • User pauses activity<br>
+                            • Data isn't being displayed</p>
+                        </div>
+                    </div>
+                    <div class="principle-icon">⏹️</div>
+                </div>
+            </section>
+
+            <!-- Slide 13: Strategy 1 - Code -->
+            <section>
+                <h2 class="accent-green">Stop When Not Needed - Code</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">struct</span> <span class="type">MotionView</span>: <span class="type">View</span> {
+    <span class="keyword">@StateObject var</span> motion = <span class="type">MotionManager</span>()
+    
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+        <span class="type">Text</span>(<span class="string">"X: \(motion.x)"</span>)
+            .<span class="func">onAppear</span> {
+                <span class="comment">// ✅ Start only when view appears</span>
+                motion.<span class="func">startUpdates</span>()
+            }
+            .<span class="func">onDisappear</span> {
+                <span class="comment">// ✅ Stop when view disappears - CRITICAL!</span>
+                motion.<span class="func">stopUpdates</span>()
+            }
+    }
+}
+                    </code>
+                </div>
+                <div class="danger-box">
+                    <div class="label accent-red">❌ NEVER DO THIS</div>
+                    <p style="font-size: 0.75em; margin: 0;">Starting updates in init() and never stopping them. This keeps sensors running forever!</p>
+                </div>
+            </section>
+
+            <!-- Slide 14: Strategy 2 - Reduce Frequency -->
+            <section>
+                <div class="principle-slide">
+                    <div>
+                        <div class="principle-title">
+                            <span class="principle-number">2</span>
+                            <h2>Reduce Update Frequency</h2>
+                        </div>
+                        <p class="principle-description">
+                            More frequent updates = more power. Choose the lowest frequency 
+                            that still provides a good user experience.
+                        </p>
+                        <div class="example-box">
+                            <div class="label">FREQUENCY GUIDE</div>
+                            <p style="font-size: 0.75em;">
+                            • UI animation: 10 Hz (0.1s) is usually enough<br>
+                            • Background monitoring: 1-2 Hz (0.5-1s)<br>
+                            • Periodic checks: 5-30 seconds<br>
+                            • Ask: "Does user notice the difference?"</p>
+                        </div>
+                    </div>
+                    <div class="principle-icon">📉</div>
+                </div>
+            </section>
+
+            <!-- Slide 15: Strategy 2 - Comparison -->
+            <section>
+                <h2 class="accent-cyan">Update Frequency Impact</h2>
+                <div class="card-grid">
+                    <div class="card" style="border-left: 4px solid var(--accent-red);">
+                        <h4 class="accent-red">❌ 100 Hz (0.01s)</h4>
+                        <p style="font-size: 0.7em; color: var(--text-gray);">100 updates/second</p>
+                        <p style="font-size: 0.65em;">Drains battery in ~2 hours. Overkill for most apps.</p>
+                    </div>
+                    <div class="card" style="border-left: 4px solid var(--accent-orange);">
+                        <h4 class="accent-orange">⚠️ 50 Hz (0.02s)</h4>
+                        <p style="font-size: 0.7em; color: var(--text-gray);">50 updates/second</p>
+                        <p style="font-size: 0.65em;">Gaming level. Still heavy for wearables.</p>
+                    </div>
+                    <div class="card" style="border-left: 4px solid var(--accent-yellow);">
+                        <h4 class="accent-yellow">✓ 10 Hz (0.1s)</h4>
+                        <p style="font-size: 0.7em; color: var(--text-gray);">10 updates/second</p>
+                        <p style="font-size: 0.65em;">Good balance. Smooth UI, reasonable power.</p>
+                    </div>
+                    <div class="card" style="border-left: 4px solid var(--accent-green);">
+                        <h4 class="accent-green">✅ 2 Hz (0.5s)</h4>
+                        <p style="font-size: 0.7em; color: var(--text-gray);">2 updates/second</p>
+                        <p style="font-size: 0.65em;">Efficient! Great for non-critical updates.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 16: Strategy 3 - Adaptive Intervals -->
+            <section>
+                <div class="principle-slide">
+                    <div>
+                        <div class="principle-title">
+                            <span class="principle-number">3</span>
+                            <h2>Use Adaptive Intervals</h2>
+                        </div>
+                        <p class="principle-description">
+                            Change update frequency based on context. Fast when needed, 
+                            slow when not. Smart apps adapt to the situation.
+                        </p>
+                        <div class="example-box">
+                            <div class="label">ADAPTIVE EXAMPLES</div>
+                            <p style="font-size: 0.75em;">
+                            • User active → 10 Hz, idle → 1 Hz<br>
+                            • Workout mode → frequent, rest → infrequent<br>
+                            • Low battery → reduce all frequencies<br>
+                            • Screen off → minimal or no updates</p>
+                        </div>
+                    </div>
+                    <div class="principle-icon">🔄</div>
+                </div>
+            </section>
+
+            <!-- Slide 17: Strategy 3 - Code -->
+            <section>
+                <h2 class="accent-purple">Adaptive Intervals - Code</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">enum</span> <span class="type">PowerMode</span> {
+    <span class="keyword">case</span> eco, balanced, performance
+    
+    <span class="keyword">var</span> updateInterval: <span class="type">TimeInterval</span> {
+        <span class="keyword">switch self</span> {
+        <span class="keyword">case</span> .eco:         <span class="keyword">return</span> <span class="number">1.0</span>   <span class="comment">// 1 Hz - battery saver</span>
+        <span class="keyword">case</span> .balanced:    <span class="keyword">return</span> <span class="number">0.2</span>   <span class="comment">// 5 Hz - normal use</span>
+        <span class="keyword">case</span> .performance: <span class="keyword">return</span> <span class="number">0.05</span>  <span class="comment">// 20 Hz - high precision</span>
+        }
+    }
+}
+
+<span class="keyword">func</span> <span class="func">switchMode</span>(_ mode: <span class="type">PowerMode</span>) {
+    motionManager.<span class="type">accelerometerUpdateInterval</span> = mode.updateInterval
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Slide 18: Strategy 4 - Batch Operations -->
+            <section>
+                <div class="principle-slide">
+                    <div>
+                        <div class="principle-title">
+                            <span class="principle-number">4</span>
+                            <h2>Batch Operations</h2>
+                        </div>
+                        <p class="principle-description">
+                            Group multiple operations together. It's more efficient to do 
+                            10 things once than 1 thing 10 times, especially for networking.
+                        </p>
+                        <div class="example-box">
+                            <div class="label">BATCHING EXAMPLES</div>
+                            <p style="font-size: 0.75em;">
+                            • Network: Queue requests, send together<br>
+                            • Storage: Buffer writes, save periodically<br>
+                            • Analytics: Collect events, send in batch<br>
+                            • Haptics: Combine feedback when possible</p>
+                        </div>
+                    </div>
+                    <div class="principle-icon">📦</div>
+                </div>
+            </section>
+
+            <!-- Slide 19: Strategy 5 - Use System APIs -->
+            <section>
+                <div class="principle-slide">
+                    <div>
+                        <div class="principle-title">
+                            <span class="principle-number">5</span>
+                            <h2>Use System APIs</h2>
+                        </div>
+                        <p class="principle-description">
+                            Apple's built-in APIs are optimized for power efficiency. 
+                            Use them instead of building custom solutions.
+                        </p>
+                        <div class="example-box">
+                            <div class="label">PREFER THESE</div>
+                            <p style="font-size: 0.75em;">
+                            • CMPedometer over raw accelerometer for steps<br>
+                            • HKWorkoutSession for workout tracking<br>
+                            • CLLocationManager with "reduced accuracy"<br>
+                            • BackgroundTasks framework for bg work</p>
+                        </div>
+                    </div>
+                    <div class="principle-icon">🍎</div>
+                </div>
+            </section>
+
+            <!-- Slide 20: Strategy 6 - Defer Work -->
+            <section>
+                <div class="principle-slide">
+                    <div>
+                        <div class="principle-title">
+                            <span class="principle-number">6</span>
+                            <h2>Defer Non-Critical Work</h2>
+                        </div>
+                        <p class="principle-description">
+                            Not everything needs to happen immediately. Defer non-urgent 
+                            tasks to when the device is charging or idle.
+                        </p>
+                        <div class="example-box">
+                            <div class="label">WHAT TO DEFER</div>
+                            <p style="font-size: 0.75em;">
+                            • Data sync to cloud<br>
+                            • Analytics upload<br>
+                            • Cache cleanup<br>
+                            • Non-essential network calls</p>
+                        </div>
+                    </div>
+                    <div class="principle-icon">⏰</div>
+                </div>
+            </section>
+
+            <!-- Slide 21: Strategy 7 - Profile & Measure -->
+            <section>
+                <div class="principle-slide">
+                    <div>
+                        <div class="principle-title">
+                            <span class="principle-number">7</span>
+                            <h2>Profile & Measure</h2>
+                        </div>
+                        <p class="principle-description">
+                            Don't guess - measure! Use Xcode's Energy Log and Instruments 
+                            to find exactly what's draining battery.
+                        </p>
+                        <div class="example-box">
+                            <div class="label">TOOLS TO USE</div>
+                            <p style="font-size: 0.75em;">
+                            • Xcode Energy Gauge (Debug Navigator)<br>
+                            • Instruments: Energy Log template<br>
+                            • Console logs for update frequency<br>
+                            • Real device testing (not simulator!)</p>
+                        </div>
+                    </div>
+                    <div class="principle-icon">📊</div>
+                </div>
+            </section>
+
+            <!-- Slide 22: Strategies Summary -->
+            <section>
+                <h2 class="accent-green">7 Strategies Summary</h2>
+                <div class="summary-list">
+                    <div class="summary-item"><span class="emoji">⏹️</span> Stop when not needed</div>
+                    <div class="summary-item"><span class="emoji">📉</span> Reduce update frequency</div>
+                    <div class="summary-item"><span class="emoji">🔄</span> Use adaptive intervals</div>
+                    <div class="summary-item"><span class="emoji">📦</span> Batch operations</div>
+                    <div class="summary-item"><span class="emoji">🍎</span> Use system APIs</div>
+                    <div class="summary-item"><span class="emoji">⏰</span> Defer non-critical work</div>
+                    <div class="summary-item"><span class="emoji">📊</span> Profile & measure</div>
+                </div>
+            </section>
+
+            <!-- Slide 23: Section - Applying to Previous Classes -->
+            <section class="section-slide">
+                <div class="emoji">🔗</div>
+                <h2>Applying to What We Learned</h2>
+            </section>
+
+            <!-- Slide 24: HealthKit Optimization -->
+            <section>
+                <h2 class="accent-red">HealthKit Optimization (Class 2)</h2>
+                <div class="two-columns">
+                    <div class="column">
+                        <div class="danger-box">
+                            <div class="label">❌ BAD PRACTICE</div>
+                            <p style="font-size: 0.7em; margin: 0;">
+                            • Continuous HK queries running always<br>
+                            • Polling for new data every second<br>
+                            • Never stopping workout sessions<br>
+                            • Requesting all data types
+                            </p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="success-box">
+                            <div class="label">✅ GOOD PRACTICE</div>
+                            <p style="font-size: 0.7em; margin: 0;">
+                            • Use HKObserverQuery (low power)<br>
+                            • Stop queries in onDisappear<br>
+                            • End workout sessions when done<br>
+                            • Request only needed data types
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 25: Core Motion Optimization -->
+            <section>
+                <h2 class="accent-purple">Core Motion Optimization (Class 3)</h2>
+                <div class="two-columns">
+                    <div class="column">
+                        <div class="danger-box">
+                            <div class="label">❌ BAD PRACTICE</div>
+                            <p style="font-size: 0.7em; margin: 0;">
+                            • 100 Hz update interval<br>
+                            • Never calling stopUpdates()<br>
+                            • Running in background forever<br>
+                            • Using raw accelerometer for steps
+                            </p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="success-box">
+                            <div class="label">✅ GOOD PRACTICE</div>
+                            <p style="font-size: 0.7em; margin: 0;">
+                            • 5-10 Hz is usually enough<br>
+                            • Stop in onDisappear always<br>
+                            • Use CMPedometer for step counting<br>
+                            • Adaptive intervals based on context
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 26: Lifecycle Best Practices -->
+            <section>
+                <h2 class="accent-cyan">SwiftUI Lifecycle for Power</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">struct</span> <span class="type">PowerEfficientView</span>: <span class="type">View</span> {
+    <span class="keyword">@Environment</span>(\.<span class="type">scenePhase</span>) <span class="keyword">var</span> scenePhase
+    <span class="keyword">@StateObject var</span> manager = <span class="type">SensorManager</span>()
+    
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+        <span class="type">Text</span>(<span class="string">"Data"</span>)
+            .<span class="func">onAppear</span> { manager.<span class="func">start</span>() }
+            .<span class="func">onDisappear</span> { manager.<span class="func">stop</span>() }
+            .<span class="func">onChange</span>(of: scenePhase) { phase <span class="keyword">in</span>
+                <span class="keyword">switch</span> phase {
+                <span class="keyword">case</span> .active:
+                    manager.<span class="func">start</span>()  <span class="comment">// Resume</span>
+                <span class="keyword">case</span> .inactive, .background:
+                    manager.<span class="func">stop</span>()   <span class="comment">// Pause to save battery</span>
+                }
+            }
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Slide 27: Section - Project -->
+            <section class="section-slide">
+                <div class="emoji">🎮</div>
+                <h2>Project: Power Modes Demo</h2>
+            </section>
+
+            <!-- Slide 28: Project Overview -->
+            <section>
+                <h2 class="accent-orange">Power Modes Demo - What We're Building</h2>
+                <ul>
+                    <li>A watchOS app demonstrating <strong>battery optimization</strong> techniques</li>
+                    <li><strong>3 Power Modes</strong>: Eco, Balanced, Performance</li>
+                    <li>Visual comparison of <strong>update frequencies</strong></li>
+                    <li><strong>Simulated battery drain</strong> indicator</li>
+                    <li>Real-time <strong>update counter</strong> to see the difference</li>
+                    <li>Proper <strong>lifecycle management</strong></li>
+                </ul>
+            </section>
+
+            <!-- Slide 29: Power Modes -->
+            <section>
+                <h2>The Three Power Modes</h2>
+                <div class="card-grid-3">
+                    <div class="power-mode-card eco">
+                        <div style="font-size: 2em; margin-bottom: 0.3em;">🌱</div>
+                        <h4 class="accent-green">Eco Mode</h4>
+                        <p style="font-size: 0.7em; color: var(--text-gray);">1 Hz updates</p>
+                        <p style="font-size: 0.65em;">Maximum battery life.<br>Best for background.</p>
+                        <span class="badge badge-green">Low Power</span>
+                    </div>
+                    <div class="power-mode-card balanced">
+                        <div style="font-size: 2em; margin-bottom: 0.3em;">⚖️</div>
+                        <h4 class="accent-yellow">Balanced</h4>
+                        <p style="font-size: 0.7em; color: var(--text-gray);">5 Hz updates</p>
+                        <p style="font-size: 0.65em;">Good balance of<br>performance & battery.</p>
+                        <span class="badge badge-yellow">Moderate</span>
+                    </div>
+                    <div class="power-mode-card performance">
+                        <div style="font-size: 2em; margin-bottom: 0.3em;">🚀</div>
+                        <h4 class="accent-red">Performance</h4>
+                        <p style="font-size: 0.7em; color: var(--text-gray);">20 Hz updates</p>
+                        <p style="font-size: 0.65em;">Smooth animations.<br>Higher battery use.</p>
+                        <span class="badge badge-red">High Power</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 30: Features Grid -->
+            <section style="margin-top: -250px;">
+                <h2>App Features</h2>
+                <div class="card-grid">
+                    <div class="feature-card">
+                        <div class="icon">🎚️</div>
+                        <h4 class="accent-cyan">Mode Switcher</h4>
+                        <p>Toggle between Eco, Balanced, and Performance modes</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔢</div>
+                        <h4 class="accent-orange">Update Counter</h4>
+                        <p>See how many updates occur in each mode</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔋</div>
+                        <h4 class="accent-green">Battery Simulator</h4>
+                        <p>Visual drain indicator based on mode</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📊</div>
+                        <h4 class="accent-purple">Live Motion Data</h4>
+                        <p>Accelerometer values updating at mode frequency</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 31: Architecture -->
+            <section>
+                <h2>Simple App Architecture</h2>
+                <div class="two-columns">
+                    <div class="column">
+                        <h3 class="accent-green">Files Structure</h3>
+                        <ul>
+                            <li><strong>Models/</strong> - PowerMode enum</li>
+                            <li><strong>Services/</strong> - PowerAwareMotionManager</li>
+                            <li><strong>Views/</strong> - PowerModesView, BatteryView</li>
+                            <li><strong>ContentView</strong> - Main interface</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3 class="accent-purple">Key Concepts</h3>
+                        <ul>
+                            <li>Enum-based power modes</li>
+                            <li>Dynamic update intervals</li>
+                            <li>Update counting for comparison</li>
+                            <li>Proper start/stop lifecycle</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 32: Development Steps -->
+            <section>
+                <h2 class="accent-cyan">Project Development Steps</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-badge">Step 1</span>
+                        <div class="timeline-content">
+                            <h4>Create PowerMode Enum</h4>
+                            <p>Define eco, balanced, performance with intervals</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-cyan);">Step 2</span>
+                        <div class="timeline-content">
+                            <h4>Build PowerAwareMotionManager</h4>
+                            <p>Extend motion manager with mode switching</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-green);">Step 3</span>
+                        <div class="timeline-content">
+                            <h4>Create Mode Selection UI</h4>
+                            <p>Buttons to switch modes, visual feedback</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-purple);">Step 4</span>
+                        <div class="timeline-content">
+                            <h4>Add Battery & Stats Display</h4>
+                            <p>Update counter, simulated battery indicator</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 33: Let's Build -->
+            <section class="section-slide">
+                <div class="emoji">🚀</div>
+                <h2>Let's Build Together!</h2>
+                <p style="color: var(--text-gray); text-align: center;">Open Xcode and let's implement power-efficient code</p>
+            </section>
+
+            <!-- Slide 34: Key Takeaways -->
+            <section>
+                <h2 class="accent-green">Key Takeaways</h2>
+                <div class="summary-list">
+                    <div class="summary-item"><span class="emoji">🔋</span> Battery life is critical for wearables</div>
+                    <div class="summary-item"><span class="emoji">⏹️</span> Always stop sensors when not needed</div>
+                    <div class="summary-item"><span class="emoji">📉</span> Lower frequency = longer battery</div>
+                    <div class="summary-item"><span class="emoji">🔄</span> Adapt to user context</div>
+                    <div class="summary-item"><span class="emoji">🍎</span> Use Apple's optimized APIs</div>
+                    <div class="summary-item"><span class="emoji">📊</span> Measure, don't guess</div>
+                </div>
+            </section>
+            
+            <!-- Slide 35: References -->
+            <section>
+                <h2>References & Resources</h2>
+                <ul>
+                    <li><a href="https://developer.apple.com/documentation/xcode/analyzing-the-performance-of-your-shipping-app" target="_blank" style="color: var(--accent-cyan);">Analyzing App Performance - Apple</a></li>
+                    <li><a href="https://developer.apple.com/videos/play/wwdc2022/10083/" target="_blank" style="color: var(--accent-cyan);">WWDC: Power Down - Improve Battery Consumption</a></li>
+                    <li><a href="https://developer.apple.com/documentation/backgroundtasks" target="_blank" style="color: var(--accent-cyan);">Background Tasks Framework</a></li>
+                    <li><a href="https://developer.apple.com/documentation/coremotion/cmpedometer" target="_blank" style="color: var(--accent-cyan);">CMPedometer - Power Efficient Step Counting</a></li>
+                </ul>
+            </section>
+
+            <!-- Slide 36: Questions -->
+            <section class="section-slide">
+                <div class="emoji">❓</div>
+                <h2>Questions?</h2>
+                <p style="color: var(--text-gray); text-align: center;">Let's discuss before we start coding</p>
+            </section>
+            
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            progress: true,
+            center: false,
+            transition: 'slide',
+            backgroundTransition: 'fade'
+        });
+    </script>
+</body>
+</html>
+

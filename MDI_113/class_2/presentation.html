@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Management for Wearables - MDI 113</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        :root { --accent-orange: #FF9500; --accent-cyan: #32D7FF; --accent-green: #30D158; --accent-purple: #AF52DE; --accent-pink: #FF2D55; --accent-red: #FF453A; --accent-blue: #0A84FF; --accent-yellow: #FFD60A; --dark-bg: #0D0D12; --card-bg: #1C1C24; --text-gray: #8E8E93; }
+        .reveal { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; }
+        section { margin-top: -20px; }
+        .reveal .slides { text-align: left; }
+        .reveal h1, .reveal h2, .reveal h3 { font-weight: 700; text-transform: none; letter-spacing: -0.02em; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2em; margin-bottom: 0.8em; }
+        .reveal h3 { font-size: 1.4em; color: var(--text-gray); }
+        .reveal p, .reveal li { font-size: 0.85em; line-height: 1.6; }
+        .reveal ul { list-style: none; padding-left: 0; }
+        .reveal ul li { margin-bottom: 0.6em; padding-left: 1.5em; position: relative; }
+        .reveal ul li::before { content: "•"; color: var(--accent-orange); font-weight: bold; position: absolute; left: 0; }
+        .title-slide { text-align: center !important; }
+        .title-slide h1 { font-size: 3.2em; margin-bottom: 0.3em; }
+        .title-slide .subtitle { color: var(--text-gray); font-size: 1.2em; }
+        .title-slide .emoji { font-size: 4em; margin-bottom: 0.3em; }
+        .section-slide { text-align: center !important; }
+        .section-slide .emoji { font-size: 5em; margin-bottom: 0.3em; }
+        .section-slide h2 { color: var(--accent-cyan); font-size: 2.4em; }
+        .accent-orange { color: var(--accent-orange) !important; }
+        .accent-cyan { color: var(--accent-cyan) !important; }
+        .accent-green { color: var(--accent-green) !important; }
+        .accent-purple { color: var(--accent-purple) !important; }
+        .accent-pink { color: var(--accent-pink) !important; }
+        .accent-red { color: var(--accent-red) !important; }
+        .card { background: var(--card-bg); border-radius: 16px; padding: 1.2em 1.5em; margin: 0.5em 0; }
+        .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1em; margin-top: 1em; }
+        .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8em; margin-top: 1em; }
+        .feature-card { background: var(--card-bg); border-radius: 12px; padding: 1em; text-align: center; }
+        .feature-card .icon { font-size: 2.5em; margin-bottom: 0.3em; }
+        .feature-card h4 { margin: 0.3em 0; font-size: 0.9em; }
+        .feature-card p { font-size: 0.65em !important; color: var(--text-gray); margin: 0; }
+        .two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 2em; }
+        .column h3 { margin-bottom: 0.5em; font-size: 1.1em; }
+        .timeline { margin-top: 1em; }
+        .timeline-item { display: flex; align-items: flex-start; margin-bottom: 1em; }
+        .timeline-badge { background: var(--accent-orange); color: var(--dark-bg); padding: 0.3em 0.8em; border-radius: 20px; font-weight: 700; font-size: 0.8em; margin-right: 1em; white-space: nowrap; }
+        .timeline-content h4 { margin: 0 0 0.2em 0; font-size: 1em; }
+        .timeline-content p { margin: 0; font-size: 0.8em !important; color: var(--text-gray); }
+        .code-block { background: #1a1a2e; border-radius: 12px; padding: 1em; font-family: 'JetBrains Mono', monospace; font-size: 0.55em; overflow-x: auto; border: 1px solid #2d2d44; }
+        .code-block .keyword { color: var(--accent-pink); }
+        .code-block .type { color: var(--accent-cyan); }
+        .code-block .string { color: var(--accent-green); }
+        .code-block .comment { color: var(--text-gray); }
+        .code-block .func { color: var(--accent-purple); }
+        .code-block .number { color: var(--accent-yellow); }
+        .warning-box { background: rgba(255, 149, 0, 0.15); border-left: 4px solid var(--accent-orange); border-radius: 8px; padding: 1em; margin: 1em 0; }
+        .info-box { background: rgba(50, 215, 255, 0.15); border-left: 4px solid var(--accent-cyan); border-radius: 8px; padding: 1em; margin: 1em 0; }
+        .warning-box .label, .info-box .label { font-weight: 700; font-size: 0.8em; margin-bottom: 0.5em; }
+        .badge { display: inline-block; padding: 0.3em 0.8em; border-radius: 20px; font-size: 0.7em; font-weight: 600; }
+        .badge-purple { background: rgba(175, 82, 222, 0.2); color: var(--accent-purple); }
+        .reveal .progress span { background: var(--accent-cyan); }
+        .reveal .controls { color: var(--accent-cyan); }
+        .summary-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5em; }
+        .summary-item { display: flex; align-items: center; font-size: 0.85em; }
+        .summary-item .emoji { margin-right: 0.5em; font-size: 1.3em; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Title -->
+            <section class="title-slide">
+                <div class="emoji">🎙️</div>
+                <h1>Media Management</h1>
+                <p class="subtitle">MDI 113 - Class 2 | Audio Recording & Data Storage</p>
+                <span class="badge badge-purple" style="margin-top: 1em;">Intermediate Level</span>
+            </section>
+            
+            <!-- Agenda -->
+            <section>
+                <h2 class="accent-cyan">Today's Agenda</h2>
+                <ul>
+                    <li>Media Capabilities on watchOS</li>
+                    <li>Audio Recording with AVFoundation</li>
+                    <li>Local Storage & File Management</li>
+                    <li>Sharing & Export Options</li>
+                    <li>Project: Voice Memo App</li>
+                </ul>
+            </section>
+
+            <!-- Class Timeline -->
+            <section>
+                <h2 class="accent-orange">3-Hour Class Plan</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-badge">Hour 1</span>
+                        <div class="timeline-content">
+                            <h4>Media on watchOS</h4>
+                            <p>Capabilities, limitations, AVFoundation basics</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-cyan);">Hour 2</span>
+                        <div class="timeline-content">
+                            <h4>Storage & File Management</h4>
+                            <p>FileManager, app directories, data persistence</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-green);">Hour 3</span>
+                        <div class="timeline-content">
+                            <h4>Hands-On Project</h4>
+                            <p>Build Voice Memo app together</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section: watchOS Media -->
+            <section class="section-slide">
+                <div class="emoji">⌚</div>
+                <h2>Media on watchOS</h2>
+            </section>
+
+            <!-- Capabilities -->
+            <section>
+                <h2>watchOS Media Capabilities</h2>
+                <div class="two-columns">
+                    <div class="column">
+                        <h3 class="accent-green">✅ Available</h3>
+                        <ul>
+                            <li>Audio recording (microphone)</li>
+                            <li>Audio playback</li>
+                            <li>Local file storage</li>
+                            <li>Basic audio processing</li>
+                            <li>WatchConnectivity transfer</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3 class="accent-red">❌ Limited/Unavailable</h3>
+                        <ul>
+                            <li>No camera on Watch</li>
+                            <li>No direct photo capture</li>
+                            <li>Limited video support</li>
+                            <li>No UIActivityViewController</li>
+                            <li>Small storage capacity</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Media Matters -->
+            <section>
+                <h2 class="accent-purple">Why Media Management Matters</h2>
+                <div class="card-grid">
+                    <div class="feature-card">
+                        <div class="icon">🎤</div>
+                        <h4>Voice Notes</h4>
+                        <p>Quick audio capture on the go</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">💾</div>
+                        <h4>Data Export</h4>
+                        <p>Save health/fitness logs</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📱</div>
+                        <h4>Phone Sync</h4>
+                        <p>Transfer files to iPhone</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📊</div>
+                        <h4>Offline Storage</h4>
+                        <p>Cache data for later</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Audio Recording -->
+            <section class="section-slide">
+                <div class="emoji">🎙️</div>
+                <h2>Audio Recording</h2>
+            </section>
+
+            <!-- AVAudioRecorder -->
+            <section>
+                <h2 class="accent-cyan">AVAudioRecorder Setup</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">import</span> <span class="type">AVFoundation</span>
+
+<span class="keyword">class</span> <span class="type">AudioRecorder</span>: <span class="type">ObservableObject</span> {
+    <span class="keyword">var</span> audioRecorder: <span class="type">AVAudioRecorder</span>?
+    
+    <span class="keyword">let</span> settings: [<span class="type">String</span>: <span class="type">Any</span>] = [
+        <span class="type">AVFormatIDKey</span>: <span class="type">Int</span>(<span class="type">kAudioFormatMPEG4AAC</span>),
+        <span class="type">AVSampleRateKey</span>: <span class="number">44100</span>,
+        <span class="type">AVNumberOfChannelsKey</span>: <span class="number">1</span>,
+        <span class="type">AVEncoderAudioQualityKey</span>: <span class="type">AVAudioQuality</span>.high.rawValue
+    ]
+    
+    <span class="keyword">func</span> <span class="func">setupAudioSession</span>() <span class="keyword">throws</span> {
+        <span class="keyword">let</span> session = <span class="type">AVAudioSession</span>.<span class="func">sharedInstance</span>()
+        <span class="keyword">try</span> session.<span class="func">setCategory</span>(.<span class="type">playAndRecord</span>, mode: .<span class="type">default</span>)
+        <span class="keyword">try</span> session.<span class="func">setActive</span>(<span class="keyword">true</span>)
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Recording Methods -->
+            <section>
+                <h2 class="accent-orange">Recording Controls</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">func</span> <span class="func">startRecording</span>() {
+    <span class="keyword">let</span> url = <span class="func">getDocumentsDirectory</span>()
+        .<span class="func">appendingPathComponent</span>(<span class="string">"recording_\(Date().timeIntervalSince1970).m4a"</span>)
+    
+    <span class="keyword">do</span> {
+        <span class="keyword">try</span> <span class="func">setupAudioSession</span>()
+        audioRecorder = <span class="keyword">try</span> <span class="type">AVAudioRecorder</span>(url: url, settings: settings)
+        audioRecorder?.<span class="func">record</span>()
+        isRecording = <span class="keyword">true</span>
+    } <span class="keyword">catch</span> {
+        <span class="func">print</span>(<span class="string">"Recording failed: \(error)"</span>)
+    }
+}
+
+<span class="keyword">func</span> <span class="func">stopRecording</span>() {
+    audioRecorder?.<span class="func">stop</span>()
+    isRecording = <span class="keyword">false</span>
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Permissions -->
+            <section>
+                <h2 class="accent-red">Microphone Permission</h2>
+                <div class="warning-box">
+                    <div class="label">⚠️ REQUIRED: Info.plist Key</div>
+                    <p style="font-size: 0.8em; margin: 0;"><code>NSMicrophoneUsageDescription</code><br>"This app needs microphone access to record voice memos."</p>
+                </div>
+                <div class="code-block" style="margin-top: 1em;">
+                    <code>
+<span class="keyword">func</span> <span class="func">requestPermission</span>() <span class="keyword">async</span> -> <span class="type">Bool</span> {
+    <span class="keyword">await</span> <span class="type">AVAudioApplication</span>.<span class="func">requestRecordPermission</span>()
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Section: File Management -->
+            <section class="section-slide">
+                <div class="emoji">📁</div>
+                <h2>File Management</h2>
+            </section>
+
+            <!-- App Directories -->
+            <section>
+                <h2 class="accent-cyan">App Storage Directories</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4 class="accent-orange">Documents</h4>
+                        <p style="font-size: 0.75em; color: var(--text-gray);">User-generated content. Backed up. Persists between launches.</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-cyan">Caches</h4>
+                        <p style="font-size: 0.75em; color: var(--text-gray);">Temporary files. Not backed up. System may delete.</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-green">tmp</h4>
+                        <p style="font-size: 0.75em; color: var(--text-gray);">Very temporary. Deleted when app not running.</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-purple">Application Support</h4>
+                        <p style="font-size: 0.75em; color: var(--text-gray);">App data. Hidden from user. Backed up.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FileManager -->
+            <section>
+                <h2 class="accent-green">FileManager Operations</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">let</span> fileManager = <span class="type">FileManager</span>.default
+
+<span class="comment">// Get documents directory</span>
+<span class="keyword">func</span> <span class="func">getDocumentsDirectory</span>() -> <span class="type">URL</span> {
+    fileManager.<span class="func">urls</span>(for: .<span class="type">documentDirectory</span>, in: .<span class="type">userDomainMask</span>)[<span class="number">0</span>]
+}
+
+<span class="comment">// List files</span>
+<span class="keyword">func</span> <span class="func">listRecordings</span>() -> [<span class="type">URL</span>] {
+    <span class="keyword">let</span> docs = <span class="func">getDocumentsDirectory</span>()
+    <span class="keyword">let</span> files = <span class="keyword">try</span>? fileManager.<span class="func">contentsOfDirectory</span>(at: docs, includingPropertiesForKeys: <span class="keyword">nil</span>)
+    <span class="keyword">return</span> files?.<span class="func">filter</span> { $0.pathExtension == <span class="string">"m4a"</span> } ?? []
+}
+
+<span class="comment">// Delete file</span>
+<span class="keyword">func</span> <span class="func">deleteRecording</span>(at url: <span class="type">URL</span>) <span class="keyword">throws</span> {
+    <span class="keyword">try</span> fileManager.<span class="func">removeItem</span>(at: url)
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Storage Limits -->
+            <section>
+                <h2 class="accent-orange">watchOS Storage Considerations</h2>
+                <ul>
+                    <li>Apple Watch has <strong>limited storage</strong> (32GB total, shared)</li>
+                    <li>Keep recordings <strong>short and compressed</strong></li>
+                    <li>Implement <strong>auto-cleanup</strong> for old files</li>
+                    <li>Consider <strong>syncing to iPhone</strong> for long-term storage</li>
+                    <li>Monitor storage with <code>FileManager.attributesOfFileSystem</code></li>
+                </ul>
+                <div class="info-box">
+                    <p style="font-size: 0.75em; margin: 0;">💡 Use AAC format at reasonable quality — good compression with decent audio.</p>
+                </div>
+            </section>
+
+            <!-- Section: Playback -->
+            <section class="section-slide">
+                <div class="emoji">▶️</div>
+                <h2>Audio Playback</h2>
+            </section>
+
+            <!-- AVAudioPlayer -->
+            <section>
+                <h2 class="accent-purple">AVAudioPlayer</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">class</span> <span class="type">AudioPlayer</span>: <span class="type">ObservableObject</span> {
+    <span class="keyword">var</span> player: <span class="type">AVAudioPlayer</span>?
+    <span class="keyword">@Published var</span> isPlaying = <span class="keyword">false</span>
+    
+    <span class="keyword">func</span> <span class="func">play</span>(url: <span class="type">URL</span>) {
+        <span class="keyword">do</span> {
+            player = <span class="keyword">try</span> <span class="type">AVAudioPlayer</span>(contentsOf: url)
+            player?.<span class="func">play</span>()
+            isPlaying = <span class="keyword">true</span>
+        } <span class="keyword">catch</span> {
+            <span class="func">print</span>(<span class="string">"Playback failed: \(error)"</span>)
+        }
+    }
+    
+    <span class="keyword">func</span> <span class="func">stop</span>() {
+        player?.<span class="func">stop</span>()
+        isPlaying = <span class="keyword">false</span>
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Section: Project -->
+            <section class="section-slide">
+                <div class="emoji">🏗️</div>
+                <h2>Project: Voice Memo</h2>
+            </section>
+
+            <!-- Project Overview -->
+            <section>
+                <h2 class="accent-orange">Voice Memo - What We're Building</h2>
+                <ul>
+                    <li>A watchOS app to <strong>record voice memos</strong></li>
+                    <li><strong>List all recordings</strong> with duration and date</li>
+                    <li><strong>Play back</strong> saved recordings</li>
+                    <li><strong>Delete</strong> unwanted recordings</li>
+                    <li><strong>Visual recording indicator</strong> with timer</li>
+                </ul>
+            </section>
+
+            <!-- Features Grid -->
+            <section style="margin-top: -250px;">
+                <h2>App Features</h2>
+                <div class="card-grid">
+                    <div class="feature-card">
+                        <div class="icon">🎙️</div>
+                        <h4 class="accent-red">Record</h4>
+                        <p>Tap to start/stop recording with visual feedback</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📋</div>
+                        <h4 class="accent-cyan">List</h4>
+                        <p>Browse all saved recordings</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">▶️</div>
+                        <h4 class="accent-green">Play</h4>
+                        <p>Tap recording to play back</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🗑️</div>
+                        <h4 class="accent-orange">Delete</h4>
+                        <p>Swipe to remove recordings</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Let's Build -->
+            <section class="section-slide">
+                <div class="emoji">🚀</div>
+                <h2>Let's Build Together!</h2>
+                <p style="color: var(--text-gray); text-align: center;">Open Xcode and let's get started</p>
+            </section>
+
+            <!-- Key Takeaways -->
+            <section>
+                <h2 class="accent-green">Key Takeaways</h2>
+                <div class="summary-list">
+                    <div class="summary-item"><span class="emoji">🎙️</span> AVAudioRecorder for recording</div>
+                    <div class="summary-item"><span class="emoji">▶️</span> AVAudioPlayer for playback</div>
+                    <div class="summary-item"><span class="emoji">📁</span> FileManager for storage</div>
+                    <div class="summary-item"><span class="emoji">🔐</span> Microphone permission required</div>
+                    <div class="summary-item"><span class="emoji">💾</span> Use Documents directory</div>
+                    <div class="summary-item"><span class="emoji">📦</span> Keep files small on Watch</div>
+                </div>
+            </section>
+            
+            <!-- References -->
+            <section>
+                <h2>References & Resources</h2>
+                <ul>
+                    <li><a href="https://developer.apple.com/documentation/avfaudio/avaudiorecorder" target="_blank" style="color: var(--accent-cyan);">AVAudioRecorder Documentation</a></li>
+                    <li><a href="https://developer.apple.com/documentation/foundation/filemanager" target="_blank" style="color: var(--accent-cyan);">FileManager Documentation</a></li>
+                    <li><a href="https://developer.apple.com/documentation/avfaudio/avaudiosession" target="_blank" style="color: var(--accent-cyan);">AVAudioSession</a></li>
+                </ul>
+            </section>
+
+            <!-- Questions -->
+            <section class="section-slide">
+                <div class="emoji">❓</div>
+                <h2>Questions?</h2>
+            </section>
+            
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({ hash: true, slideNumber: true, progress: true, center: false, transition: 'slide' });
+    </script>
+</body>
+</html>
+

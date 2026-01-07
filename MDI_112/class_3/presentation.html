@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Motion Basics - MDI 112</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        :root {
+            --accent-orange: #FF9500;
+            --accent-cyan: #32D7FF;
+            --accent-green: #30D158;
+            --accent-purple: #AF52DE;
+            --accent-pink: #FF2D55;
+            --accent-red: #FF453A;
+            --accent-blue: #0A84FF;
+            --accent-yellow: #FFD60A;
+            --dark-bg: #0D0D12;
+            --card-bg: #1C1C24;
+            --text-gray: #8E8E93;
+        }
+        
+        .reveal {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+        }
+        section {
+            margin-top: -20px;
+        }
+        
+        .reveal .slides {
+            text-align: left;
+        }
+        
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.02em;
+        }
+        
+        .reveal h1 {
+            font-size: 2.8em;
+        }
+        
+        .reveal h2 {
+            font-size: 2em;
+            margin-bottom: 0.8em;
+        }
+        
+        .reveal h3 {
+            font-size: 1.4em;
+            color: var(--text-gray);
+        }
+        
+        .reveal p, .reveal li {
+            font-size: 0.85em;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .reveal ul li {
+            margin-bottom: 0.6em;
+            padding-left: 1.5em;
+            position: relative;
+        }
+        
+        .reveal ul li::before {
+            content: "•";
+            color: var(--accent-orange);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .reveal ol {
+            padding-left: 1.5em;
+        }
+
+        .reveal ol li {
+            margin-bottom: 0.5em;
+        }
+        
+        /* Title Slide */
+        .title-slide {
+            text-align: center !important;
+        }
+        
+        .title-slide h1 {
+            font-size: 3.2em;
+            margin-bottom: 0.3em;
+        }
+        
+        .title-slide .subtitle {
+            color: var(--text-gray);
+            font-size: 1.2em;
+        }
+        
+        .title-slide .emoji {
+            font-size: 4em;
+            margin-bottom: 0.3em;
+        }
+        
+        /* Section Slides */
+        .section-slide {
+            text-align: center !important;
+        }
+        
+        .section-slide .emoji {
+            font-size: 5em;
+            margin-bottom: 0.3em;
+        }
+        
+        .section-slide h2 {
+            color: var(--accent-cyan);
+            font-size: 2.4em;
+        }
+        
+        /* Accent Colors */
+        .accent-orange { color: var(--accent-orange) !important; }
+        .accent-cyan { color: var(--accent-cyan) !important; }
+        .accent-green { color: var(--accent-green) !important; }
+        .accent-purple { color: var(--accent-purple) !important; }
+        .accent-pink { color: var(--accent-pink) !important; }
+        .accent-red { color: var(--accent-red) !important; }
+        .accent-blue { color: var(--accent-blue) !important; }
+        .accent-yellow { color: var(--accent-yellow) !important; }
+        
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.2em 1.5em;
+            margin: 0.5em 0;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1em;
+            margin-top: 1em;
+        }
+        
+        .card-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8em;
+            margin-top: 1em;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1em;
+            text-align: center;
+        }
+        
+        .feature-card .icon {
+            font-size: 2.5em;
+            margin-bottom: 0.3em;
+        }
+        
+        .feature-card h4 {
+            margin: 0.3em 0;
+            font-size: 0.9em;
+        }
+        
+        .feature-card p {
+            font-size: 0.65em !important;
+            color: var(--text-gray);
+            margin: 0;
+        }
+        
+        /* Two Column Layout */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+        }
+        
+        .column h3 {
+            margin-bottom: 0.5em;
+            font-size: 1.1em;
+        }
+        
+        /* Principle Slide */
+        .principle-slide {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2em;
+            align-items: center;
+        }
+        
+        .principle-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-orange);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-right: 0.5em;
+        }
+        
+        .principle-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5em;
+        }
+        
+        .principle-title h2 {
+            margin: 0;
+            display: inline;
+        }
+        
+        .principle-description {
+            color: var(--text-gray);
+            font-size: 0.9em;
+            margin-bottom: 1em;
+        }
+        
+        .example-box {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1em 1.2em;
+            border-left: 4px solid var(--accent-cyan);
+        }
+        
+        .example-box .label {
+            color: var(--accent-cyan);
+            font-size: 0.7em;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5em;
+        }
+        
+        .principle-icon {
+            font-size: 6em;
+            text-align: center;
+        }
+        
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.3em 0.8em;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+        
+        .badge-orange { background: rgba(255, 149, 0, 0.2); color: var(--accent-orange); }
+        .badge-cyan { background: rgba(50, 215, 255, 0.2); color: var(--accent-cyan); }
+        .badge-green { background: rgba(48, 209, 88, 0.2); color: var(--accent-green); }
+        .badge-red { background: rgba(255, 69, 58, 0.2); color: var(--accent-red); }
+        
+        /* Timeline */
+        .timeline {
+            margin-top: 1em;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1em;
+        }
+        
+        .timeline-badge {
+            background: var(--accent-orange);
+            color: var(--dark-bg);
+            padding: 0.3em 0.8em;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8em;
+            margin-right: 1em;
+            white-space: nowrap;
+        }
+        
+        .timeline-content h4 {
+            margin: 0 0 0.2em 0;
+            font-size: 1em;
+        }
+        
+        .timeline-content p {
+            margin: 0;
+            font-size: 0.8em !important;
+            color: var(--text-gray);
+        }
+        
+        /* Progress indicator */
+        .reveal .progress {
+            background: rgba(255, 255, 255, 0.1);
+            height: 4px;
+        }
+        
+        .reveal .progress span {
+            background: var(--accent-cyan);
+        }
+        
+        /* Controls */
+        .reveal .controls {
+            color: var(--accent-cyan);
+        }
+        
+        /* Summary Grid */
+        .summary-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5em;
+        }
+        
+        .summary-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.85em;
+        }
+        
+        .summary-item .emoji {
+            margin-right: 0.5em;
+            font-size: 1.3em;
+        }
+
+        /* Code blocks */
+        .code-block {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 1em;
+            font-family: 'JetBrains Mono', 'SF Mono', monospace;
+            font-size: 0.55em;
+            overflow-x: auto;
+            border: 1px solid #2d2d44;
+        }
+
+        .code-block code {
+            color: #e0e0e0;
+        }
+
+        .code-block .keyword {
+            color: var(--accent-pink);
+        }
+
+        .code-block .type {
+            color: var(--accent-cyan);
+        }
+
+        .code-block .string {
+            color: var(--accent-green);
+        }
+
+        .code-block .comment {
+            color: var(--text-gray);
+        }
+
+        .code-block .func {
+            color: var(--accent-purple);
+        }
+
+        .code-block .number {
+            color: var(--accent-yellow);
+        }
+
+        /* Warning/Info boxes */
+        .warning-box {
+            background: rgba(255, 149, 0, 0.15);
+            border-left: 4px solid var(--accent-orange);
+            border-radius: 8px;
+            padding: 1em;
+            margin: 1em 0;
+        }
+
+        .info-box {
+            background: rgba(50, 215, 255, 0.15);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 8px;
+            padding: 1em;
+            margin: 1em 0;
+        }
+
+        .warning-box .label, .info-box .label {
+            font-weight: 700;
+            font-size: 0.8em;
+            margin-bottom: 0.5em;
+        }
+
+        /* Step indicator */
+        .step-indicator {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: var(--accent-cyan);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-right: 0.5em;
+        }
+
+        /* Axis diagram */
+        .axis-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1em;
+        }
+
+        .axis-box {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2em;
+            text-align: center;
+            position: relative;
+        }
+
+        .axis-label {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Slide 1: Title -->
+            <section class="title-slide">
+                <div class="emoji">📱</div>
+                <h1>Core Motion Basics</h1>
+                <p class="subtitle">MDI 112 - Class 3 | Building a Motion Playground App</p>
+            </section>
+            
+            <!-- Slide 2: Agenda -->
+            <section>
+                <h2 class="accent-cyan">Today's Agenda</h2>
+                <ul>
+                    <li>Introduction to Core Motion Framework</li>
+                    <li>Understanding Device Motion Sensors</li>
+                    <li>Accelerometer Data & Axes</li>
+                    <li>Reading Motion Data in SwiftUI</li>
+                    <li>Hands-on Project: Motion Playground</li>
+                </ul>
+            </section>
+
+            <!-- Slide 3: Class Timeline -->
+            <section>
+                <h2 class="accent-orange">3-Hour Class Plan</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-badge">Hour 1</span>
+                        <div class="timeline-content">
+                            <h4>Core Motion Fundamentals</h4>
+                            <p>Introduction, sensors, axes, and basic concepts</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-cyan);">Hour 2</span>
+                        <div class="timeline-content">
+                            <h4>Working with Motion Data</h4>
+                            <p>CMMotionManager, reading accelerometer, updates</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-green);">Hour 3</span>
+                        <div class="timeline-content">
+                            <h4>Hands-On Project</h4>
+                            <p>Build a Motion Playground app together</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Slide 4: Section - What is Core Motion -->
+            <section class="section-slide">
+                <div class="emoji">🎛️</div>
+                <h2>What is Core Motion?</h2>
+            </section>
+            
+            <!-- Slide 5: Core Motion Introduction -->
+            <section>
+                <h2>Core Motion Framework</h2>
+                <div class="two-columns">
+                    <div class="column">
+                        <h3 class="accent-orange">What It Does</h3>
+                        <ul>
+                            <li>Access device motion sensors</li>
+                            <li>Accelerometer data</li>
+                            <li>Gyroscope data</li>
+                            <li>Magnetometer (compass)</li>
+                            <li>Pedometer & activity data</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3 class="accent-cyan">Available On</h3>
+                        <ul>
+                            <li>iPhone</li>
+                            <li>iPad</li>
+                            <li>Apple Watch</li>
+                            <li>AirPods (limited)</li>
+                            <li><strong>Not</strong> on macOS/tvOS</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: Sensors Overview -->
+            <section>
+                <h2 class="accent-purple">Motion Sensors Explained</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4 class="accent-orange">📐 Accelerometer</h4>
+                        <p style="font-size: 0.75em !important; color: var(--text-gray);">Measures acceleration forces (including gravity). Tells you device orientation and movement speed.</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-cyan">🔄 Gyroscope</h4>
+                        <p style="font-size: 0.75em !important; color: var(--text-gray);">Measures rotation rate around axes. Detects how fast device is spinning.</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-green">🧭 Magnetometer</h4>
+                        <p style="font-size: 0.75em !important; color: var(--text-gray);">Measures magnetic field strength. Used for compass heading.</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-pink">👟 Pedometer</h4>
+                        <p style="font-size: 0.75em !important; color: var(--text-gray);">Counts steps, distance, floors climbed. Uses motion coprocessor.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 7: Section - Understanding Axes -->
+            <section class="section-slide">
+                <div class="emoji">📊</div>
+                <h2>Understanding the Axes</h2>
+            </section>
+
+            <!-- Slide 8: 3D Axes Explanation -->
+            <section>
+                <h2 class="accent-cyan">The Three Axes: X, Y, Z</h2>
+                <div class="two-columns">
+                    <div class="column">
+                        <div class="card" style="border-left: 4px solid #FF453A;">
+                            <h4 class="accent-red">X Axis (Red)</h4>
+                            <p style="font-size: 0.75em;">Left ↔️ Right</p>
+                            <p style="font-size: 0.65em; color: var(--text-gray);">Positive when tilting right</p>
+                        </div>
+                        <div class="card" style="border-left: 4px solid #30D158;">
+                            <h4 class="accent-green">Y Axis (Green)</h4>
+                            <p style="font-size: 0.75em;">Down ↕️ Up</p>
+                            <p style="font-size: 0.65em; color: var(--text-gray);">Positive when tilting up (top away)</p>
+                        </div>
+                        <div class="card" style="border-left: 4px solid #0A84FF;">
+                            <h4 class="accent-blue">Z Axis (Blue)</h4>
+                            <p style="font-size: 0.75em;">Back ↔️ Front</p>
+                            <p style="font-size: 0.65em; color: var(--text-gray);">Positive when face up</p>
+                        </div>
+                    </div>
+                    <div class="column" style="display: flex; align-items: center; justify-content: center;">
+                        <div style="font-size: 8em;">⌚</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 9: Gravity & Acceleration -->
+            <section>
+                <h2>Understanding Acceleration Values</h2>
+                <div class="card" style="margin-bottom: 1em;">
+                    <h4 class="accent-orange">Gravity = 1G = 9.8 m/s²</h4>
+                    <p style="font-size: 0.75em; color: var(--text-gray);">When device is flat on table, Z axis reads approximately <strong>-1.0</strong> (gravity pulling down)</p>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>Device Flat (face up)</h4>
+                        <p style="font-size: 0.7em; font-family: monospace;">X: 0.0, Y: 0.0, Z: <span class="accent-cyan">-1.0</span></p>
+                    </div>
+                    <div class="card">
+                        <h4>Device on Left Edge</h4>
+                        <p style="font-size: 0.7em; font-family: monospace;">X: <span class="accent-red">-1.0</span>, Y: 0.0, Z: 0.0</p>
+                    </div>
+                    <div class="card">
+                        <h4>Device Standing Up</h4>
+                        <p style="font-size: 0.7em; font-family: monospace;">X: 0.0, Y: <span class="accent-green">-1.0</span>, Z: 0.0</p>
+                    </div>
+                    <div class="card">
+                        <h4>Device Shaking</h4>
+                        <p style="font-size: 0.7em; font-family: monospace;">Values > 1.0 or < -1.0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 10: Section - CMMotionManager -->
+            <section class="section-slide">
+                <div class="emoji">⚙️</div>
+                <h2>CMMotionManager</h2>
+            </section>
+
+            <!-- Slide 11: CMMotionManager Overview -->
+            <section>
+                <h2 class="accent-green">CMMotionManager Class</h2>
+                <ul>
+                    <li><strong>Central class</strong> for all motion data access</li>
+                    <li>Create <strong>one instance</strong> per app (singleton pattern recommended)</li>
+                    <li>Check sensor <strong>availability</strong> before using</li>
+                    <li>Configure <strong>update interval</strong> (how often to get data)</li>
+                    <li>Start/stop updates as needed to <strong>save battery</strong></li>
+                </ul>
+                <div class="info-box">
+                    <p style="font-size: 0.75em !important; margin: 0;">
+                        💡 Core Motion doesn't require special permissions like HealthKit. Just import and use!
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide 12: Basic Setup Code -->
+            <section>
+                <h2 class="accent-cyan">Basic Setup</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">import</span> <span class="type">CoreMotion</span>
+
+<span class="keyword">class</span> <span class="type">MotionManager</span>: <span class="type">ObservableObject</span> {
+    <span class="keyword">private let</span> motionManager = <span class="type">CMMotionManager</span>()
+    
+    <span class="keyword">init</span>() {
+        <span class="comment">// Check if accelerometer is available</span>
+        <span class="keyword">if</span> motionManager.<span class="type">isAccelerometerAvailable</span> {
+            <span class="func">print</span>(<span class="string">"Accelerometer is available!"</span>)
+        }
+        
+        <span class="comment">// Set how often we want updates (in seconds)</span>
+        motionManager.<span class="type">accelerometerUpdateInterval</span> = <span class="number">0.1</span> <span class="comment">// 10 times per second</span>
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Slide 13: Data Update Types -->
+            <section>
+                <h2 class="accent-purple">Two Ways to Get Data</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4 class="accent-cyan">Push Updates (Recommended)</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">Start updates with a handler closure. Data pushed to you automatically.</p>
+                        <p style="font-size: 0.65em; font-family: monospace; margin-top: 0.5em;">startAccelerometerUpdates(to:withHandler:)</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-orange">Pull Updates</h4>
+                        <p style="font-size: 0.7em !important; color: var(--text-gray);">Start updates, then poll the accelerometerData property when needed.</p>
+                        <p style="font-size: 0.65em; font-family: monospace; margin-top: 0.5em;">startAccelerometerUpdates()<br>motionManager.accelerometerData</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 14: Start Updates Code -->
+            <section>
+                <h2 class="accent-orange">Starting Accelerometer Updates</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">func</span> <span class="func">startUpdates</span>() {
+    <span class="keyword">guard</span> motionManager.<span class="type">isAccelerometerAvailable</span> <span class="keyword">else</span> { <span class="keyword">return</span> }
+    
+    motionManager.<span class="func">startAccelerometerUpdates</span>(
+        to: <span class="type">OperationQueue</span>.main
+    ) { [<span class="keyword">weak self</span>] data, error <span class="keyword">in</span>
+        <span class="keyword">guard let</span> data = data, error == <span class="keyword">nil</span> <span class="keyword">else</span> { <span class="keyword">return</span> }
+        
+        <span class="comment">// Access the acceleration values</span>
+        <span class="keyword">let</span> x = data.acceleration.x
+        <span class="keyword">let</span> y = data.acceleration.y
+        <span class="keyword">let</span> z = data.acceleration.z
+        
+        <span class="comment">// Update your UI!</span>
+        <span class="keyword">self</span>?.xValue = x
+        <span class="keyword">self</span>?.yValue = y
+        <span class="keyword">self</span>?.zValue = z
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Slide 15: Stop Updates -->
+            <section>
+                <h2 class="accent-red">Stopping Updates (Important!)</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">func</span> <span class="func">stopUpdates</span>() {
+    motionManager.<span class="func">stopAccelerometerUpdates</span>()
+}
+                    </code>
+                </div>
+                <div class="warning-box">
+                    <div class="label accent-orange">⚠️ BATTERY WARNING</div>
+                    <p style="font-size: 0.8em !important; margin: 0;">Always stop updates when not needed! Continuous sensor access drains battery quickly. Stop in <code>onDisappear</code> or when user isn't looking.</p>
+                </div>
+            </section>
+
+            <!-- Slide 16: Update Intervals -->
+            <section>
+                <h2 class="accent-cyan">Choosing Update Interval</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>0.1s (10 Hz)</h4>
+                        <p style="font-size: 0.7em; color: var(--text-gray);">Good for UI updates, smooth animations</p>
+                        <span class="badge badge-green">Recommended</span>
+                    </div>
+                    <div class="card">
+                        <h4>0.05s (20 Hz)</h4>
+                        <p style="font-size: 0.7em; color: var(--text-gray);">Smoother but more battery drain</p>
+                        <span class="badge badge-orange">Games</span>
+                    </div>
+                    <div class="card">
+                        <h4>0.5s (2 Hz)</h4>
+                        <p style="font-size: 0.7em; color: var(--text-gray);">Battery friendly, less smooth</p>
+                        <span class="badge badge-cyan">Background</span>
+                    </div>
+                    <div class="card">
+                        <h4>0.01s (100 Hz)</h4>
+                        <p style="font-size: 0.7em; color: var(--text-gray);">Very precise, high battery use</p>
+                        <span class="badge badge-red">Avoid</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 17: Section - SwiftUI Integration -->
+            <section class="section-slide">
+                <div class="emoji">🎨</div>
+                <h2>SwiftUI Integration</h2>
+            </section>
+
+            <!-- Slide 18: ObservableObject Pattern -->
+            <section>
+                <h2 class="accent-green">Motion Manager with SwiftUI</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">import</span> <span class="type">CoreMotion</span>
+<span class="keyword">import</span> <span class="type">SwiftUI</span>
+
+<span class="keyword">class</span> <span class="type">MotionManager</span>: <span class="type">ObservableObject</span> {
+    <span class="keyword">@Published var</span> x: <span class="type">Double</span> = <span class="number">0</span>
+    <span class="keyword">@Published var</span> y: <span class="type">Double</span> = <span class="number">0</span>
+    <span class="keyword">@Published var</span> z: <span class="type">Double</span> = <span class="number">0</span>
+    
+    <span class="keyword">private let</span> motion = <span class="type">CMMotionManager</span>()
+    
+    <span class="keyword">func</span> <span class="func">start</span>() {
+        motion.<span class="type">accelerometerUpdateInterval</span> = <span class="number">0.1</span>
+        motion.<span class="func">startAccelerometerUpdates</span>(to: .main) { data, _ <span class="keyword">in</span>
+            <span class="keyword">guard let</span> data = data <span class="keyword">else</span> { <span class="keyword">return</span> }
+            <span class="keyword">self</span>.x = data.acceleration.x
+            <span class="keyword">self</span>.y = data.acceleration.y
+            <span class="keyword">self</span>.z = data.acceleration.z
+        }
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Slide 19: Using in View -->
+            <section>
+                <h2 class="accent-purple">Using Motion Data in Views</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">struct</span> <span class="type">MotionView</span>: <span class="type">View</span> {
+    <span class="keyword">@StateObject private var</span> motion = <span class="type">MotionManager</span>()
+    
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+        <span class="type">VStack</span> {
+            <span class="type">Text</span>(<span class="string">"X: \(motion.x, specifier: "%.2f")"</span>)
+            <span class="type">Text</span>(<span class="string">"Y: \(motion.y, specifier: "%.2f")"</span>)
+            <span class="type">Text</span>(<span class="string">"Z: \(motion.z, specifier: "%.2f")"</span>)
+        }
+        .<span class="func">onAppear</span> { motion.<span class="func">start</span>() }
+        .<span class="func">onDisappear</span> { motion.<span class="func">stop</span>() }
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Slide 20: Practical Uses -->
+            <section>
+                <h2 class="accent-orange">What Can You Build?</h2>
+                <div class="card-grid-3">
+                    <div class="feature-card">
+                        <div class="icon">⚖️</div>
+                        <h4 class="accent-cyan">Spirit Level</h4>
+                        <p>Use tilt to show if surface is flat</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🎮</div>
+                        <h4 class="accent-green">Tilt Games</h4>
+                        <p>Control game elements by tilting</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📊</div>
+                        <h4 class="accent-purple">Step Counter</h4>
+                        <p>Track walking with pedometer</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🤸</div>
+                        <h4 class="accent-pink">Shake Detection</h4>
+                        <p>Detect shaking gestures</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🧭</div>
+                        <h4 class="accent-orange">Compass</h4>
+                        <p>Show direction using magnetometer</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🏃</div>
+                        <h4 class="accent-cyan">Activity Tracking</h4>
+                        <p>Detect running, walking, driving</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 21: Shake Detection -->
+            <section>
+                <h2 class="accent-pink">Detecting Shakes</h2>
+                <div class="code-block">
+                    <code>
+<span class="comment">// Calculate total acceleration magnitude</span>
+<span class="keyword">let</span> magnitude = <span class="func">sqrt</span>(x*x + y*y + z*z)
+
+<span class="comment">// If magnitude > threshold, it's a shake!</span>
+<span class="keyword">if</span> magnitude > <span class="number">2.0</span> {
+    <span class="comment">// Shake detected!</span>
+    shakeCount += <span class="number">1</span>
+    <span class="type">WKInterfaceDevice</span>.current().<span class="func">play</span>(.<span class="type">notification</span>)
+}
+                    </code>
+                </div>
+                <div class="info-box">
+                    <p style="font-size: 0.75em !important; margin: 0;">
+                        💡 Normal gravity is ~1.0. Values significantly above that indicate movement/shaking.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide 22: Section - Project -->
+            <section class="section-slide">
+                <div class="emoji">🎪</div>
+                <h2>Project: Motion Playground</h2>
+            </section>
+
+            <!-- Slide 23: Project Overview -->
+            <section>
+                <h2 class="accent-orange">Motion Playground - What We're Building</h2>
+                <ul>
+                    <li>A fun watchOS app to explore <strong>motion sensors</strong></li>
+                    <li><strong>Tilt Ball</strong> - A ball that moves when you tilt your wrist</li>
+                    <li><strong>Shake Counter</strong> - Count how many times you shake</li>
+                    <li><strong>Haptic feedback</strong> on shake detection</li>
+                    <li>Simple, visual, and interactive!</li>
+                </ul>
+            </section>
+
+            <!-- Slide 24: Features Grid -->
+            <section style="margin-top: -250px;">
+                <h2>App Features</h2>
+                <div class="card-grid">
+                    <div class="feature-card">
+                        <div class="icon">⚪</div>
+                        <h4 class="accent-cyan">Tilt Ball</h4>
+                        <p>Ball moves based on wrist tilt using accelerometer X/Y values</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🫨</div>
+                        <h4 class="accent-orange">Shake Counter</h4>
+                        <p>Detects shakes and keeps count with haptic feedback</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📊</div>
+                        <h4 class="accent-green">Live Data</h4>
+                        <p>See raw X, Y, Z accelerometer values updating in real-time</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📳</div>
+                        <h4 class="accent-purple">Haptics</h4>
+                        <p>Feel vibration feedback when shakes are detected</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 25: Architecture -->
+            <section>
+                <h2>Simple App Architecture</h2>
+                <div class="two-columns">
+                    <div class="column">
+                        <h3 class="accent-green">Files Structure</h3>
+                        <ul>
+                            <li><strong>Services/</strong> - MotionManager</li>
+                            <li><strong>Views/</strong> - TiltBallView, ShakeCounterView</li>
+                            <li><strong>ContentView</strong> - Tab navigation</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3 class="accent-purple">Key Concepts</h3>
+                        <ul>
+                            <li>CMMotionManager for sensor access</li>
+                            <li>@Published for reactive updates</li>
+                            <li>offset() modifier for ball position</li>
+                            <li>Magnitude calculation for shakes</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 26: Development Steps -->
+            <section>
+                <h2 class="accent-cyan">Project Development Steps</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-badge">Step 1</span>
+                        <div class="timeline-content">
+                            <h4>Create MotionManager</h4>
+                            <p>ObservableObject with CMMotionManager, start/stop methods</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-cyan);">Step 2</span>
+                        <div class="timeline-content">
+                            <h4>Build TiltBallView</h4>
+                            <p>Circle that moves based on X/Y accelerometer values</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-green);">Step 3</span>
+                        <div class="timeline-content">
+                            <h4>Build ShakeCounterView</h4>
+                            <p>Detect shakes, count them, add haptic feedback</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-purple);">Step 4</span>
+                        <div class="timeline-content">
+                            <h4>Connect with Tabs</h4>
+                            <p>TabView to switch between features</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 27: Testing Note -->
+            <section>
+                <h2 class="accent-orange">Testing Core Motion</h2>
+                <div class="warning-box">
+                    <div class="label accent-orange">⚠️ SIMULATOR LIMITATIONS</div>
+                    <p style="font-size: 0.8em !important; margin: 0;">The watchOS Simulator <strong>does not</strong> have motion sensors. You must test on a <strong>physical Apple Watch</strong> to see real accelerometer data.</p>
+                </div>
+                <div class="info-box" style="margin-top: 1em;">
+                    <p style="font-size: 0.75em !important; margin: 0;">
+                        💡 <strong>Tip:</strong> Add mock/demo data in simulator so you can test UI layout, then verify real motion on device.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide 28: Let's Build -->
+            <section class="section-slide">
+                <div class="emoji">🚀</div>
+                <h2>Let's Build Together!</h2>
+                <p style="color: var(--text-gray); text-align: center;">Open Xcode and let's get started</p>
+            </section>
+
+            <!-- Slide 29: Key Takeaways -->
+            <section>
+                <h2 class="accent-green">Key Takeaways</h2>
+                <div class="summary-list">
+                    <div class="summary-item"><span class="emoji">🎛️</span> Core Motion accesses device sensors</div>
+                    <div class="summary-item"><span class="emoji">📐</span> X, Y, Z axes measure acceleration</div>
+                    <div class="summary-item"><span class="emoji">⚙️</span> CMMotionManager is the main class</div>
+                    <div class="summary-item"><span class="emoji">🔋</span> Always stop updates to save battery</div>
+                    <div class="summary-item"><span class="emoji">🫨</span> Magnitude > 2.0 indicates shake</div>
+                    <div class="summary-item"><span class="emoji">⌚</span> Must test on real device</div>
+                </div>
+            </section>
+            
+            <!-- Slide 30: References -->
+            <section>
+                <h2>References & Resources</h2>
+                <ul>
+                    <li><a href="https://developer.apple.com/documentation/coremotion" target="_blank" style="color: var(--accent-cyan);">Apple Core Motion Documentation</a></li>
+                    <li><a href="https://developer.apple.com/documentation/coremotion/cmmotionmanager" target="_blank" style="color: var(--accent-cyan);">CMMotionManager Reference</a></li>
+                    <li><a href="https://developer.apple.com/documentation/coremotion/getting_raw_accelerometer_events" target="_blank" style="color: var(--accent-cyan);">Getting Raw Accelerometer Events</a></li>
+                </ul>
+            </section>
+
+            <!-- Slide 31: Questions -->
+            <section class="section-slide">
+                <div class="emoji">❓</div>
+                <h2>Questions?</h2>
+                <p style="color: var(--text-gray); text-align: center;">Let's discuss before we start coding</p>
+            </section>
+            
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            progress: true,
+            center: false,
+            transition: 'slide',
+            backgroundTransition: 'fade'
+        });
+    </script>
+</body>
+</html>
+

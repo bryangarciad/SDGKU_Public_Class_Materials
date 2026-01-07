@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications & Smart Sensor Management - MDI 113</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        :root { --accent-orange: #FF9500; --accent-cyan: #32D7FF; --accent-green: #30D158; --accent-purple: #AF52DE; --accent-pink: #FF2D55; --accent-red: #FF453A; --accent-blue: #0A84FF; --accent-yellow: #FFD60A; --dark-bg: #0D0D12; --card-bg: #1C1C24; --text-gray: #8E8E93; }
+        .reveal { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; }
+        section { margin-top: -20px; }
+        .reveal .slides { text-align: left; }
+        .reveal h1, .reveal h2, .reveal h3 { font-weight: 700; text-transform: none; letter-spacing: -0.02em; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2em; margin-bottom: 0.8em; }
+        .reveal h3 { font-size: 1.4em; color: var(--text-gray); }
+        .reveal p, .reveal li { font-size: 0.85em; line-height: 1.6; }
+        .reveal ul { list-style: none; padding-left: 0; }
+        .reveal ul li { margin-bottom: 0.6em; padding-left: 1.5em; position: relative; }
+        .reveal ul li::before { content: "•"; color: var(--accent-orange); font-weight: bold; position: absolute; left: 0; }
+        .title-slide { text-align: center !important; }
+        .title-slide h1 { font-size: 3em; margin-bottom: 0.3em; }
+        .title-slide .subtitle { color: var(--text-gray); font-size: 1.2em; }
+        .title-slide .emoji { font-size: 4em; margin-bottom: 0.3em; }
+        .section-slide { text-align: center !important; }
+        .section-slide .emoji { font-size: 5em; margin-bottom: 0.3em; }
+        .section-slide h2 { color: var(--accent-cyan); font-size: 2.4em; }
+        .accent-orange { color: var(--accent-orange) !important; }
+        .accent-cyan { color: var(--accent-cyan) !important; }
+        .accent-green { color: var(--accent-green) !important; }
+        .accent-purple { color: var(--accent-purple) !important; }
+        .accent-pink { color: var(--accent-pink) !important; }
+        .accent-red { color: var(--accent-red) !important; }
+        .card { background: var(--card-bg); border-radius: 16px; padding: 1.2em 1.5em; margin: 0.5em 0; }
+        .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1em; margin-top: 1em; }
+        .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8em; margin-top: 1em; }
+        .feature-card { background: var(--card-bg); border-radius: 12px; padding: 1em; text-align: center; }
+        .feature-card .icon { font-size: 2.5em; margin-bottom: 0.3em; }
+        .feature-card h4 { margin: 0.3em 0; font-size: 0.9em; }
+        .feature-card p { font-size: 0.65em !important; color: var(--text-gray); margin: 0; }
+        .two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 2em; }
+        .column h3 { margin-bottom: 0.5em; font-size: 1.1em; }
+        .timeline { margin-top: 1em; }
+        .timeline-item { display: flex; align-items: flex-start; margin-bottom: 1em; }
+        .timeline-badge { background: var(--accent-orange); color: var(--dark-bg); padding: 0.3em 0.8em; border-radius: 20px; font-weight: 700; font-size: 0.8em; margin-right: 1em; white-space: nowrap; }
+        .timeline-content h4 { margin: 0 0 0.2em 0; font-size: 1em; }
+        .timeline-content p { margin: 0; font-size: 0.8em !important; color: var(--text-gray); }
+        .code-block { background: #1a1a2e; border-radius: 12px; padding: 1em; font-family: 'JetBrains Mono', monospace; font-size: 0.55em; overflow-x: auto; border: 1px solid #2d2d44; }
+        .code-block .keyword { color: var(--accent-pink); }
+        .code-block .type { color: var(--accent-cyan); }
+        .code-block .string { color: var(--accent-green); }
+        .code-block .comment { color: var(--text-gray); }
+        .code-block .func { color: var(--accent-purple); }
+        .code-block .number { color: var(--accent-yellow); }
+        .warning-box { background: rgba(255, 149, 0, 0.15); border-left: 4px solid var(--accent-orange); border-radius: 8px; padding: 1em; margin: 1em 0; }
+        .info-box { background: rgba(50, 215, 255, 0.15); border-left: 4px solid var(--accent-cyan); border-radius: 8px; padding: 1em; margin: 1em 0; }
+        .warning-box .label, .info-box .label { font-weight: 700; font-size: 0.8em; margin-bottom: 0.5em; }
+        .badge { display: inline-block; padding: 0.3em 0.8em; border-radius: 20px; font-size: 0.7em; font-weight: 600; }
+        .badge-purple { background: rgba(175, 82, 222, 0.2); color: var(--accent-purple); }
+        .reveal .progress span { background: var(--accent-cyan); }
+        .reveal .controls { color: var(--accent-cyan); }
+        .summary-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5em; }
+        .summary-item { display: flex; align-items: center; font-size: 0.85em; }
+        .summary-item .emoji { margin-right: 0.5em; font-size: 1.3em; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Title -->
+            <section class="title-slide">
+                <div class="emoji">🔔</div>
+                <h1>Smart Notifications & Sensor Sync</h1>
+                <p class="subtitle">MDI 113 - Class 4 | Contextual Feedback & Power-Efficient Data</p>
+                <span class="badge badge-purple" style="margin-top: 1em;">Intermediate Level</span>
+            </section>
+            
+            <!-- Agenda -->
+            <section>
+                <h2 class="accent-cyan">Today's Agenda</h2>
+                <ul>
+                    <li>Local Notifications on watchOS</li>
+                    <li>Contextual & Activity-Based Alerts</li>
+                    <li>Feedback Loops for User Engagement</li>
+                    <li>Smart Sensor Data Synchronization</li>
+                    <li>Project: Activity Coach</li>
+                </ul>
+            </section>
+
+            <!-- Class Timeline -->
+            <section>
+                <h2 class="accent-orange">3-Hour Class Plan</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-badge">Hour 1</span>
+                        <div class="timeline-content">
+                            <h4>Notifications & Feedback</h4>
+                            <p>UserNotifications, haptics, contextual alerts</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-cyan);">Hour 2</span>
+                        <div class="timeline-content">
+                            <h4>Smart Sensor Management</h4>
+                            <p>Efficient polling, data aggregation, sync strategies</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-green);">Hour 3</span>
+                        <div class="timeline-content">
+                            <h4>Hands-On Project</h4>
+                            <p>Build Activity Coach app together</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section: Notifications -->
+            <section class="section-slide">
+                <div class="emoji">🔔</div>
+                <h2>Local Notifications</h2>
+            </section>
+
+            <!-- Why Notifications -->
+            <section>
+                <h2 class="accent-green">Why Notifications Matter on Watch</h2>
+                <div class="card-grid">
+                    <div class="feature-card">
+                        <div class="icon">👀</div>
+                        <h4>Glanceable</h4>
+                        <p>Quick info without opening app</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">⏰</div>
+                        <h4>Timely</h4>
+                        <p>Right information at right time</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📳</div>
+                        <h4>Haptic</h4>
+                        <p>Physical feedback on wrist</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🎯</div>
+                        <h4>Actionable</h4>
+                        <p>Quick actions from notification</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Basic Notification -->
+            <section>
+                <h2 class="accent-cyan">Creating Local Notifications</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">import</span> <span class="type">UserNotifications</span>
+
+<span class="keyword">func</span> <span class="func">scheduleNotification</span>(title: <span class="type">String</span>, body: <span class="type">String</span>, delay: <span class="type">TimeInterval</span>) {
+    <span class="keyword">let</span> content = <span class="type">UNMutableNotificationContent</span>()
+    content.title = title
+    content.body = body
+    content.sound = .<span class="type">default</span>
+    
+    <span class="keyword">let</span> trigger = <span class="type">UNTimeIntervalNotificationTrigger</span>(
+        timeInterval: delay,
+        repeats: <span class="keyword">false</span>
+    )
+    
+    <span class="keyword">let</span> request = <span class="type">UNNotificationRequest</span>(
+        identifier: <span class="type">UUID</span>().uuidString,
+        content: content,
+        trigger: trigger
+    )
+    
+    <span class="type">UNUserNotificationCenter</span>.current().<span class="func">add</span>(request)
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Permission -->
+            <section>
+                <h2 class="accent-orange">Requesting Permission</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">func</span> <span class="func">requestNotificationPermission</span>() <span class="keyword">async</span> -> <span class="type">Bool</span> {
+    <span class="keyword">let</span> center = <span class="type">UNUserNotificationCenter</span>.current()
+    
+    <span class="keyword">do</span> {
+        <span class="keyword">let</span> granted = <span class="keyword">try await</span> center.<span class="func">requestAuthorization</span>(
+            options: [.alert, .sound, .badge]
+        )
+        <span class="keyword">return</span> granted
+    } <span class="keyword">catch</span> {
+        <span class="keyword">return false</span>
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Section: Contextual -->
+            <section class="section-slide">
+                <div class="emoji">🎯</div>
+                <h2>Contextual Notifications</h2>
+            </section>
+
+            <!-- Context Types -->
+            <section>
+                <h2 class="accent-purple">Types of Context</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4 class="accent-orange">🏃 Activity-Based</h4>
+                        <p style="font-size: 0.75em; color: var(--text-gray);">"You've been sitting for an hour. Time to move!"</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-cyan">❤️ Health-Based</h4>
+                        <p style="font-size: 0.75em; color: var(--text-gray);">"Your heart rate is elevated. Take a breather."</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-green">🎯 Goal-Based</h4>
+                        <p style="font-size: 0.75em; color: var(--text-gray);">"You're 80% to your step goal! Keep going!"</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="accent-pink">⏰ Time-Based</h4>
+                        <p style="font-size: 0.75em; color: var(--text-gray);">"Good morning! Ready for your workout?"</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Activity Detection Trigger -->
+            <section>
+                <h2 class="accent-cyan">Activity-Triggered Notifications</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">class</span> <span class="type">ActivityMonitor</span> {
+    <span class="keyword">var</span> stationaryStart: <span class="type">Date</span>?
+    <span class="keyword">let</span> inactivityThreshold: <span class="type">TimeInterval</span> = <span class="number">3600</span> <span class="comment">// 1 hour</span>
+    
+    <span class="keyword">func</span> <span class="func">checkActivity</span>(_ activity: <span class="type">Activity</span>) {
+        <span class="keyword">if</span> activity == .stationary {
+            <span class="keyword">if</span> stationaryStart == <span class="keyword">nil</span> {
+                stationaryStart = <span class="type">Date</span>()
+            } <span class="keyword">else if let</span> start = stationaryStart,
+                      <span class="type">Date</span>().<span class="func">timeIntervalSince</span>(start) > inactivityThreshold {
+                <span class="func">sendInactivityReminder</span>()
+                stationaryStart = <span class="keyword">nil</span> <span class="comment">// Reset after notification</span>
+            }
+        } <span class="keyword">else</span> {
+            stationaryStart = <span class="keyword">nil</span> <span class="comment">// Reset when moving</span>
+        }
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Section: Feedback Loops -->
+            <section class="section-slide">
+                <div class="emoji">🔄</div>
+                <h2>Feedback Loops</h2>
+            </section>
+
+            <!-- Feedback Types -->
+            <section>
+                <h2 class="accent-green">Multi-Modal Feedback</h2>
+                <div class="card-grid-3">
+                    <div class="feature-card">
+                        <div class="icon">📳</div>
+                        <h4 class="accent-cyan">Haptic</h4>
+                        <p>Physical vibration patterns</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔊</div>
+                        <h4 class="accent-orange">Audio</h4>
+                        <p>Sound effects & tones</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">👁️</div>
+                        <h4 class="accent-green">Visual</h4>
+                        <p>Animations & color changes</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <p style="font-size: 0.75em; margin: 0;">💡 Combine feedback types for stronger engagement. A goal completion can use haptic + visual + sound!</p>
+                </div>
+            </section>
+
+            <!-- Haptic Patterns -->
+            <section>
+                <h2 class="accent-orange">Haptic Feedback Patterns</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">import</span> <span class="type">WatchKit</span>
+
+<span class="keyword">enum</span> <span class="type">FeedbackType</span> {
+    <span class="keyword">case</span> goalProgress, goalComplete, warning, encouragement
+    
+    <span class="keyword">func</span> <span class="func">play</span>() {
+        <span class="keyword">let</span> device = <span class="type">WKInterfaceDevice</span>.current()
+        
+        <span class="keyword">switch self</span> {
+        <span class="keyword">case</span> .goalProgress:
+            device.<span class="func">play</span>(.<span class="type">click</span>)
+        <span class="keyword">case</span> .goalComplete:
+            device.<span class="func">play</span>(.<span class="type">success</span>)
+            <span class="comment">// Play twice for emphasis</span>
+            <span class="type">DispatchQueue</span>.main.<span class="func">asyncAfter</span>(deadline: .now() + <span class="number">0.3</span>) {
+                device.<span class="func">play</span>(.<span class="type">success</span>)
+            }
+        <span class="keyword">case</span> .warning:
+            device.<span class="func">play</span>(.<span class="type">failure</span>)
+        <span class="keyword">case</span> .encouragement:
+            device.<span class="func">play</span>(.<span class="type">notification</span>)
+        }
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Section: Sensor Sync -->
+            <section class="section-slide">
+                <div class="emoji">🔄</div>
+                <h2>Smart Sensor Management</h2>
+            </section>
+
+            <!-- Efficient Polling -->
+            <section>
+                <h2 class="accent-cyan">Efficient Data Polling</h2>
+                <ul>
+                    <li><strong>Adaptive intervals</strong> — Faster when active, slower when idle</li>
+                    <li><strong>Batch processing</strong> — Process data in chunks, not individually</li>
+                    <li><strong>Threshold triggers</strong> — Only notify on significant changes</li>
+                    <li><strong>Aggregate statistics</strong> — Use averages instead of every sample</li>
+                </ul>
+            </section>
+
+            <!-- Adaptive Polling -->
+            <section>
+                <h2 class="accent-purple">Adaptive Polling Strategy</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">class</span> <span class="type">SmartSensorManager</span> {
+    <span class="keyword">var</span> currentActivity: <span class="type">Activity</span> = .stationary
+    
+    <span class="keyword">var</span> pollInterval: <span class="type">TimeInterval</span> {
+        <span class="keyword">switch</span> currentActivity {
+        <span class="keyword">case</span> .stationary:
+            <span class="keyword">return</span> <span class="number">30.0</span>  <span class="comment">// Poll every 30s when idle</span>
+        <span class="keyword">case</span> .walking:
+            <span class="keyword">return</span> <span class="number">5.0</span>   <span class="comment">// Every 5s when walking</span>
+        <span class="keyword">case</span> .running:
+            <span class="keyword">return</span> <span class="number">1.0</span>   <span class="comment">// Every 1s when running</span>
+        }
+    }
+    
+    <span class="keyword">func</span> <span class="func">updatePollingRate</span>() {
+        motionManager.accelerometerUpdateInterval = pollInterval
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Threshold Notifications -->
+            <section>
+                <h2 class="accent-green">Threshold-Based Notifications</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">class</span> <span class="type">GoalTracker</span> {
+    <span class="keyword">var</span> lastNotifiedProgress: <span class="type">Int</span> = <span class="number">0</span>
+    <span class="keyword">let</span> notificationMilestones = [<span class="number">25</span>, <span class="number">50</span>, <span class="number">75</span>, <span class="number">100</span>]
+    
+    <span class="keyword">func</span> <span class="func">checkProgress</span>(current: <span class="type">Int</span>, goal: <span class="type">Int</span>) {
+        <span class="keyword">let</span> percentage = (current * <span class="number">100</span>) / goal
+        
+        <span class="keyword">for</span> milestone <span class="keyword">in</span> notificationMilestones {
+            <span class="keyword">if</span> percentage >= milestone && lastNotifiedProgress < milestone {
+                <span class="func">sendMilestoneNotification</span>(milestone)
+                lastNotifiedProgress = milestone
+                <span class="keyword">break</span>
+            }
+        }
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Section: Project -->
+            <section class="section-slide">
+                <div class="emoji">🏗️</div>
+                <h2>Project: Activity Coach</h2>
+            </section>
+
+            <!-- Project Overview -->
+            <section>
+                <h2 class="accent-orange">Activity Coach - What We're Building</h2>
+                <ul>
+                    <li>A watchOS app that <strong>coaches you to stay active</strong></li>
+                    <li><strong>Inactivity detection</strong> with smart reminders</li>
+                    <li><strong>Step goal tracking</strong> with milestone notifications</li>
+                    <li><strong>Multi-modal feedback</strong> (haptic + visual)</li>
+                    <li><strong>Adaptive sensor polling</strong> based on activity</li>
+                </ul>
+            </section>
+
+            <!-- Features Grid -->
+            <section style="margin-top: -250px;">
+                <h2>App Features</h2>
+                <div class="card-grid">
+                    <div class="feature-card">
+                        <div class="icon">🪑</div>
+                        <h4 class="accent-orange">Inactivity Alert</h4>
+                        <p>Remind to move after 30 min sitting</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">👟</div>
+                        <h4 class="accent-green">Step Goals</h4>
+                        <p>Track progress with milestones</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🎉</div>
+                        <h4 class="accent-purple">Celebrations</h4>
+                        <p>Haptic + animation on goal hit</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔋</div>
+                        <h4 class="accent-cyan">Power Smart</h4>
+                        <p>Adaptive polling saves battery</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Let's Build -->
+            <section class="section-slide">
+                <div class="emoji">🚀</div>
+                <h2>Let's Build Together!</h2>
+                <p style="color: var(--text-gray); text-align: center;">Open Xcode and let's get started</p>
+            </section>
+
+            <!-- Key Takeaways -->
+            <section>
+                <h2 class="accent-green">Key Takeaways</h2>
+                <div class="summary-list">
+                    <div class="summary-item"><span class="emoji">🔔</span> Local notifications for timely alerts</div>
+                    <div class="summary-item"><span class="emoji">🎯</span> Context makes notifications relevant</div>
+                    <div class="summary-item"><span class="emoji">📳</span> Combine haptic + visual feedback</div>
+                    <div class="summary-item"><span class="emoji">🔄</span> Adaptive polling saves battery</div>
+                    <div class="summary-item"><span class="emoji">📊</span> Threshold-based notifications</div>
+                    <div class="summary-item"><span class="emoji">🎉</span> Celebrate milestones!</div>
+                </div>
+            </section>
+            
+            <!-- References -->
+            <section>
+                <h2>References & Resources</h2>
+                <ul>
+                    <li><a href="https://developer.apple.com/documentation/usernotifications" target="_blank" style="color: var(--accent-cyan);">UserNotifications Documentation</a></li>
+                    <li><a href="https://developer.apple.com/documentation/watchkit/wkinterfacedevice/1628128-play" target="_blank" style="color: var(--accent-cyan);">WKInterfaceDevice Haptics</a></li>
+                    <li><a href="https://developer.apple.com/design/human-interface-guidelines/notifications" target="_blank" style="color: var(--accent-cyan);">Notification HIG</a></li>
+                </ul>
+            </section>
+
+            <!-- Questions -->
+            <section class="section-slide">
+                <div class="emoji">❓</div>
+                <h2>Questions?</h2>
+            </section>
+            
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({ hash: true, slideNumber: true, progress: true, center: false, transition: 'slide' });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,671 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C18868612EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C18868602EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C18868622EDA50EB0003A8EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C18868542EDA50EA0003A8EA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C188685F2EDA50EB0003A8EA;
+			remoteInfo = "DynamicCompassWatchOS Watch App";
+		};
+		C18868732EDA50ED0003A8EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C18868542EDA50EA0003A8EA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C188685F2EDA50EB0003A8EA;
+			remoteInfo = "DynamicCompassWatchOS Watch App";
+		};
+		C188687D2EDA50ED0003A8EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C18868542EDA50EA0003A8EA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C188685F2EDA50EB0003A8EA;
+			remoteInfo = "DynamicCompassWatchOS Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C18868892EDA50ED0003A8EA /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				C18868612EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C188685A2EDA50EB0003A8EA /* DynamicCompassWatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicCompassWatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C18868602EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DynamicCompassWatchOS Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C18868722EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DynamicCompassWatchOS Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C188687C2EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DynamicCompassWatchOS Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C18868642EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "DynamicCompassWatchOS Watch App";
+			sourceTree = "<group>";
+		};
+		C18868752EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "DynamicCompassWatchOS Watch AppTests";
+			sourceTree = "<group>";
+		};
+		C188687F2EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "DynamicCompassWatchOS Watch AppUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C188685D2EDA50EB0003A8EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C188686F2EDA50ED0003A8EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C18868792EDA50ED0003A8EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C18868532EDA50EA0003A8EA = {
+			isa = PBXGroup;
+			children = (
+				C18868642EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App */,
+				C18868752EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppTests */,
+				C188687F2EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppUITests */,
+				C188685B2EDA50EB0003A8EA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C188685B2EDA50EB0003A8EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C188685A2EDA50EB0003A8EA /* DynamicCompassWatchOS.app */,
+				C18868602EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App.app */,
+				C18868722EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppTests.xctest */,
+				C188687C2EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C18868592EDA50EB0003A8EA /* DynamicCompassWatchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C188688A2EDA50ED0003A8EA /* Build configuration list for PBXNativeTarget "DynamicCompassWatchOS" */;
+			buildPhases = (
+				C18868582EDA50EB0003A8EA /* Resources */,
+				C18868892EDA50ED0003A8EA /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C18868632EDA50EB0003A8EA /* PBXTargetDependency */,
+			);
+			name = DynamicCompassWatchOS;
+			packageProductDependencies = (
+			);
+			productName = DynamicCompassWatchOS;
+			productReference = C188685A2EDA50EB0003A8EA /* DynamicCompassWatchOS.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		C188685F2EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C18868862EDA50ED0003A8EA /* Build configuration list for PBXNativeTarget "DynamicCompassWatchOS Watch App" */;
+			buildPhases = (
+				C188685C2EDA50EB0003A8EA /* Sources */,
+				C188685D2EDA50EB0003A8EA /* Frameworks */,
+				C188685E2EDA50EB0003A8EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C18868642EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App */,
+			);
+			name = "DynamicCompassWatchOS Watch App";
+			packageProductDependencies = (
+			);
+			productName = "DynamicCompassWatchOS Watch App";
+			productReference = C18868602EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C18868712EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C188688D2EDA50ED0003A8EA /* Build configuration list for PBXNativeTarget "DynamicCompassWatchOS Watch AppTests" */;
+			buildPhases = (
+				C188686E2EDA50ED0003A8EA /* Sources */,
+				C188686F2EDA50ED0003A8EA /* Frameworks */,
+				C18868702EDA50ED0003A8EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C18868742EDA50ED0003A8EA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C18868752EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppTests */,
+			);
+			name = "DynamicCompassWatchOS Watch AppTests";
+			packageProductDependencies = (
+			);
+			productName = "DynamicCompassWatchOS Watch AppTests";
+			productReference = C18868722EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C188687B2EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C18868902EDA50ED0003A8EA /* Build configuration list for PBXNativeTarget "DynamicCompassWatchOS Watch AppUITests" */;
+			buildPhases = (
+				C18868782EDA50ED0003A8EA /* Sources */,
+				C18868792EDA50ED0003A8EA /* Frameworks */,
+				C188687A2EDA50ED0003A8EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C188687E2EDA50ED0003A8EA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C188687F2EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppUITests */,
+			);
+			name = "DynamicCompassWatchOS Watch AppUITests";
+			packageProductDependencies = (
+			);
+			productName = "DynamicCompassWatchOS Watch AppUITests";
+			productReference = C188687C2EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C18868542EDA50EA0003A8EA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					C18868592EDA50EB0003A8EA = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					C188685F2EDA50EB0003A8EA = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					C18868712EDA50ED0003A8EA = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = C188685F2EDA50EB0003A8EA;
+					};
+					C188687B2EDA50ED0003A8EA = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = C188685F2EDA50EB0003A8EA;
+					};
+				};
+			};
+			buildConfigurationList = C18868572EDA50EA0003A8EA /* Build configuration list for PBXProject "DynamicCompassWatchOS" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C18868532EDA50EA0003A8EA;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C188685B2EDA50EB0003A8EA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C18868592EDA50EB0003A8EA /* DynamicCompassWatchOS */,
+				C188685F2EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App */,
+				C18868712EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppTests */,
+				C188687B2EDA50ED0003A8EA /* DynamicCompassWatchOS Watch AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C18868582EDA50EB0003A8EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C188685E2EDA50EB0003A8EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C18868702EDA50ED0003A8EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C188687A2EDA50ED0003A8EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C188685C2EDA50EB0003A8EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C188686E2EDA50ED0003A8EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C18868782EDA50ED0003A8EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C18868632EDA50EB0003A8EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C188685F2EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App */;
+			targetProxy = C18868622EDA50EB0003A8EA /* PBXContainerItemProxy */;
+		};
+		C18868742EDA50ED0003A8EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C188685F2EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App */;
+			targetProxy = C18868732EDA50ED0003A8EA /* PBXContainerItemProxy */;
+		};
+		C188687E2EDA50ED0003A8EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C188685F2EDA50EB0003A8EA /* DynamicCompassWatchOS Watch App */;
+			targetProxy = C188687D2EDA50ED0003A8EA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C18868842EDA50ED0003A8EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C18868852EDA50ED0003A8EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		C18868872EDA50ED0003A8EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DynamicCompassWatchOS Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DynamicCompassWatchOS;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.DynamicCompassWatchOS.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		C18868882EDA50ED0003A8EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DynamicCompassWatchOS Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DynamicCompassWatchOS;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.DynamicCompassWatchOS.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		C188688B2EDA50ED0003A8EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				INFOPLIST_KEY_CFBundleDisplayName = DynamicCompassWatchOS;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.DynamicCompassWatchOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C188688C2EDA50ED0003A8EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				INFOPLIST_KEY_CFBundleDisplayName = DynamicCompassWatchOS;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.DynamicCompassWatchOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C188688E2EDA50ED0003A8EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ramsesGarcia.DynamicCompassWatchOS-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DynamicCompassWatchOS Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DynamicCompassWatchOS Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		C188688F2EDA50ED0003A8EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ramsesGarcia.DynamicCompassWatchOS-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DynamicCompassWatchOS Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DynamicCompassWatchOS Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		C18868912EDA50ED0003A8EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ramsesGarcia.DynamicCompassWatchOS-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "DynamicCompassWatchOS Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		C18868922EDA50ED0003A8EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 33PDVR6SVF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ramsesGarcia.DynamicCompassWatchOS-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "DynamicCompassWatchOS Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C18868572EDA50EA0003A8EA /* Build configuration list for PBXProject "DynamicCompassWatchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C18868842EDA50ED0003A8EA /* Debug */,
+				C18868852EDA50ED0003A8EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C18868862EDA50ED0003A8EA /* Build configuration list for PBXNativeTarget "DynamicCompassWatchOS Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C18868872EDA50ED0003A8EA /* Debug */,
+				C18868882EDA50ED0003A8EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C188688A2EDA50ED0003A8EA /* Build configuration list for PBXNativeTarget "DynamicCompassWatchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C188688B2EDA50ED0003A8EA /* Debug */,
+				C188688C2EDA50ED0003A8EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C188688D2EDA50ED0003A8EA /* Build configuration list for PBXNativeTarget "DynamicCompassWatchOS Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C188688E2EDA50ED0003A8EA /* Debug */,
+				C188688F2EDA50ED0003A8EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C18868902EDA50ED0003A8EA /* Build configuration list for PBXNativeTarget "DynamicCompassWatchOS Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C18868912EDA50ED0003A8EA /* Debug */,
+				C18868922EDA50ED0003A8EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C18868542EDA50EA0003A8EA /* Project object */;
+}

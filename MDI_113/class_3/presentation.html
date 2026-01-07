@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Health Monitoring - MDI 113</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        :root { --accent-orange: #FF9500; --accent-cyan: #32D7FF; --accent-green: #30D158; --accent-purple: #AF52DE; --accent-pink: #FF2D55; --accent-red: #FF453A; --accent-blue: #0A84FF; --accent-yellow: #FFD60A; --dark-bg: #0D0D12; --card-bg: #1C1C24; --text-gray: #8E8E93; }
+        .reveal { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; }
+        section { margin-top: -20px; }
+        .reveal .slides { text-align: left; }
+        .reveal h1, .reveal h2, .reveal h3 { font-weight: 700; text-transform: none; letter-spacing: -0.02em; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2em; margin-bottom: 0.8em; }
+        .reveal h3 { font-size: 1.4em; color: var(--text-gray); }
+        .reveal p, .reveal li { font-size: 0.85em; line-height: 1.6; }
+        .reveal ul { list-style: none; padding-left: 0; }
+        .reveal ul li { margin-bottom: 0.6em; padding-left: 1.5em; position: relative; }
+        .reveal ul li::before { content: "•"; color: var(--accent-orange); font-weight: bold; position: absolute; left: 0; }
+        .title-slide { text-align: center !important; }
+        .title-slide h1 { font-size: 3.2em; margin-bottom: 0.3em; }
+        .title-slide .subtitle { color: var(--text-gray); font-size: 1.2em; }
+        .title-slide .emoji { font-size: 4em; margin-bottom: 0.3em; }
+        .section-slide { text-align: center !important; }
+        .section-slide .emoji { font-size: 5em; margin-bottom: 0.3em; }
+        .section-slide h2 { color: var(--accent-cyan); font-size: 2.4em; }
+        .accent-orange { color: var(--accent-orange) !important; }
+        .accent-cyan { color: var(--accent-cyan) !important; }
+        .accent-green { color: var(--accent-green) !important; }
+        .accent-purple { color: var(--accent-purple) !important; }
+        .accent-pink { color: var(--accent-pink) !important; }
+        .accent-red { color: var(--accent-red) !important; }
+        .card { background: var(--card-bg); border-radius: 16px; padding: 1.2em 1.5em; margin: 0.5em 0; }
+        .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1em; margin-top: 1em; }
+        .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8em; margin-top: 1em; }
+        .feature-card { background: var(--card-bg); border-radius: 12px; padding: 1em; text-align: center; }
+        .feature-card .icon { font-size: 2.5em; margin-bottom: 0.3em; }
+        .feature-card h4 { margin: 0.3em 0; font-size: 0.9em; }
+        .feature-card p { font-size: 0.65em !important; color: var(--text-gray); margin: 0; }
+        .two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 2em; }
+        .column h3 { margin-bottom: 0.5em; font-size: 1.1em; }
+        .timeline { margin-top: 1em; }
+        .timeline-item { display: flex; align-items: flex-start; margin-bottom: 1em; }
+        .timeline-badge { background: var(--accent-orange); color: var(--dark-bg); padding: 0.3em 0.8em; border-radius: 20px; font-weight: 700; font-size: 0.8em; margin-right: 1em; white-space: nowrap; }
+        .timeline-content h4 { margin: 0 0 0.2em 0; font-size: 1em; }
+        .timeline-content p { margin: 0; font-size: 0.8em !important; color: var(--text-gray); }
+        .code-block { background: #1a1a2e; border-radius: 12px; padding: 1em; font-family: 'JetBrains Mono', monospace; font-size: 0.55em; overflow-x: auto; border: 1px solid #2d2d44; }
+        .code-block .keyword { color: var(--accent-pink); }
+        .code-block .type { color: var(--accent-cyan); }
+        .code-block .string { color: var(--accent-green); }
+        .code-block .comment { color: var(--text-gray); }
+        .code-block .func { color: var(--accent-purple); }
+        .code-block .number { color: var(--accent-yellow); }
+        .warning-box { background: rgba(255, 149, 0, 0.15); border-left: 4px solid var(--accent-orange); border-radius: 8px; padding: 1em; margin: 1em 0; }
+        .info-box { background: rgba(50, 215, 255, 0.15); border-left: 4px solid var(--accent-cyan); border-radius: 8px; padding: 1em; margin: 1em 0; }
+        .warning-box .label, .info-box .label { font-weight: 700; font-size: 0.8em; margin-bottom: 0.5em; }
+        .badge { display: inline-block; padding: 0.3em 0.8em; border-radius: 20px; font-size: 0.7em; font-weight: 600; }
+        .badge-purple { background: rgba(175, 82, 222, 0.2); color: var(--accent-purple); }
+        .reveal .progress span { background: var(--accent-cyan); }
+        .reveal .controls { color: var(--accent-cyan); }
+        .summary-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5em; }
+        .summary-item { display: flex; align-items: center; font-size: 0.85em; }
+        .summary-item .emoji { margin-right: 0.5em; font-size: 1.3em; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Title -->
+            <section class="title-slide">
+                <div class="emoji">📊</div>
+                <h1>Real-Time Health Monitoring</h1>
+                <p class="subtitle">MDI 113 - Class 3 | Multi-Metric Workout Dashboard</p>
+                <span class="badge badge-purple" style="margin-top: 1em;">Intermediate Level</span>
+            </section>
+            
+            <!-- Agenda -->
+            <section>
+                <h2 class="accent-cyan">Today's Agenda</h2>
+                <ul>
+                    <li>Review: HealthKit Fundamentals</li>
+                    <li>Multiple Data Types Simultaneously</li>
+                    <li>HKWorkoutSession for Continuous Monitoring</li>
+                    <li>Building Responsive Health UIs</li>
+                    <li>Project: Workout Dashboard</li>
+                </ul>
+            </section>
+
+            <!-- Class Timeline -->
+            <section>
+                <h2 class="accent-orange">3-Hour Class Plan</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-badge">Hour 1</span>
+                        <div class="timeline-content">
+                            <h4>Multi-Metric HealthKit</h4>
+                            <p>Querying multiple data types, combining streams</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-cyan);">Hour 2</span>
+                        <div class="timeline-content">
+                            <h4>Workout Sessions</h4>
+                            <p>HKWorkoutSession, live queries, background updates</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-badge" style="background: var(--accent-green);">Hour 3</span>
+                        <div class="timeline-content">
+                            <h4>Hands-On Project</h4>
+                            <p>Build Workout Dashboard app together</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section: Multi-Metric -->
+            <section class="section-slide">
+                <div class="emoji">📈</div>
+                <h2>Multi-Metric Monitoring</h2>
+            </section>
+
+            <!-- Beyond Single Metric -->
+            <section>
+                <h2>Going Beyond Heart Rate</h2>
+                <p>In MDI 112, we monitored heart rate. Now let's combine multiple metrics:</p>
+                <div class="card-grid-3">
+                    <div class="feature-card">
+                        <div class="icon">❤️</div>
+                        <h4 class="accent-red">Heart Rate</h4>
+                        <p>BPM in real-time</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔥</div>
+                        <h4 class="accent-orange">Calories</h4>
+                        <p>Active energy burned</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📍</div>
+                        <h4 class="accent-green">Distance</h4>
+                        <p>Walking/running distance</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Multiple Queries -->
+            <section>
+                <h2 class="accent-cyan">Running Multiple Queries</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">class</span> <span class="type">MultiMetricManager</span> {
+    <span class="keyword">private var</span> heartRateQuery: <span class="type">HKAnchoredObjectQuery</span>?
+    <span class="keyword">private var</span> caloriesQuery: <span class="type">HKAnchoredObjectQuery</span>?
+    <span class="keyword">private var</span> distanceQuery: <span class="type">HKAnchoredObjectQuery</span>?
+    
+    <span class="keyword">func</span> <span class="func">startAllQueries</span>() {
+        <span class="func">startHeartRateQuery</span>()
+        <span class="func">startCaloriesQuery</span>()
+        <span class="func">startDistanceQuery</span>()
+    }
+    
+    <span class="keyword">func</span> <span class="func">stopAllQueries</span>() {
+        [heartRateQuery, caloriesQuery, distanceQuery]
+            .<span class="func">compactMap</span> { $0 }
+            .<span class="func">forEach</span> { healthStore.<span class="func">stop</span>($0) }
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Section: Workout Sessions -->
+            <section class="section-slide">
+                <div class="emoji">🏋️</div>
+                <h2>HKWorkoutSession</h2>
+            </section>
+
+            <!-- Why Workout Session -->
+            <section>
+                <h2 class="accent-green">Why Use Workout Sessions?</h2>
+                <div class="two-columns">
+                    <div class="column">
+                        <h3 class="accent-orange">Without Session</h3>
+                        <ul>
+                            <li>Heart rate updates infrequent</li>
+                            <li>App may be suspended</li>
+                            <li>Limited background access</li>
+                            <li>No workout ring credit</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3 class="accent-cyan">With Session</h3>
+                        <ul>
+                            <li>Continuous HR (~1/sec)</li>
+                            <li>App stays active</li>
+                            <li>Full sensor access</li>
+                            <li>Contributes to Activity rings</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Starting Workout -->
+            <section>
+                <h2 class="accent-purple">Starting a Workout Session</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">import</span> <span class="type">HealthKit</span>
+
+<span class="keyword">class</span> <span class="type">WorkoutManager</span>: <span class="type">NSObject</span>, <span class="type">ObservableObject</span> {
+    <span class="keyword">let</span> healthStore = <span class="type">HKHealthStore</span>()
+    <span class="keyword">var</span> session: <span class="type">HKWorkoutSession</span>?
+    <span class="keyword">var</span> builder: <span class="type">HKLiveWorkoutBuilder</span>?
+    
+    <span class="keyword">func</span> <span class="func">startWorkout</span>(type: <span class="type">HKWorkoutActivityType</span>) {
+        <span class="keyword">let</span> config = <span class="type">HKWorkoutConfiguration</span>()
+        config.activityType = type
+        config.locationType = .outdoor
+        
+        <span class="keyword">do</span> {
+            session = <span class="keyword">try</span> <span class="type">HKWorkoutSession</span>(healthStore: healthStore, configuration: config)
+            builder = session?.<span class="func">associatedWorkoutBuilder</span>()
+            
+            session?.delegate = <span class="keyword">self</span>
+            builder?.delegate = <span class="keyword">self</span>
+            builder?.dataSource = <span class="type">HKLiveWorkoutDataSource</span>(healthStore: healthStore, workoutConfiguration: config)
+            
+            session?.<span class="func">startActivity</span>(with: <span class="type">Date</span>())
+            builder?.<span class="func">beginCollection</span>(with: <span class="type">Date</span>()) { _, _ in }
+        } <span class="keyword">catch</span> { }
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Live Builder -->
+            <section>
+                <h2 class="accent-orange">HKLiveWorkoutBuilder</h2>
+                <p>Automatically collects and aggregates workout data:</p>
+                <div class="code-block">
+                    <code>
+<span class="keyword">extension</span> <span class="type">WorkoutManager</span>: <span class="type">HKLiveWorkoutBuilderDelegate</span> {
+    <span class="keyword">func</span> <span class="func">workoutBuilder</span>(_ builder: <span class="type">HKLiveWorkoutBuilder</span>, 
+                         didCollectDataOf types: <span class="type">Set</span>&lt;<span class="type">HKSampleType</span>&gt;) {
+        <span class="keyword">for</span> type <span class="keyword">in</span> types {
+            <span class="keyword">guard let</span> quantityType = type <span class="keyword">as?</span> <span class="type">HKQuantityType</span> <span class="keyword">else</span> { <span class="keyword">continue</span> }
+            
+            <span class="keyword">let</span> statistics = builder.<span class="func">statistics</span>(for: quantityType)
+            
+            <span class="keyword">switch</span> quantityType {
+            <span class="keyword">case</span> <span class="type">HKQuantityType</span>(.<span class="type">heartRate</span>):
+                <span class="keyword">let</span> hr = statistics?.<span class="func">mostRecentQuantity</span>()?.<span class="func">doubleValue</span>(for: .<span class="func">count</span>().<span class="func">unitDivided</span>(by: .<span class="func">minute</span>()))
+                <span class="type">DispatchQueue</span>.main.<span class="func">async</span> { <span class="keyword">self</span>.heartRate = hr ?? <span class="number">0</span> }
+            <span class="keyword">case</span> <span class="type">HKQuantityType</span>(.<span class="type">activeEnergyBurned</span>):
+                <span class="keyword">let</span> cal = statistics?.<span class="func">sumQuantity</span>()?.<span class="func">doubleValue</span>(for: .<span class="func">kilocalorie</span>())
+                <span class="type">DispatchQueue</span>.main.<span class="func">async</span> { <span class="keyword">self</span>.calories = cal ?? <span class="number">0</span> }
+            <span class="keyword">default</span>: <span class="keyword">break</span>
+            }
+        }
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Ending Workout -->
+            <section>
+                <h2 class="accent-red">Ending & Saving Workout</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">func</span> <span class="func">endWorkout</span>() {
+    session?.<span class="func">end</span>()
+    
+    builder?.<span class="func">endCollection</span>(with: <span class="type">Date</span>()) { _, _ <span class="keyword">in</span>
+        <span class="keyword">self</span>.builder?.<span class="func">finishWorkout</span> { workout, error <span class="keyword">in</span>
+            <span class="keyword">if let</span> workout = workout {
+                <span class="func">print</span>(<span class="string">"Workout saved: \(workout.duration) seconds"</span>)
+            }
+        }
+    }
+}
+                    </code>
+                </div>
+                <div class="info-box">
+                    <p style="font-size: 0.75em; margin: 0;">💡 Saved workouts appear in the Fitness app and contribute to Activity rings!</p>
+                </div>
+            </section>
+
+            <!-- Section: Responsive UI -->
+            <section class="section-slide">
+                <div class="emoji">🎨</div>
+                <h2>Responsive Health UIs</h2>
+            </section>
+
+            <!-- UI Best Practices -->
+            <section>
+                <h2 class="accent-cyan">Real-Time UI Best Practices</h2>
+                <ul>
+                    <li><strong>Update on main thread</strong> — Always dispatch UI updates</li>
+                    <li><strong>Throttle updates</strong> — Don't update every single sample</li>
+                    <li><strong>Use animations</strong> — Smooth transitions between values</li>
+                    <li><strong>Show loading states</strong> — Indicate when waiting for data</li>
+                    <li><strong>Handle errors gracefully</strong> — Show meaningful messages</li>
+                </ul>
+            </section>
+
+            <!-- Metric Ring -->
+            <section>
+                <h2 class="accent-green">Building Metric Rings</h2>
+                <div class="code-block">
+                    <code>
+<span class="keyword">struct</span> <span class="type">MetricRing</span>: <span class="type">View</span> {
+    <span class="keyword">let</span> value: <span class="type">Double</span>
+    <span class="keyword">let</span> goal: <span class="type">Double</span>
+    <span class="keyword">let</span> color: <span class="type">Color</span>
+    
+    <span class="keyword">var</span> progress: <span class="type">Double</span> { <span class="func">min</span>(value / goal, <span class="number">1.0</span>) }
+    
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+        <span class="type">ZStack</span> {
+            <span class="type">Circle</span>()
+                .<span class="func">stroke</span>(color.<span class="func">opacity</span>(<span class="number">0.3</span>), lineWidth: <span class="number">8</span>)
+            
+            <span class="type">Circle</span>()
+                .<span class="func">trim</span>(from: <span class="number">0</span>, to: progress)
+                .<span class="func">stroke</span>(color, style: <span class="type">StrokeStyle</span>(lineWidth: <span class="number">8</span>, lineCap: .round))
+                .<span class="func">rotationEffect</span>(.<span class="func">degrees</span>(-<span class="number">90</span>))
+                .<span class="func">animation</span>(.<span class="func">easeOut</span>, value: progress)
+        }
+    }
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- Section: Project -->
+            <section class="section-slide">
+                <div class="emoji">🏗️</div>
+                <h2>Project: Workout Dashboard</h2>
+            </section>
+
+            <!-- Project Overview -->
+            <section>
+                <h2 class="accent-orange">Workout Dashboard - What We're Building</h2>
+                <ul>
+                    <li>A watchOS app with <strong>multi-metric real-time display</strong></li>
+                    <li><strong>Heart rate, calories, distance</strong> simultaneously</li>
+                    <li><strong>Workout session</strong> management (start/pause/end)</li>
+                    <li><strong>Visual rings</strong> showing progress toward goals</li>
+                    <li><strong>Elapsed time</strong> and workout stats</li>
+                </ul>
+            </section>
+
+            <!-- Features Grid -->
+            <section style="margin-top: -250px;">
+                <h2>App Features</h2>
+                <div class="card-grid">
+                    <div class="feature-card">
+                        <div class="icon">❤️</div>
+                        <h4 class="accent-red">Heart Rate</h4>
+                        <p>Live BPM with zone indicator</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔥</div>
+                        <h4 class="accent-orange">Calories</h4>
+                        <p>Active energy with goal ring</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📍</div>
+                        <h4 class="accent-green">Distance</h4>
+                        <p>Running/walking distance</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">⏱️</div>
+                        <h4 class="accent-cyan">Duration</h4>
+                        <p>Elapsed workout time</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Let's Build -->
+            <section class="section-slide">
+                <div class="emoji">🚀</div>
+                <h2>Let's Build Together!</h2>
+                <p style="color: var(--text-gray); text-align: center;">Open Xcode and let's get started</p>
+            </section>
+
+            <!-- Key Takeaways -->
+            <section>
+                <h2 class="accent-green">Key Takeaways</h2>
+                <div class="summary-list">
+                    <div class="summary-item"><span class="emoji">📊</span> Multiple queries for multi-metric</div>
+                    <div class="summary-item"><span class="emoji">🏋️</span> HKWorkoutSession for continuous</div>
+                    <div class="summary-item"><span class="emoji">📈</span> HKLiveWorkoutBuilder collects data</div>
+                    <div class="summary-item"><span class="emoji">💾</span> Save workouts to Health app</div>
+                    <div class="summary-item"><span class="emoji">🎨</span> Animate value changes smoothly</div>
+                    <div class="summary-item"><span class="emoji">🧵</span> Always update UI on main thread</div>
+                </div>
+            </section>
+            
+            <!-- References -->
+            <section>
+                <h2>References & Resources</h2>
+                <ul>
+                    <li><a href="https://developer.apple.com/documentation/healthkit/hkworkoutsession" target="_blank" style="color: var(--accent-cyan);">HKWorkoutSession Documentation</a></li>
+                    <li><a href="https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder" target="_blank" style="color: var(--accent-cyan);">HKLiveWorkoutBuilder</a></li>
+                    <li><a href="https://developer.apple.com/videos/play/wwdc2021/10009/" target="_blank" style="color: var(--accent-cyan);">WWDC: Build a Workout App</a></li>
+                </ul>
+            </section>
+
+            <!-- Questions -->
+            <section class="section-slide">
+                <div class="emoji">❓</div>
+                <h2>Questions?</h2>
+            </section>
+            
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({ hash: true, slideNumber: true, progress: true, center: false, transition: 'slide' });
+    </script>
+</body>
+</html>
+
