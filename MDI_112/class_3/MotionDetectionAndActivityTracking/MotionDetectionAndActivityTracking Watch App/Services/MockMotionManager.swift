@@ -46,7 +46,7 @@ class MockMotionManager: ObservableObject {
     var magnitude: Double {
         sqrt(x * x + y * y + z * z)
     }
-   d 
+
     // MARK: - Public Methods
     
     func startUpdates() {

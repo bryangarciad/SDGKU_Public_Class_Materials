@@ -1,14 +1,16 @@
 //
 //  HealthKitManager.swift
-//  HealthKitOnSwiftUI Watch App
+//  MDI112Class1WatchDesignPrinciples Watch App
 //
-//  Created for MDI 112 - Class 2
+//  Manages HealthKit operations for heart rate monitoring
+//  Demonstrates: Integrating HealthKit into a watchOS app
 //
 
 import Foundation
 import HealthKit
 
 /// Manages all HealthKit operations for heart rate monitoring
+/// Design Principle: Encapsulate platform-specific health data access
 class HealthKitManager {
     
     // MARK: - Properties
@@ -54,7 +56,6 @@ class HealthKitManager {
     }
     
     /// Check if we have authorization to read heart rate
-    /// Note: This only tells us if we've asked, not if user allowed
     func checkAuthorizationStatus() -> HKAuthorizationStatus {
         healthStore.authorizationStatus(for: heartRateType)
     }
@@ -63,14 +64,12 @@ class HealthKitManager {
     
     /// Fetch the most recent heart rate sample
     func fetchLatestHeartRate() async throws -> HeartRateSample? {
-        //
         return try await withCheckedThrowingContinuation { continuation in
             let sortDescriptor = NSSortDescriptor(
                 key: HKSampleSortIdentifierStartDate,
                 ascending: false
             )
             
-            //
             let query = HKSampleQuery(
                 sampleType: heartRateType,
                 predicate: nil,
@@ -90,46 +89,6 @@ class HealthKitManager {
                 let bpm = sample.quantity.doubleValue(for: self.heartRateUnit)
                 let heartRateSample = HeartRateSample(bpm: bpm, timestamp: sample.startDate)
                 continuation.resume(returning: heartRateSample)
-            }
-            
-            healthStore.execute(query)
-        }
-    }
-    
-    /// Fetch heart rate samples from the last hour
-    func fetchRecentHeartRates(hours: Int = 1) async throws -> [HeartRateSample] {
-        return try await withCheckedThrowingContinuation { continuation in
-            let startDate = Calendar.current.date(byAdding: .hour, value: -hours, to: Date())!
-            let predicate = HKQuery.predicateForSamples(
-                withStart: startDate,
-                end: Date(),
-                options: .strictStartDate
-            )
-            
-            let sortDescriptor = NSSortDescriptor(
-                key: HKSampleSortIdentifierStartDate,
-                ascending: false
-            )
-            
-            let query = HKSampleQuery(
-                sampleType: heartRateType,
-                predicate: predicate,
-                limit: HKObjectQueryNoLimit,
-                sortDescriptors: [sortDescriptor]
-            ) { _, samples, error in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-                
-                let heartRateSamples = (samples as? [HKQuantitySample])?.map { sample in
-                    HeartRateSample(
-                        bpm: sample.quantity.doubleValue(for: self.heartRateUnit),
-                        timestamp: sample.startDate
-                    )
-                } ?? []
-                
-                continuation.resume(returning: heartRateSamples)
             }
             
             healthStore.execute(query)

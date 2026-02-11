@@ -65,6 +65,13 @@ struct MainDashboardView: View {
                     }
                 }
                 
+                // Heart Rate Card
+                // Design Principle: Health data at a glance
+                NavigationLink(destination: HeartRateView(viewModel: viewModel)) {
+                    HeartRateCardView(viewModel: viewModel)
+                }
+                .buttonStyle(PlainButtonStyle())
+                
                 // Quick Add Buttons
                 // Design Principle: Limited functionality - focused actions
                 HStack(spacing: 12) {
@@ -114,6 +121,59 @@ struct MainDashboardView: View {
                 )
             }
         }
+    }
+}
+
+// MARK: - Heart Rate Card
+
+/// Compact heart rate card for the dashboard
+/// Design Principle: Glanceable health information
+struct HeartRateCardView: View {
+    @ObservedObject var viewModel: HealthViewModel
+    
+    var body: some View {
+        HStack(spacing: 12) {
+            // Heart icon with pulse animation
+            SmallPulsingHeartView(zone: viewModel.currentZone)
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Heart Rate")
+                    .font(.system(size: 10))
+                    .foregroundColor(.gray)
+                
+                if viewModel.currentHeartRate > 0 {
+                    HStack(alignment: .lastTextBaseline, spacing: 2) {
+                        Text("\(Int(viewModel.currentHeartRate))")
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(viewModel.currentZone.color)
+                        Text("BPM")
+                            .font(.system(size: 9))
+                            .foregroundColor(.gray)
+                    }
+                } else {
+                    Text("Tap to start")
+                        .font(.system(size: 12))
+                        .foregroundColor(.gray)
+                }
+            }
+            
+            Spacer()
+            
+            // Status indicator
+            if viewModel.isMonitoringHeartRate {
+                Circle()
+                    .fill(.red)
+                    .frame(width: 6, height: 6)
+            } else {
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 10))
+                    .foregroundColor(.gray)
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
+        .background(viewModel.currentZone.color.opacity(0.15))
+        .cornerRadius(12)
     }
 }
 

@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C1B8BBD52EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C1B8BBD42EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C1B795952F21B8F200936F68 /* ActivityCoach Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C1B795942F21B8F200936F68 /* ActivityCoach Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C1B8BBD62EF6DBDB005B36EC /* PBXContainerItemProxy */ = {
+		C1B795962F21B8F200936F68 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C1B8BBC82EF6DBDB005B36EC /* Project object */;
+			containerPortal = C1B795882F21B8F100936F68 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C1B8BBD32EF6DBDB005B36EC;
-			remoteInfo = "MDI112Class1WatchDesignPrinciples Watch App";
+			remoteGlobalIDString = C1B795932F21B8F200936F68;
+			remoteInfo = "ActivityCoach Watch App";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C1B8BBE72EF6DBDE005B36EC /* Embed Watch Content */ = {
+		C1B795A72F21B8F400936F68 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				C1B8BBD52EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App.app in Embed Watch Content */,
+				C1B795952F21B8F200936F68 /* ActivityCoach Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,20 +35,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C1B8BBCE2EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDI112Class1WatchDesignPrinciples.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1B8BBD42EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MDI112Class1WatchDesignPrinciples Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1B7958E2F21B8F200936F68 /* ActivityCoach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActivityCoach.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1B795942F21B8F200936F68 /* ActivityCoach Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ActivityCoach Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		C1B8BBD82EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App */ = {
+		C1B795982F21B8F200936F68 /* ActivityCoach Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "MDI112Class1WatchDesignPrinciples Watch App";
+			path = "ActivityCoach Watch App";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C1B8BBD12EF6DBDB005B36EC /* Frameworks */ = {
+		C1B795912F21B8F200936F68 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -58,19 +58,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C1B8BBC72EF6DBDB005B36EC = {
+		C1B795872F21B8F100936F68 = {
 			isa = PBXGroup;
 			children = (
-				C1B8BBD82EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App */,
-				C1B8BBCF2EF6DBDB005B36EC /* Products */,
+				C1B795982F21B8F200936F68 /* ActivityCoach Watch App */,
+				C1B7958F2F21B8F200936F68 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C1B8BBCF2EF6DBDB005B36EC /* Products */ = {
+		C1B7958F2F21B8F200936F68 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C1B8BBCE2EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples.app */,
-				C1B8BBD42EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App.app */,
+				C1B7958E2F21B8F200936F68 /* ActivityCoach.app */,
+				C1B795942F21B8F200936F68 /* ActivityCoach Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,94 +78,94 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C1B8BBCD2EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples */ = {
+		C1B7958D2F21B8F200936F68 /* ActivityCoach */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1B8BBE82EF6DBDE005B36EC /* Build configuration list for PBXNativeTarget "MDI112Class1WatchDesignPrinciples" */;
+			buildConfigurationList = C1B795A82F21B8F400936F68 /* Build configuration list for PBXNativeTarget "ActivityCoach" */;
 			buildPhases = (
-				C1B8BBCC2EF6DBDB005B36EC /* Resources */,
-				C1B8BBE72EF6DBDE005B36EC /* Embed Watch Content */,
+				C1B7958C2F21B8F200936F68 /* Resources */,
+				C1B795A72F21B8F400936F68 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C1B8BBD72EF6DBDB005B36EC /* PBXTargetDependency */,
+				C1B795972F21B8F200936F68 /* PBXTargetDependency */,
 			);
-			name = MDI112Class1WatchDesignPrinciples;
+			name = ActivityCoach;
 			packageProductDependencies = (
 			);
-			productName = MDI112Class1WatchDesignPrinciples;
-			productReference = C1B8BBCE2EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples.app */;
+			productName = ActivityCoach;
+			productReference = C1B7958E2F21B8F200936F68 /* ActivityCoach.app */;
 			productType = "com.apple.product-type.application.watchapp2-container";
 		};
-		C1B8BBD32EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App */ = {
+		C1B795932F21B8F200936F68 /* ActivityCoach Watch App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1B8BBE42EF6DBDE005B36EC /* Build configuration list for PBXNativeTarget "MDI112Class1WatchDesignPrinciples Watch App" */;
+			buildConfigurationList = C1B795A42F21B8F400936F68 /* Build configuration list for PBXNativeTarget "ActivityCoach Watch App" */;
 			buildPhases = (
-				C1B8BBD02EF6DBDB005B36EC /* Sources */,
-				C1B8BBD12EF6DBDB005B36EC /* Frameworks */,
-				C1B8BBD22EF6DBDB005B36EC /* Resources */,
+				C1B795902F21B8F200936F68 /* Sources */,
+				C1B795912F21B8F200936F68 /* Frameworks */,
+				C1B795922F21B8F200936F68 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				C1B8BBD82EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App */,
+				C1B795982F21B8F200936F68 /* ActivityCoach Watch App */,
 			);
-			name = "MDI112Class1WatchDesignPrinciples Watch App";
+			name = "ActivityCoach Watch App";
 			packageProductDependencies = (
 			);
-			productName = "MDI112Class1WatchDesignPrinciples Watch App";
-			productReference = C1B8BBD42EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App.app */;
+			productName = "ActivityCoach Watch App";
+			productReference = C1B795942F21B8F200936F68 /* ActivityCoach Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C1B8BBC82EF6DBDB005B36EC /* Project object */ = {
+		C1B795882F21B8F100936F68 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					C1B8BBCD2EF6DBDB005B36EC = {
+					C1B7958D2F21B8F200936F68 = {
 						CreatedOnToolsVersion = 16.0;
 					};
-					C1B8BBD32EF6DBDB005B36EC = {
+					C1B795932F21B8F200936F68 = {
 						CreatedOnToolsVersion = 16.0;
 					};
 				};
 			};
-			buildConfigurationList = C1B8BBCB2EF6DBDB005B36EC /* Build configuration list for PBXProject "MDI112Class1WatchDesignPrinciples" */;
+			buildConfigurationList = C1B7958B2F21B8F100936F68 /* Build configuration list for PBXProject "ActivityCoach" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = C1B8BBC72EF6DBDB005B36EC;
+			mainGroup = C1B795872F21B8F100936F68;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = C1B8BBCF2EF6DBDB005B36EC /* Products */;
+			productRefGroup = C1B7958F2F21B8F200936F68 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C1B8BBCD2EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples */,
-				C1B8BBD32EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App */,
+				C1B7958D2F21B8F200936F68 /* ActivityCoach */,
+				C1B795932F21B8F200936F68 /* ActivityCoach Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C1B8BBCC2EF6DBDB005B36EC /* Resources */ = {
+		C1B7958C2F21B8F200936F68 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C1B8BBD22EF6DBDB005B36EC /* Resources */ = {
+		C1B795922F21B8F200936F68 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -175,7 +175,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C1B8BBD02EF6DBDB005B36EC /* Sources */ = {
+		C1B795902F21B8F200936F68 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -185,15 +185,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C1B8BBD72EF6DBDB005B36EC /* PBXTargetDependency */ = {
+		C1B795972F21B8F200936F68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C1B8BBD32EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App */;
-			targetProxy = C1B8BBD62EF6DBDB005B36EC /* PBXContainerItemProxy */;
+			target = C1B795932F21B8F200936F68 /* ActivityCoach Watch App */;
+			targetProxy = C1B795962F21B8F200936F68 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		C1B8BBE22EF6DBDE005B36EC /* Debug */ = {
+		C1B795A22F21B8F400936F68 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -254,7 +254,7 @@
 			};
 			name = Debug;
 		};
-		C1B8BBE32EF6DBDE005B36EC /* Release */ = {
+		C1B795A32F21B8F400936F68 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -307,21 +307,18 @@
 			};
 			name = Release;
 		};
-		C1B8BBE52EF6DBDE005B36EC /* Debug */ = {
+		C1B795A52F21B8F400936F68 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "MDI112Class1WatchDesignPrinciples Watch App/MDI112Class1WatchDesignPrinciples Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MDI112Class1WatchDesignPrinciples Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ActivityCoach Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 33PDVR6SVF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = MDI112Class1WatchDesignPrinciples;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "used to calculate heart zone rates";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "used to calculate heart zone rates";
+				INFOPLIST_KEY_CFBundleDisplayName = ActivityCoach;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -329,7 +326,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.MDI112Class1WatchDesignPrinciples.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.ActivityCoach.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -340,21 +337,18 @@
 			};
 			name = Debug;
 		};
-		C1B8BBE62EF6DBDE005B36EC /* Release */ = {
+		C1B795A62F21B8F400936F68 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "MDI112Class1WatchDesignPrinciples Watch App/MDI112Class1WatchDesignPrinciples Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MDI112Class1WatchDesignPrinciples Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ActivityCoach Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 33PDVR6SVF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = MDI112Class1WatchDesignPrinciples;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "used to calculate heart zone rates";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "used to calculate heart zone rates";
+				INFOPLIST_KEY_CFBundleDisplayName = ActivityCoach;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -362,7 +356,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.MDI112Class1WatchDesignPrinciples.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.ActivityCoach.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -374,30 +368,30 @@
 			};
 			name = Release;
 		};
-		C1B8BBE92EF6DBDE005B36EC /* Debug */ = {
+		C1B795A92F21B8F400936F68 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 33PDVR6SVF;
-				INFOPLIST_KEY_CFBundleDisplayName = MDI112Class1WatchDesignPrinciples;
+				INFOPLIST_KEY_CFBundleDisplayName = ActivityCoach;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.MDI112Class1WatchDesignPrinciples;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.ActivityCoach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		C1B8BBEA2EF6DBDE005B36EC /* Release */ = {
+		C1B795AA2F21B8F400936F68 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 33PDVR6SVF;
-				INFOPLIST_KEY_CFBundleDisplayName = MDI112Class1WatchDesignPrinciples;
+				INFOPLIST_KEY_CFBundleDisplayName = ActivityCoach;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.MDI112Class1WatchDesignPrinciples;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.ActivityCoach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -408,34 +402,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C1B8BBCB2EF6DBDB005B36EC /* Build configuration list for PBXProject "MDI112Class1WatchDesignPrinciples" */ = {
+		C1B7958B2F21B8F100936F68 /* Build configuration list for PBXProject "ActivityCoach" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C1B8BBE22EF6DBDE005B36EC /* Debug */,
-				C1B8BBE32EF6DBDE005B36EC /* Release */,
+				C1B795A22F21B8F400936F68 /* Debug */,
+				C1B795A32F21B8F400936F68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1B8BBE42EF6DBDE005B36EC /* Build configuration list for PBXNativeTarget "MDI112Class1WatchDesignPrinciples Watch App" */ = {
+		C1B795A42F21B8F400936F68 /* Build configuration list for PBXNativeTarget "ActivityCoach Watch App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C1B8BBE52EF6DBDE005B36EC /* Debug */,
-				C1B8BBE62EF6DBDE005B36EC /* Release */,
+				C1B795A52F21B8F400936F68 /* Debug */,
+				C1B795A62F21B8F400936F68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1B8BBE82EF6DBDE005B36EC /* Build configuration list for PBXNativeTarget "MDI112Class1WatchDesignPrinciples" */ = {
+		C1B795A82F21B8F400936F68 /* Build configuration list for PBXNativeTarget "ActivityCoach" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C1B8BBE92EF6DBDE005B36EC /* Debug */,
-				C1B8BBEA2EF6DBDE005B36EC /* Release */,
+				C1B795A92F21B8F400936F68 /* Debug */,
+				C1B795AA2F21B8F400936F68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C1B8BBC82EF6DBDB005B36EC /* Project object */;
+	rootObject = C1B795882F21B8F100936F68 /* Project object */;
 }

@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C1B8BBD52EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C1B8BBD42EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C1C6B1B12F18823700B4B5DE /* AVMediaCapture Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C1C6B1B02F18823700B4B5DE /* AVMediaCapture Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C1B8BBD62EF6DBDB005B36EC /* PBXContainerItemProxy */ = {
+		C1C6B1B22F18823700B4B5DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C1B8BBC82EF6DBDB005B36EC /* Project object */;
+			containerPortal = C1C6B1A42F18823600B4B5DE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C1B8BBD32EF6DBDB005B36EC;
-			remoteInfo = "MDI112Class1WatchDesignPrinciples Watch App";
+			remoteGlobalIDString = C1C6B1AF2F18823700B4B5DE;
+			remoteInfo = "AVMediaCapture Watch App";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C1B8BBE72EF6DBDE005B36EC /* Embed Watch Content */ = {
+		C1C6B1C32F18823900B4B5DE /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				C1B8BBD52EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App.app in Embed Watch Content */,
+				C1C6B1B12F18823700B4B5DE /* AVMediaCapture Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,20 +35,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C1B8BBCE2EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDI112Class1WatchDesignPrinciples.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1B8BBD42EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MDI112Class1WatchDesignPrinciples Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1C6B1AA2F18823700B4B5DE /* AVMediaCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVMediaCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1C6B1B02F18823700B4B5DE /* AVMediaCapture Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AVMediaCapture Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		C1B8BBD82EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App */ = {
+		C1C6B1B42F18823700B4B5DE /* AVMediaCapture Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "MDI112Class1WatchDesignPrinciples Watch App";
+			path = "AVMediaCapture Watch App";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C1B8BBD12EF6DBDB005B36EC /* Frameworks */ = {
+		C1C6B1AD2F18823700B4B5DE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -58,19 +58,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C1B8BBC72EF6DBDB005B36EC = {
+		C1C6B1A32F18823600B4B5DE = {
 			isa = PBXGroup;
 			children = (
-				C1B8BBD82EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App */,
-				C1B8BBCF2EF6DBDB005B36EC /* Products */,
+				C1C6B1B42F18823700B4B5DE /* AVMediaCapture Watch App */,
+				C1C6B1AB2F18823700B4B5DE /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C1B8BBCF2EF6DBDB005B36EC /* Products */ = {
+		C1C6B1AB2F18823700B4B5DE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C1B8BBCE2EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples.app */,
-				C1B8BBD42EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App.app */,
+				C1C6B1AA2F18823700B4B5DE /* AVMediaCapture.app */,
+				C1C6B1B02F18823700B4B5DE /* AVMediaCapture Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,94 +78,94 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C1B8BBCD2EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples */ = {
+		C1C6B1A92F18823700B4B5DE /* AVMediaCapture */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1B8BBE82EF6DBDE005B36EC /* Build configuration list for PBXNativeTarget "MDI112Class1WatchDesignPrinciples" */;
+			buildConfigurationList = C1C6B1C42F18823900B4B5DE /* Build configuration list for PBXNativeTarget "AVMediaCapture" */;
 			buildPhases = (
-				C1B8BBCC2EF6DBDB005B36EC /* Resources */,
-				C1B8BBE72EF6DBDE005B36EC /* Embed Watch Content */,
+				C1C6B1A82F18823700B4B5DE /* Resources */,
+				C1C6B1C32F18823900B4B5DE /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C1B8BBD72EF6DBDB005B36EC /* PBXTargetDependency */,
+				C1C6B1B32F18823700B4B5DE /* PBXTargetDependency */,
 			);
-			name = MDI112Class1WatchDesignPrinciples;
+			name = AVMediaCapture;
 			packageProductDependencies = (
 			);
-			productName = MDI112Class1WatchDesignPrinciples;
-			productReference = C1B8BBCE2EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples.app */;
+			productName = AVMediaCapture;
+			productReference = C1C6B1AA2F18823700B4B5DE /* AVMediaCapture.app */;
 			productType = "com.apple.product-type.application.watchapp2-container";
 		};
-		C1B8BBD32EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App */ = {
+		C1C6B1AF2F18823700B4B5DE /* AVMediaCapture Watch App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1B8BBE42EF6DBDE005B36EC /* Build configuration list for PBXNativeTarget "MDI112Class1WatchDesignPrinciples Watch App" */;
+			buildConfigurationList = C1C6B1C02F18823900B4B5DE /* Build configuration list for PBXNativeTarget "AVMediaCapture Watch App" */;
 			buildPhases = (
-				C1B8BBD02EF6DBDB005B36EC /* Sources */,
-				C1B8BBD12EF6DBDB005B36EC /* Frameworks */,
-				C1B8BBD22EF6DBDB005B36EC /* Resources */,
+				C1C6B1AC2F18823700B4B5DE /* Sources */,
+				C1C6B1AD2F18823700B4B5DE /* Frameworks */,
+				C1C6B1AE2F18823700B4B5DE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				C1B8BBD82EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App */,
+				C1C6B1B42F18823700B4B5DE /* AVMediaCapture Watch App */,
 			);
-			name = "MDI112Class1WatchDesignPrinciples Watch App";
+			name = "AVMediaCapture Watch App";
 			packageProductDependencies = (
 			);
-			productName = "MDI112Class1WatchDesignPrinciples Watch App";
-			productReference = C1B8BBD42EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App.app */;
+			productName = "AVMediaCapture Watch App";
+			productReference = C1C6B1B02F18823700B4B5DE /* AVMediaCapture Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C1B8BBC82EF6DBDB005B36EC /* Project object */ = {
+		C1C6B1A42F18823600B4B5DE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					C1B8BBCD2EF6DBDB005B36EC = {
+					C1C6B1A92F18823700B4B5DE = {
 						CreatedOnToolsVersion = 16.0;
 					};
-					C1B8BBD32EF6DBDB005B36EC = {
+					C1C6B1AF2F18823700B4B5DE = {
 						CreatedOnToolsVersion = 16.0;
 					};
 				};
 			};
-			buildConfigurationList = C1B8BBCB2EF6DBDB005B36EC /* Build configuration list for PBXProject "MDI112Class1WatchDesignPrinciples" */;
+			buildConfigurationList = C1C6B1A72F18823600B4B5DE /* Build configuration list for PBXProject "AVMediaCapture" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = C1B8BBC72EF6DBDB005B36EC;
+			mainGroup = C1C6B1A32F18823600B4B5DE;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = C1B8BBCF2EF6DBDB005B36EC /* Products */;
+			productRefGroup = C1C6B1AB2F18823700B4B5DE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C1B8BBCD2EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples */,
-				C1B8BBD32EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App */,
+				C1C6B1A92F18823700B4B5DE /* AVMediaCapture */,
+				C1C6B1AF2F18823700B4B5DE /* AVMediaCapture Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C1B8BBCC2EF6DBDB005B36EC /* Resources */ = {
+		C1C6B1A82F18823700B4B5DE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C1B8BBD22EF6DBDB005B36EC /* Resources */ = {
+		C1C6B1AE2F18823700B4B5DE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -175,7 +175,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C1B8BBD02EF6DBDB005B36EC /* Sources */ = {
+		C1C6B1AC2F18823700B4B5DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -185,15 +185,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C1B8BBD72EF6DBDB005B36EC /* PBXTargetDependency */ = {
+		C1C6B1B32F18823700B4B5DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C1B8BBD32EF6DBDB005B36EC /* MDI112Class1WatchDesignPrinciples Watch App */;
-			targetProxy = C1B8BBD62EF6DBDB005B36EC /* PBXContainerItemProxy */;
+			target = C1C6B1AF2F18823700B4B5DE /* AVMediaCapture Watch App */;
+			targetProxy = C1C6B1B22F18823700B4B5DE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		C1B8BBE22EF6DBDE005B36EC /* Debug */ = {
+		C1C6B1BE2F18823900B4B5DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -254,7 +254,7 @@
 			};
 			name = Debug;
 		};
-		C1B8BBE32EF6DBDE005B36EC /* Release */ = {
+		C1C6B1BF2F18823900B4B5DE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -307,21 +307,19 @@
 			};
 			name = Release;
 		};
-		C1B8BBE52EF6DBDE005B36EC /* Debug */ = {
+		C1C6B1C12F18823900B4B5DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "MDI112Class1WatchDesignPrinciples Watch App/MDI112Class1WatchDesignPrinciples Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MDI112Class1WatchDesignPrinciples Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AVMediaCapture Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 33PDVR6SVF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = MDI112Class1WatchDesignPrinciples;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "used to calculate heart zone rates";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "used to calculate heart zone rates";
+				INFOPLIST_KEY_CFBundleDisplayName = AVMediaCapture;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This is a voice memo app so requires microphone for the memos";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -329,7 +327,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.MDI112Class1WatchDesignPrinciples.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.AVMediaCapture.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -340,21 +338,19 @@
 			};
 			name = Debug;
 		};
-		C1B8BBE62EF6DBDE005B36EC /* Release */ = {
+		C1C6B1C22F18823900B4B5DE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "MDI112Class1WatchDesignPrinciples Watch App/MDI112Class1WatchDesignPrinciples Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MDI112Class1WatchDesignPrinciples Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AVMediaCapture Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 33PDVR6SVF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = MDI112Class1WatchDesignPrinciples;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "used to calculate heart zone rates";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "used to calculate heart zone rates";
+				INFOPLIST_KEY_CFBundleDisplayName = AVMediaCapture;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This is a voice memo app so requires microphone for the memos";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -362,7 +358,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.MDI112Class1WatchDesignPrinciples.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.AVMediaCapture.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -374,30 +370,30 @@
 			};
 			name = Release;
 		};
-		C1B8BBE92EF6DBDE005B36EC /* Debug */ = {
+		C1C6B1C52F18823900B4B5DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 33PDVR6SVF;
-				INFOPLIST_KEY_CFBundleDisplayName = MDI112Class1WatchDesignPrinciples;
+				INFOPLIST_KEY_CFBundleDisplayName = AVMediaCapture;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.MDI112Class1WatchDesignPrinciples;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.AVMediaCapture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		C1B8BBEA2EF6DBDE005B36EC /* Release */ = {
+		C1C6B1C62F18823900B4B5DE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 33PDVR6SVF;
-				INFOPLIST_KEY_CFBundleDisplayName = MDI112Class1WatchDesignPrinciples;
+				INFOPLIST_KEY_CFBundleDisplayName = AVMediaCapture;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.MDI112Class1WatchDesignPrinciples;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramsesGarcia.AVMediaCapture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -408,34 +404,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C1B8BBCB2EF6DBDB005B36EC /* Build configuration list for PBXProject "MDI112Class1WatchDesignPrinciples" */ = {
+		C1C6B1A72F18823600B4B5DE /* Build configuration list for PBXProject "AVMediaCapture" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C1B8BBE22EF6DBDE005B36EC /* Debug */,
-				C1B8BBE32EF6DBDE005B36EC /* Release */,
+				C1C6B1BE2F18823900B4B5DE /* Debug */,
+				C1C6B1BF2F18823900B4B5DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1B8BBE42EF6DBDE005B36EC /* Build configuration list for PBXNativeTarget "MDI112Class1WatchDesignPrinciples Watch App" */ = {
+		C1C6B1C02F18823900B4B5DE /* Build configuration list for PBXNativeTarget "AVMediaCapture Watch App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C1B8BBE52EF6DBDE005B36EC /* Debug */,
-				C1B8BBE62EF6DBDE005B36EC /* Release */,
+				C1C6B1C12F18823900B4B5DE /* Debug */,
+				C1C6B1C22F18823900B4B5DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1B8BBE82EF6DBDE005B36EC /* Build configuration list for PBXNativeTarget "MDI112Class1WatchDesignPrinciples" */ = {
+		C1C6B1C42F18823900B4B5DE /* Build configuration list for PBXNativeTarget "AVMediaCapture" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C1B8BBE92EF6DBDE005B36EC /* Debug */,
-				C1B8BBEA2EF6DBDE005B36EC /* Release */,
+				C1C6B1C52F18823900B4B5DE /* Debug */,
+				C1C6B1C62F18823900B4B5DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C1B8BBC82EF6DBDB005B36EC /* Project object */;
+	rootObject = C1C6B1A42F18823600B4B5DE /* Project object */;
 }

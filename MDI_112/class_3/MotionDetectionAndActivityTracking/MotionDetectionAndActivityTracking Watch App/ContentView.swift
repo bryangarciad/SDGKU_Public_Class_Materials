@@ -18,7 +18,7 @@ struct ContentView: View {
             TabView(selection: $selectedTab) {
                 // Tilt Ball Tab
                 TiltBallView(motionManager: motionManager)
-                    .tagd(0)
+                    .tag(0)
                 
                 // Shake Counter Tab
                 ShakeCounterView(motionManager: motionManager)

@@ -61,7 +61,7 @@ class AdvancedMotionManager: ObservableObject {
         guard !isRunning else { return }
         
         // Configure device motion
-        motionManager.deviceMotionUpdateInterval = 0.1
+        motionManager.deviceMotionUpdateInterval = 0.1 // 10 hz
         
         // Start device motion updates
         motionManager.startDeviceMotionUpdates(to: .main) { [weak self] motion, error in

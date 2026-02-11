@@ -49,9 +49,15 @@ class HapticManager {
     }
     
     /// Direction Up haptic - for increasing values
-    /// Use: When adding calories or water
+    /// Use: When adding calories or water, or entering higher heart rate zone
     func playDirectionUp() {
         WKInterfaceDevice.current().play(.directionUp)
+    }
+    
+    /// Direction Down haptic - for decreasing values
+    /// Use: When entering lower heart rate zone
+    func playDirectionDown() {
+        WKInterfaceDevice.current().play(.directionDown)
     }
     
     /// Retry haptic - for errors or warnings
@@ -63,6 +69,34 @@ class HapticManager {
     /// Failure haptic - for errors
     /// Use: When an action fails
     func playFailure() {
+        WKInterfaceDevice.current().play(.failure)
+    }
+    
+    // MARK: - Heart Rate Zone Haptics
+    
+    /// Play feedback for heart rate zone change
+    /// - Parameters:
+    ///   - oldZone: Previous heart rate zone
+    ///   - newZone: New heart rate zone
+    func playZoneChanged(from oldZone: HeartRateZone, to newZone: HeartRateZone) {
+        let zones = HeartRateZone.allCases
+        guard let oldIndex = zones.firstIndex(of: oldZone),
+              let newIndex = zones.firstIndex(of: newZone) else {
+            return
+        }
+        
+        if newIndex > oldIndex {
+            // Moving to higher intensity zone
+            playDirectionUp()
+        } else {
+            // Moving to lower intensity zone
+            playDirectionDown()
+        }
+    }
+    
+    /// Warning haptic - for peak heart rate zone
+    /// Use: Alert user they're at maximum effort
+    func playWarning() {
         WKInterfaceDevice.current().play(.failure)
     }
 }
