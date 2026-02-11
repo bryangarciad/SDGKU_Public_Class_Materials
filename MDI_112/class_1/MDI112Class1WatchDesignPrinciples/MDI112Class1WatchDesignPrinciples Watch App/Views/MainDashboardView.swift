@@ -72,13 +72,6 @@ struct MainDashboardView: View {
                 }
                 .buttonStyle(PlainButtonStyle())
                 
-                // Sensor Data Card
-                // Design Principle: Access to raw sensor data
-                NavigationLink(destination: SensorDataView()) {
-                    SensorCardView()
-                }
-                .buttonStyle(PlainButtonStyle())
-                
                 // Quick Add Buttons
                 // Design Principle: Limited functionality - focused actions
                 HStack(spacing: 12) {
@@ -180,56 +173,6 @@ struct HeartRateCardView: View {
         .padding(.horizontal, 12)
         .padding(.vertical, 10)
         .background(viewModel.currentZone.color.opacity(0.15))
-        .cornerRadius(12)
-    }
-}
-
-// MARK: - Sensor Card
-
-/// Compact sensor data card for the dashboard
-/// Design Principle: Quick access to motion sensors
-struct SensorCardView: View {
-    @StateObject private var motionManager = MotionManager.shared
-    
-    var body: some View {
-        HStack(spacing: 12) {
-            // Sensor icon
-            Image(systemName: "gyroscope")
-                .font(.system(size: 16))
-                .foregroundColor(.purple)
-            
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Sensors")
-                    .font(.system(size: 10))
-                    .foregroundColor(.gray)
-                
-                if motionManager.isActive {
-                    Text("Recording...")
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.purple)
-                } else {
-                    Text("Tap to explore")
-                        .font(.system(size: 12))
-                        .foregroundColor(.gray)
-                }
-            }
-            
-            Spacer()
-            
-            // Status indicator
-            if motionManager.isActive {
-                Circle()
-                    .fill(.green)
-                    .frame(width: 6, height: 6)
-            } else {
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 10))
-                    .foregroundColor(.gray)
-            }
-        }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 10)
-        .background(Color.purple.opacity(0.15))
         .cornerRadius(12)
     }
 }
